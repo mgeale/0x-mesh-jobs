@@ -1,25 +1,25 @@
 {
-  "name": "mesh",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "scripts": {
-    "get-stats": "tsc; node built/get_stats.js",
-    "order-stream": "tsc; node built/order_stream.js",
-    "all-orders": "tsc; node built/all_orders.js",
-    "add-orders": "tsc; node built/add_orders.js",
-    "pretty": "prettier --write './src/**/*.ts'"
-  },
-  "prettier": {
-    "tabWidth": 4,
-    "printWidth": 120,
-    "singleQuote": true
-  },
-  "devDependencies": {
-  	"prettier": "1.16.4",
-    "typescript": "^3.5.3"
-  },
-  "dependencies": {
-    "@0x/mesh-rpc-client": "^4.0.1-beta"
-  }
+    "name": "mesh",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "get-stats": "tsc; node built/get_stats.js",
+        "order-stream": "tsc; node built/order_stream.js",
+        "all-orders": "tsc; node built/all_orders.js",
+        "add-orders": "tsc; node built/add_orders.js",
+        "pretty": "prettier --write './**/*'"
+    },
+    "prettier": {
+        "tabWidth": 4,
+        "printWidth": 120,
+        "singleQuote": true
+    },
+    "devDependencies": {
+        "prettier": "1.16.4",
+        "typescript": "^3.5.3"
+    },
+    "dependencies": {
+        "@0x/mesh-rpc-client": "^4.0.1-beta"
+    }
 }
