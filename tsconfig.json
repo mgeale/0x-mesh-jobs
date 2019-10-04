@@ -2,8 +2,9 @@
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
-    "sourceMap": true,
+    "sourceMap": false,
     "allowJs": true,
+    "outDir": "built",
     "typeRoots": [
       "node_modules/@types",
       "node_modules/@0x/typescript-typings/types"
