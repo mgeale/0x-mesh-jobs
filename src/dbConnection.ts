@@ -5,7 +5,7 @@ export class DbConnection {
     public mongoConnection;
 
     constructor(config: Config) {
-        this.mongoConnection = new MongoClient(config.connectionString, { useUnifiedTopology: true });
+        this.mongoConnection = new MongoClient(config.mongodb.connectionString, { useUnifiedTopology: true });
         this.mongoConnection.connect({ useNewUrlParser: true });
     }
 

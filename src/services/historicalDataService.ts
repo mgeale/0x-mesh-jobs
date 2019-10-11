@@ -8,7 +8,7 @@ export class HistoricalDataService {
 
     saveTotalOrdersOnTheHour() {
         setInterval(async () => {
-            const orders = await meshConnection.getOrdersAsync();
+            const orders = await this.meshConnection.getOrdersAsync();
             console.log("ORDERS", orders);
 
         }, 10000)
