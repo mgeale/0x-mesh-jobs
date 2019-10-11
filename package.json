@@ -1,14 +1,11 @@
 {
-    "name": "mesh",
+    "name": "mesh-backend",
     "version": "1.0.0",
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-        "get-stats": "tsc; node built/get_stats.js",
-        "order-stream": "tsc; node built/order_stream.js",
-        "all-orders": "tsc; node built/all_orders.js",
-        "add-orders": "tsc; node built/add_orders.js",
-        "pretty": "prettier --write './**/*'"
+        "start": "tsc; node built/index.js",
+        "pretty": "prettier --write 'src/**/*'"
     },
     "prettier": {
         "tabWidth": 4,
@@ -20,6 +17,8 @@
         "typescript": "^3.5.3"
     },
     "dependencies": {
-        "@0x/mesh-rpc-client": "^4.0.1-beta"
+        "@0x/mesh-rpc-client": "^4.0.1-beta",
+        "mongodb": "^3.3.2",
+        "ws": "^7.1.2"
     }
 }
