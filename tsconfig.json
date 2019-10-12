@@ -6,5 +6,6 @@
         "allowJs": true,
         "outDir": "built",
         "typeRoots": ["node_modules/@types", "node_modules/@0x/typescript-typings/types"]
-    }
+    },
+    "include": ["src"]
 }

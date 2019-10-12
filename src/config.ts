@@ -7,7 +7,7 @@ export class Config {
     public mongodb: {
         connectionString: string;
     };
-    constructor(private configPath: string) {
+    constructor(private readonly configPath: string) {
         this.loadFromFile();
     }
 

@@ -1,16 +1,25 @@
-import {HistoricalDataStorage} from '../storages/historicalDataStorage';
-export class HistoricalDataService {
-    private storage: HistoricalDataStorage;
+import { OrderInfo } from '@0x/mesh-rpc-client';
 
-    constructor(private dbConnection, private meshConnection) {
-        this.storage = new HistoricalDataStorage(dbConnection)
+import { HistoricalDataStorage } from '../storages/historicalDataStorage';
+
+export class HistoricalDataService {
+    private readonly storage: HistoricalDataStorage;
+
+    constructor(private readonly dbConnection) {
+        this.storage = new HistoricalDataStorage(dbConnection);
     }
 
-    saveTotalOrdersOnTheHour() {
-        setInterval(async () => {
-            const orders = await this.meshConnection.getOrdersAsync();
-            console.log("ORDERS", orders);
+    public async saveTotalOrders(orders: OrderInfo[]): Promise<void> {
+        await this.storage.saveTotalOrders(orders.length);
+    }
 
-        }, 10000)
+    public async saveTotalOrdersPerMarket(orders: OrderInfo[]): Promise<void> {
+        // TODO: finish
+        const result = orders.map(order => {
+            return {
+                makerAssetData: order.signedOrder.makerAssetData,
+                takerAssetData: order.signedOrder.takerAssetData,
+            };
+        });
     }
 }

@@ -5,7 +5,9 @@
     "license": "MIT",
     "scripts": {
         "start": "tsc; node built/index.js",
-        "pretty": "prettier --write 'src/**/*'"
+        "pretty": "prettier --write 'src/**/*'",
+        "lint": "tslint --project ./ --format stylish",
+        "lint:fix": "tslint --project ./ --fix"
     },
     "prettier": {
         "tabWidth": 4,
@@ -13,7 +15,9 @@
         "singleQuote": true
     },
     "devDependencies": {
+        "@0x/tslint-config": "^3.0.0",
         "prettier": "1.16.4",
+        "tslint": "^5.20.0",
         "typescript": "^3.5.3"
     },
     "dependencies": {
