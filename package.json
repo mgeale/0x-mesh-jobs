@@ -5,7 +5,7 @@
    "license": "MIT",
    "scripts": {
       "build": "rm -r ./built && tsc",
-      "test": "yarn build && jasmine",
+      "test": "yarn build && node built/test/index.js",
       "start": "yarn build && node built/index.js",
       "pretty": "prettier --write 'src/**/*'",
       "lint": "tslint --project ./ --format stylish",
@@ -20,6 +20,7 @@
       "@0x/tslint-config": "^3.0.0",
       "@types/jasmine": "^3.4.4",
       "@types/node": "^8.0.29",
+      "jasmine": "^3.5.0",
       "prettier": "1.16.4",
       "tslint": "^5.20.0",
       "typescript": "3.3.3333"

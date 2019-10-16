@@ -72,8 +72,7 @@ export class CurrentStateService {
         }
         return {
             price: price,
-            count: count,
-            selectedOrders: selectedOrders
+            count: count
         };
     }
 }
