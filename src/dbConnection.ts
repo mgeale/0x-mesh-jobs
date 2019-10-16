@@ -1,19 +1,18 @@
-import { MongoClient } from 'mongodb';
-import { Config } from './config';
+import * as _ from 'lodash';
+import { Connection, createConnection } from 'typeorm';
 
-export class DbConnection {
-    private mongoConnection: MongoClient;
+let connectionIfExists: Connection | undefined;
 
-    constructor(config: Config) {
-        this.mongoConnection = new MongoClient(config.mongodb.connectionString, { useUnifiedTopology: true });
-        return this.mongoConnection;
+export function getDBConnection(): Connection {
+    if (_.isUndefined(connectionIfExists)) {
+        throw new Error('DB connection not initialized');
     }
+    return connectionIfExists;
+}
 
-    public async dispose() {
-        this.mongoConnection.close();
+export async function initDBConnectionAsync(): Promise<void> {
+    if (!_.isUndefined(connectionIfExists)) {
+        throw new Error('DB connection already exists');
     }
-
-    public async connect() {
-        await this.mongoConnection.connect({ useNewUrlParser: true });
-    }
+    connectionIfExists = await createConnection();
 }

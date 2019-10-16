@@ -4,15 +4,12 @@ export class Config {
     public mesh: {
         connectionString: string;
     };
-    public mongodb: {
-        connectionString: string;
-    };
-    constructor(private readonly configPath: string) {
-        this.loadFromFile();
+    constructor(private readonly _configPath: string) {
+        this._loadFromFile();
     }
 
-    private loadFromFile() {
-        const configAsString = fs.readFileSync(this.configPath).toString();
+    private _loadFromFile(): void {
+        const configAsString = fs.readFileSync(this._configPath).toString();
         const o = JSON.parse(configAsString);
         Object.assign(this, o);
     }

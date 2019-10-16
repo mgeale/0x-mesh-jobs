@@ -1,0 +1,5 @@
+{
+    "mesh": {
+        "connectionString": "ws://localhost:60557"
+    }
+}

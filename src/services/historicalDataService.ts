@@ -5,8 +5,8 @@ import { HistoricalDataStorage } from '../storages/historicalDataStorage';
 export class HistoricalDataService {
     private readonly storage: HistoricalDataStorage;
 
-    constructor(private readonly dbConnection) {
-        this.storage = new HistoricalDataStorage(dbConnection);
+    constructor() {
+        this.storage = new HistoricalDataStorage();
     }
 
     public async saveTotalOrders(orders: OrderInfo[]): Promise<void> {
@@ -18,7 +18,7 @@ export class HistoricalDataService {
         const result = orders.map(order => {
             return {
                 makerAssetData: order.signedOrder.makerAssetData,
-                takerAssetData: order.signedOrder.takerAssetData,
+                takerAssetData: order.signedOrder.takerAssetData
             };
         });
     }

@@ -1,28 +1,36 @@
 {
-    "name": "mesh-backend",
-    "version": "1.0.0",
-    "main": "index.js",
-    "license": "MIT",
-    "scripts": {
-        "start": "tsc; node built/index.js",
-        "pretty": "prettier --write 'src/**/*'",
-        "lint": "tslint --project ./ --format stylish",
-        "lint:fix": "tslint --project ./ --fix"
-    },
-    "prettier": {
-        "tabWidth": 4,
-        "printWidth": 120,
-        "singleQuote": true
-    },
-    "devDependencies": {
-        "@0x/tslint-config": "^3.0.0",
-        "prettier": "1.16.4",
-        "tslint": "^5.20.0",
-        "typescript": "^3.5.3"
-    },
-    "dependencies": {
-        "@0x/mesh-rpc-client": "^4.0.1-beta",
-        "mongodb": "^3.3.2",
-        "ws": "^7.1.2"
-    }
+   "name": "mesh-backend",
+   "version": "1.0.0",
+   "main": "index.js",
+   "license": "MIT",
+   "scripts": {
+      "build": "rm -r ./built && tsc",
+      "test": "yarn build && jasmine",
+      "start": "yarn build && node built/index.js",
+      "pretty": "prettier --write 'src/**/*'",
+      "lint": "tslint --project ./ --format stylish",
+      "lint:fix": "tslint --project ./ --fix"
+   },
+   "prettier": {
+      "tabWidth": 4,
+      "printWidth": 120,
+      "singleQuote": true
+   },
+   "devDependencies": {
+      "@0x/tslint-config": "^3.0.0",
+      "@types/jasmine": "^3.4.4",
+      "@types/node": "^8.0.29",
+      "prettier": "1.16.4",
+      "tslint": "^5.20.0",
+      "typescript": "3.3.3333"
+   },
+   "dependencies": {
+      "@0x/mesh-rpc-client": "^4.0.1-beta",
+      "@0x/order-utils": "^8.4.0",
+      "lodash": "^4.17.15",
+      "reflect-metadata": "^0.1.10",
+      "sqlite3": "^4.1.0",
+      "typeorm": "0.2.19",
+      "ws": "^7.1.2"
+   }
 }

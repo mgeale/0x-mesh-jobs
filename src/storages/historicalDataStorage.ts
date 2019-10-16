@@ -1,22 +1,18 @@
-import { MongoClient } from 'mongodb';
+import { getDBConnection } from '../dbConnection';
+import { TotalOrderModel } from '../models/totalOrderModel';
 
 export class HistoricalDataStorage {
-    private readonly dataBaseName = 'HistoricalData';
-    private readonly collectionName = 'totalOrders';
-    private readonly db: any;
-    private readonly collection: any;
+    constructor() {}
 
-    constructor(private readonly client: MongoClient) {
-        this.db = client.db(this.dataBaseName);
-        this.collection = this.db.collection(this.collectionName);
+    public async saveTotalOrders(total: number) {
+        const connection = getDBConnection();
+        console.log(`Saving ${total} total orders to db`);
+        const entry = new TotalOrderModel({
+            timestamp: new Date().getTime(),
+            total
+        });
+        await connection.manager.save(entry);
     }
 
-    public async saveTotalOrders(totalOrders: number) {
-        console.log(`Saving ${totalOrders} total orders to db`);
-        await this.collection.insertOne({ total: totalOrders, timestamp: new Date().getTime() });
-    }
-
-    public async getTotalOrders() {
-        return this.collection.find().toArray();
-    }
+    public async getTotalOrders() {}
 }

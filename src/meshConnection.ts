@@ -1,10 +1,20 @@
 import { WSClient } from '@0x/mesh-rpc-client';
+import * as _ from 'lodash';
 
 import { Config } from './config';
 
-export class MeshConnection {
-    public async init(): Promise<WSClient> {
-        return new WSClient(this.config.mesh.connectionString);
+let connectionIfExists: WSClient | undefined;
+
+export function getMeshConnection(): WSClient {
+    if (_.isUndefined(connectionIfExists)) {
+        throw new Error('mesh connection not initialized');
     }
-    constructor(private readonly config: Config) {}
+    return connectionIfExists;
+}
+
+export async function initMeshConnection(config: Config): Promise<void> {
+    if (!_.isUndefined(connectionIfExists)) {
+        throw new Error('mesh connection already exists');
+    }
+    connectionIfExists = new WSClient(config.mesh.connectionString);
 }
