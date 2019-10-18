@@ -1,8 +1,7 @@
 import { OrderInfo } from '@0x/mesh-rpc-client';
-import { BigNumber } from 'bignumber.js';
 
-import { getMeshConnection } from '../meshConnection';
 import { TokenData } from '../lib/tokenData';
+import { getMeshConnection } from '../meshConnection';
 import { OrderPrice } from '../models/OrderModels';
 
 export class CurrentStateService {
@@ -34,7 +33,7 @@ export class CurrentStateService {
     public async getOrderBookAsync(market: { makerAsset: string; takerAsset: string }): Promise<OrderPrice[]> {
         const meshConnection = getMeshConnection();
         const orders = await meshConnection.getOrdersAsync();
-        let marketOrder = [];
+        const marketOrder = [];
         orders.forEach(o => {
             if (
                 o.signedOrder.makerAssetData === market.makerAsset &&
@@ -46,33 +45,10 @@ export class CurrentStateService {
                     takerToken: this.tokenData.toTokenSymbol(o.signedOrder.takerAssetData),
                     price: o.signedOrder.makerAssetAmount.dividedBy(o.signedOrder.takerAssetAmount),
                     makerAmount: o.signedOrder.makerAssetAmount.shiftedBy(-18),
-                    takerAmount: o.signedOrder.takerAssetAmount.shiftedBy(-18)
+                    takerAmount: o.signedOrder.takerAssetAmount.shiftedBy(-18),
                 });
             }
         });
         return marketOrder.sort((a, b) => b.price - a.price);
-    }
-
-    public getSlippage(orders: OrderPrice[], purchaseAmount: number) {
-        const selectedOrders = [];
-        let count = new BigNumber(0);
-        let price = new BigNumber(0);
-        for (let i = 0; count.isLessThan(purchaseAmount); i++) {
-            if (orders[i].takerAmount.plus(count).isGreaterThan(purchaseAmount)) {
-                const remaining = new BigNumber(-count.minus(purchaseAmount));
-                orders[i].takerAmount = remaining;
-                selectedOrders.push(orders[i]);
-                count = count.plus(remaining);
-                price = orders[i].price.multipliedBy(remaining).plus(price);
-            } else {
-                selectedOrders.push(orders[i]);
-                count = orders[i].takerAmount.plus(count);
-                price = orders[i].price.multipliedBy(orders[i].takerAmount).plus(price);
-            }
-        }
-        return {
-            price: price,
-            count: count
-        };
     }
 }

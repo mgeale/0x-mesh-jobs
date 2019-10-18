@@ -1,12 +1,18 @@
-import { CurrentStateService } from './currentStateService';
-import { OrderPrice } from '../models/OrderModels';
-import { BigNumber } from 'bignumber.js';
+import { BigNumber, OrderInfo } from '@0x/mesh-rpc-client';
 
-describe('current state service', () => {
+import { OrderPrice } from '../models/OrderModels';
+import { CurrentStateService } from '../services/currentStateService';
+import { loadTestOrderInfo } from '../test/loadTestOrderInfo';
+
+import { getSlippage } from './slippage';
+
+describe('slippage', () => {
     let service: CurrentStateService;
+    let orders: OrderInfo[];
 
     beforeAll(() => {
         service = new CurrentStateService();
+        orders = loadTestOrderInfo();
     });
 
     it('should calculate slippage', () => {
@@ -30,9 +36,9 @@ describe('current state service', () => {
                 salt: new BigNumber(10),
                 exchangeAddress: 'exchange_address',
                 feeRecipientAddress: 'fee_recipient_address',
-                expirationTimeSeconds: new BigNumber(10)
-            }
+                expirationTimeSeconds: new BigNumber(10),
+            },
         ];
-        expect(service.getSlippage(orders, 10)).toEqual({price: new BigNumber(100), count: new BigNumber(10)});
+        expect(getSlippage(orders, 10)).toEqual({price: new BigNumber(100), count: new BigNumber(10)});
     });
 });

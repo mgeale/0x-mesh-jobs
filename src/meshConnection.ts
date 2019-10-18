@@ -12,7 +12,7 @@ export function getMeshConnection(): WSClient {
     return connectionIfExists;
 }
 
-export async function initMeshConnection(config: Config): Promise<void> {
+export async function initMeshConnectionAsync(config: Config): Promise<void> {
     if (!_.isUndefined(connectionIfExists)) {
         throw new Error('mesh connection already exists');
     }

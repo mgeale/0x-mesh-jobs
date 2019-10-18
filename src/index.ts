@@ -1,7 +1,7 @@
 import * as path from 'path';
 
 import { Config } from './config';
-import { getMeshConnection, initMeshConnection } from './meshConnection';
+import { getMeshConnection, initMeshConnectionAsync } from './meshConnection';
 import { CurrentStateService } from './services/currentStateService';
 
 const config = new Config(path.join(__dirname, '../config.json'));
@@ -12,12 +12,12 @@ enum encodedAssets {
 }
 
 (async () => {
-    await initMeshConnection(config);
+    await initMeshConnectionAsync(config);
     const market = {
         makerAsset: encodedAssets.WETH,
         takerAsset: encodedAssets.DAI
     };
     const orders = await new CurrentStateService().getOrderBookAsync(market);
-    const slippage = new CurrentStateService().getSlippage(orders, 10);
-    console.log(slippage);
+    // const slippage = new CurrentStateService().getSlippage(orders, 10);
+    // console.log(slippage);
 })();
