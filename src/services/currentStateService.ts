@@ -1,7 +1,7 @@
 import { OrderInfo } from '@0x/mesh-rpc-client';
 
 import { TokenData } from '../common/tokenData';
-import { getMeshConnection } from '../meshConnection';
+import { getMeshConnection } from '../connections/meshConnection';
 import { OrderPrice } from '../models/OrderModels';
 
 export class CurrentStateService {
