@@ -1,7 +1,7 @@
 import * as path from 'path';
 
 import { Config } from './config';
-import { getMeshConnection, initMeshConnectionAsync } from './meshConnection';
+import { getMeshConnection, initMeshConnectionAsync } from './connections/meshConnection';
 import { CurrentStateService } from './services/currentStateService';
 
 const config = new Config(path.join(__dirname, '../config.json'));

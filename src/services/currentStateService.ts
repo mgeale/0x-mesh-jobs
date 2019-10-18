@@ -1,6 +1,6 @@
 import { OrderInfo } from '@0x/mesh-rpc-client';
 
-import { TokenData } from '../lib/tokenData';
+import { TokenData } from '../common/tokenData';
 import { getMeshConnection } from '../meshConnection';
 import { OrderPrice } from '../models/OrderModels';
 
