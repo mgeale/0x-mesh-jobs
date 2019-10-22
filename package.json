@@ -6,7 +6,7 @@
    "scripts": {
       "build": "rm -r ./built && tsc",
       "test": "yarn build && node built/test/index.js",
-      "test:data": "yarn build && node built/test/createTestData.js",
+      "test:data": "yarn build && node built/test/saveTestOrderInfo.js",
       "start": "yarn build && node built/index.js",
       "pretty": "prettier --write 'src/**/*'",
       "lint": "tslint --project ./ --format stylish",

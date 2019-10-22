@@ -6,7 +6,7 @@ import { loadTestOrderInfo } from '../test/loadTestOrderInfo';
 
 import { getSlippage } from './slippage';
 
-describe('slippage', () => {
+xdescribe('slippage', () => {
     let service: CurrentStateService;
     let orders: OrderInfo[];
 

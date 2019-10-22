@@ -1,7 +1,7 @@
 import { WSClient } from '@0x/mesh-rpc-client';
 import * as _ from 'lodash';
 
-import { Config } from './config';
+import { Config } from '../config';
 
 let connectionIfExists: WSClient | undefined;
 

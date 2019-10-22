@@ -1,4 +1,4 @@
-import { getDBConnection } from '../dbConnection';
+import { getDBConnection } from '../connections/dbConnection';
 import { TotalOrderModel } from '../models/totalOrderModel';
 
 export class HistoricalDataStorage {
