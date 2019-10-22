@@ -10,7 +10,7 @@ describe('market totals', () => {
 	});
 
 	it('should calculate total number of different markets', () => {
-		expect(MarketTotals.calculateTotalNumberOfMarkets(orders)).toEqual(100)
+		expect(MarketTotals.calculateTotalNumberOfMarkets(orders)).toEqual(8)
 	});
 
 	it('should calculate total number of orders per market', () => {

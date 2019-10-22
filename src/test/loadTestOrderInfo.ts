@@ -13,6 +13,6 @@ import * as path from 'path';
  *     foo('hello')
  */
 export function loadTestOrderInfo(): OrderInfo[] {
-    const rawData = fs.readFileSync(path.join(__dirname, '../../testData/meshOrders.json'));
+    const rawData = fs.readFileSync(path.join(__dirname, '../../testData/meshOrdersShortList.json'));
     return JSON.parse(rawData.toString());
 }
