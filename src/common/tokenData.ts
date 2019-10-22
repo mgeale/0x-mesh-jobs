@@ -43,31 +43,31 @@ export class TokenData {
         const multiAsset = new RegExp('^0x94cfcdd7');
 
         if (erc20RegEx.test(encodedAssetData)) {
-            return this.toErc20Symbol(encodedAssetData);
+            return this._toErc20Symbol(encodedAssetData);
         } else if (erc721RegEx.test(encodedAssetData)) {
-            return this.toErc721Name(encodedAssetData);
+            return this._toErc721Name(encodedAssetData);
         } else if (multiAsset.test(encodedAssetData)) {
-            return this.toMultiAsset(encodedAssetData);
+            return this._toMultiAsset(encodedAssetData);
         }
     }
 
-    private toErc20Symbol(encodedAssetData: string): string {
+    private _toErc20Symbol(encodedAssetData: string): string {
         const token = assetDataUtils.decodeERC20AssetData(encodedAssetData);
         const assetData = this._erc20Tokens.find(t => t.address.toLowerCase() === token.tokenAddress.toLowerCase());
         return assetData ? assetData.symbol : token.tokenAddress;
     }
 
-    private toErc721Name(encodedAssetData: string): string {
+    private _toErc721Name(encodedAssetData: string): string {
         const token = assetDataUtils.decodeERC721AssetData(encodedAssetData);
-        const assetData = this._erc721Tokens.find(t => t.address.toLowerCase() === token.tokenAddress.toLowerCase())
+        const assetData = this._erc721Tokens.find(t => t.address.toLowerCase() === token.tokenAddress.toLowerCase());
         return assetData ? assetData.name : token.tokenAddress;
     }
 
-    private toMultiAsset(encodedAssetData: string): string {
+    private _toMultiAsset(encodedAssetData: string): string {
         const token = assetDataUtils.decodeMultiAssetData(encodedAssetData);
         const nested = token.nestedAssetData.map(a => {
-            return this.toTokenSymbol(a)
+            return this.toTokenSymbol(a);
         });
-        return nested.join("+");
+        return nested.join('+');
     }
 }

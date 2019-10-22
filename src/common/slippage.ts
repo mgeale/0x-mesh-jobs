@@ -2,7 +2,12 @@ import { BigNumber } from '@0x/mesh-rpc-client';
 
 import { OrderPrice } from '../models/OrderModels';
 
-export function getSlippage(orders: OrderPrice[], purchaseAmount: number) {
+export interface Slippage {
+    price: BigNumber;
+    count: BigNumber;
+}
+
+export function calculateSlippage(orders: OrderPrice[], purchaseAmount: number): Slippage {
     const selectedOrders = [];
     let count = new BigNumber(0);
     let price = new BigNumber(0);
@@ -21,6 +26,6 @@ export function getSlippage(orders: OrderPrice[], purchaseAmount: number) {
     }
     return {
         price,
-        count,
+        count
     };
 }

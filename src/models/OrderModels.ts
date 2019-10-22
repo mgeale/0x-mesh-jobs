@@ -1,5 +1,4 @@
-import { SignedOrder } from '@0x/mesh-rpc-client';
-import { BigNumber } from 'bignumber.js';
+import { BigNumber, SignedOrder } from '@0x/mesh-rpc-client';
 
 export interface OrderPrice extends SignedOrder {
     makerToken: string;

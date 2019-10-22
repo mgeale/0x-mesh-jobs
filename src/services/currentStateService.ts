@@ -45,7 +45,7 @@ export class CurrentStateService {
                     takerToken: this.tokenData.toTokenSymbol(o.signedOrder.takerAssetData),
                     price: o.signedOrder.makerAssetAmount.dividedBy(o.signedOrder.takerAssetAmount),
                     makerAmount: o.signedOrder.makerAssetAmount.shiftedBy(-18),
-                    takerAmount: o.signedOrder.takerAssetAmount.shiftedBy(-18),
+                    takerAmount: o.signedOrder.takerAssetAmount.shiftedBy(-18)
                 });
             }
         });

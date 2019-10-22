@@ -4,7 +4,7 @@ import { OrderPrice } from '../models/OrderModels';
 import { CurrentStateService } from '../services/currentStateService';
 import { loadTestOrderInfo } from '../test/loadTestOrderInfo';
 
-import { getSlippage } from './slippage';
+import { calculateSlippage } from './slippage';
 
 xdescribe('slippage', () => {
     let service: CurrentStateService;
@@ -36,9 +36,9 @@ xdescribe('slippage', () => {
                 salt: new BigNumber(10),
                 exchangeAddress: 'exchange_address',
                 feeRecipientAddress: 'fee_recipient_address',
-                expirationTimeSeconds: new BigNumber(10),
-            },
+                expirationTimeSeconds: new BigNumber(10)
+            }
         ];
-        expect(getSlippage(orders, 10)).toEqual({price: new BigNumber(100), count: new BigNumber(10)});
+        expect(calculateSlippage(orders, 10)).toEqual({ price: new BigNumber(100), count: new BigNumber(10) });
     });
 });
