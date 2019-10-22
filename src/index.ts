@@ -14,8 +14,8 @@ enum encodedAssets {
 (async () => {
     await initMeshConnectionAsync(config);
     const market = {
-        makerAsset: encodedAssets.WETH,
-        takerAsset: encodedAssets.DAI
+        makerAsset: encodedAssets.Weth,
+        takerAsset: encodedAssets.Dai
     };
     const orders = await new CurrentStateService().getOrderBookAsync(market);
     // const slippage = new CurrentStateService().calculateSlippage(orders, 10);

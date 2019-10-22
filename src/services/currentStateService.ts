@@ -3,6 +3,7 @@ import { OrderInfo } from '@0x/mesh-rpc-client';
 import { TokenData } from '../common/tokenData';
 import { getMeshConnection } from '../connections/meshConnection';
 import { OrderPrice } from '../models/OrderModels';
+import { toOrderPrice } from '../common/orderPrice';
 
 export class CurrentStateService {
     public tokenData: TokenData;
@@ -33,22 +34,8 @@ export class CurrentStateService {
     public async getOrderBookAsync(market: { makerAsset: string; takerAsset: string }): Promise<OrderPrice[]> {
         const meshConnection = getMeshConnection();
         const orders = await meshConnection.getOrdersAsync();
-        const marketOrder = [];
-        orders.forEach(o => {
-            if (
-                o.signedOrder.makerAssetData === market.makerAsset &&
-                o.signedOrder.takerAssetData === market.takerAsset
-            ) {
-                marketOrder.push({
-                    ...o.signedOrder,
-                    makerToken: this.tokenData.toTokenSymbol(o.signedOrder.makerAssetData),
-                    takerToken: this.tokenData.toTokenSymbol(o.signedOrder.takerAssetData),
-                    price: o.signedOrder.makerAssetAmount.dividedBy(o.signedOrder.takerAssetAmount),
-                    makerAmount: o.signedOrder.makerAssetAmount.shiftedBy(-18),
-                    takerAmount: o.signedOrder.takerAssetAmount.shiftedBy(-18)
-                });
-            }
-        });
-        return marketOrder.sort((a, b) => b.price - a.price);
+        const orderPrices = toOrderPrice(orders);
+        //TODO finish
+        return orderPrices;
     }
 }

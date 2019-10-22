@@ -12,7 +12,7 @@ describe('market totals', () => {
     });
 
     it('should calculate total number of different markets', () => {
-        expect(calculateTotalNumberOfMarkets(orders)).toEqual(8);
+        expect(calculateTotalNumberOfMarkets(orders)).toEqual(7);
     });
 
     it('should calculate total number of orders per market', () => {
