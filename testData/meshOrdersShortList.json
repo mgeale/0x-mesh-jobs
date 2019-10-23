@@ -1,162 +1,102 @@
 [
   {
-    "orderHash": "0x00e71615216ec7970fc3356f3c6bff886b0afe33437ebafe096a8bb27cdb1893",
+    "orderHash": "",
     "signedOrder": {
-      "makerAddress": "0x75bbc7d37d3bf975b527cf2e99b947d61a22ef95",
-      "makerAssetData": "0xf47261b0000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-      "makerAssetAmount": "1234500000000000",
+      "makerAddress": "",
+      "makerAssetData": "",
+      "makerAssetAmount": "10000000000000000",
       "makerFee": "0",
-      "takerAddress": "0x0000000000000000000000000000000000000000",
-      "takerAssetData": "0xf47261b0000000000000000000000000960b236a07cf122663c4303350609a66a7b288c0",
-      "takerAssetAmount": "12345000000000000000000",
+      "takerAddress": "",
+      "takerAssetData": "",
+      "takerAssetAmount": "100000000000000000",
       "takerFee": "0",
-      "senderAddress": "0x0000000000000000000000000000000000000000",
-      "exchangeAddress": "0x080bf510fcbf18b91105470639e9561022937712",
-      "feeRecipientAddress": "0xa258b39954cef5cb142fd567a46cddb31a670124",
+      "senderAddress": "",
+      "exchangeAddress": "",
+      "feeRecipientAddress": "",
       "expirationTimeSeconds": "1589607395",
       "salt": "1565933795408",
-      "signature": "0x1c0d073a924bebc23e50abde7f42b8c159ff1a813c6ed0858f2630906caf1cb2cb6fbff8139bed5c816f857bb89e12d0ba20735770239b87838abdb41663d28d4602"
+      "signature": ""
     },
-    "fillableTakerAssetAmount": "12345000000000000000000"
+    "fillableTakerAssetAmount": ""
   },
-  {
-    "orderHash": "0x013fce2826f9a1644cff5b37f3957d07b11f5d72677e9df6b9533eae086801e4",
+    {
+    "orderHash": "",
     "signedOrder": {
-      "makerAddress": "0x3591d261da9ca19d83de5028d4caa02f22aaf9ee",
-      "makerAssetData": "0xf47261b0000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-      "makerAssetAmount": "15000000000000000",
+      "makerAddress": "",
+      "makerAssetData": "",
+      "makerAssetAmount": "10000000000000000",
       "makerFee": "0",
-      "takerAddress": "0x0000000000000000000000000000000000000000",
-      "takerAssetData": "0xf47261b00000000000000000000000005bc7e5f0ab8b2e10d2d0a3f21739fce62459aef3",
-      "takerAssetAmount": "150000000000000000000000",
+      "takerAddress": "",
+      "takerAssetData": "",
+      "takerAssetAmount": "110000000000000000",
       "takerFee": "0",
-      "senderAddress": "0x0000000000000000000000000000000000000000",
-      "exchangeAddress": "0x080bf510fcbf18b91105470639e9561022937712",
-      "feeRecipientAddress": "0xa258b39954cef5cb142fd567a46cddb31a670124",
-      "expirationTimeSeconds": "1576966631",
-      "salt": "1569104844354",
-      "signature": "0x1c5ca362fb4bd4ab663ac22a455eedf97df3d7a0a72c46a7796e7f08fd0cb1ec2551903483339d6c2ec87e8706a5dc4392b79a4195efb6ed23fd9385cb117adb7102"
+      "senderAddress": "",
+      "exchangeAddress": "",
+      "feeRecipientAddress": "",
+      "expirationTimeSeconds": "1589607395",
+      "salt": "1565933795408",
+      "signature": ""
     },
-    "fillableTakerAssetAmount": "150000000000000000000000"
+    "fillableTakerAssetAmount": ""
   },
-  {
-    "orderHash": "0x015d7f6738816d1e37c936072932c63170fec210478e1992c6290646a4f9e88b",
+    {
+    "orderHash": "",
     "signedOrder": {
-      "makerAddress": "0x99b856c2644277b24a335122abcef34a7f0f0abb",
-      "makerAssetData": "0xf47261b0000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-      "makerAssetAmount": "56000000000000000",
+      "makerAddress": "",
+      "makerAssetData": "",
+      "makerAssetAmount": "10000000000000000",
       "makerFee": "0",
-      "takerAddress": "0x0000000000000000000000000000000000000000",
-      "takerAssetData": "0xf47261b000000000000000000000000058b6a8a3302369daec383334672404ee733ab239",
-      "takerAssetAmount": "3500000000000000000",
+      "takerAddress": "",
+      "takerAssetData": "",
+      "takerAssetAmount": "80000000000000000",
       "takerFee": "0",
-      "senderAddress": "0x0000000000000000000000000000000000000000",
-      "exchangeAddress": "0x080bf510fcbf18b91105470639e9561022937712",
-      "feeRecipientAddress": "0xa258b39954cef5cb142fd567a46cddb31a670124",
-      "expirationTimeSeconds": "1573774612",
-      "salt": "1571092613347",
-      "signature": "0x1b940cefea52ffe6f3da0615a87ba95298c910bfc31c90064bb2ee11764134134b5bb1bde11547919d28099d5b303027b8b2f4993af4acc8622df4f302ba76d9e102"
+      "senderAddress": "",
+      "exchangeAddress": "",
+      "feeRecipientAddress": "",
+      "expirationTimeSeconds": "1589607395",
+      "salt": "1565933795408",
+      "signature": ""
     },
-    "fillableTakerAssetAmount": "35000000000000"
+    "fillableTakerAssetAmount": ""
   },
-  {
-    "orderHash": "0x01b79faae3499abce557058f7ce824bd0ecb59c3e4ae567e200aaa8f6fa419cb",
+    {
+    "orderHash": "",
     "signedOrder": {
-      "makerAddress": "0x3d998257969835ea93636079e8e5b4c0e79b2242",
-      "makerAssetData": "0x02571792000000000000000000000000fac7bea255a6990f749363002136af6556b31e0407539cfeb38e90332c2104b829bf3db88099b22687a5e430d32961d1172f1338",
-      "makerAssetAmount": "1",
+      "makerAddress": "",
+      "makerAssetData": "",
+      "makerAssetAmount": "10000000000000000",
       "makerFee": "0",
-      "takerAddress": "0x0000000000000000000000000000000000000000",
-      "takerAssetData": "0xf47261b0000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-      "takerAssetAmount": "125000000000000000",
+      "takerAddress": "",
+      "takerAssetData": "",
+      "takerAssetAmount": "70000000000000000",
       "takerFee": "0",
-      "senderAddress": "0x0000000000000000000000000000000000000000",
-      "exchangeAddress": "0x080bf510fcbf18b91105470639e9561022937712",
-      "feeRecipientAddress": "0xb0d7398d779ee9ffc727d2d5b045a5b441da8233",
-      "expirationTimeSeconds": "1590253200",
-      "salt": "80652668344864152881522751082197762495677076465286242674017538842662505847804",
-      "signature": "0x1b5cdb1dd5eacac6bee3d75f8d498da04e44ac2129e7cc49f4870719a8b9fa00ac3c9f1804815a20bf37dec25e29fa2e059b34a1290bb225ffbd01f8949634349402"
+      "senderAddress": "",
+      "exchangeAddress": "",
+      "feeRecipientAddress": "",
+      "expirationTimeSeconds": "1589607395",
+      "salt": "1565933795408",
+      "signature": ""
     },
-    "fillableTakerAssetAmount": "125000000000000000"
+    "fillableTakerAssetAmount": ""
   },
-  {
-    "orderHash": "0x027eccaeddd31426ab4bfa2304c7bedb857f3a6d9786d21bc275a7304530ea7e",
+    {
+    "orderHash": "",
     "signedOrder": {
-      "makerAddress": "0x3d998257969835ea93636079e8e5b4c0e79b2242",
-      "makerAssetData": "0x02571792000000000000000000000000fac7bea255a6990f749363002136af6556b31e04a9a66a8298410bca75c03b663f5ae762dd80080af5d687f20bb74f4d063e7836",
-      "makerAssetAmount": "1",
+      "makerAddress": "",
+      "makerAssetData": "",
+      "makerAssetAmount": "10000000000000000",
       "makerFee": "0",
-      "takerAddress": "0x0000000000000000000000000000000000000000",
-      "takerAssetData": "0xf47261b0000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-      "takerAssetAmount": "125000000000000000",
+      "takerAddress": "",
+      "takerAssetData": "",
+      "takerAssetAmount": "120000000000000000",
       "takerFee": "0",
-      "senderAddress": "0x0000000000000000000000000000000000000000",
-      "exchangeAddress": "0x080bf510fcbf18b91105470639e9561022937712",
-      "feeRecipientAddress": "0xb0d7398d779ee9ffc727d2d5b045a5b441da8233",
-      "expirationTimeSeconds": "1590253200",
-      "salt": "98308230258206951064828130861062828090696668916947565208735843359842482645216",
-      "signature": "0x1cd67cd35f0a623106ce250ec67a292b9fb153db3b6fde9878fe17e311422f9105695b8f7a6b35e396d07a83ce9124e925844f275ec419a9c6f179cc74fbc0cb3702"
+      "senderAddress": "",
+      "exchangeAddress": "",
+      "feeRecipientAddress": "",
+      "expirationTimeSeconds": "1589607395",
+      "salt": "1565933795408",
+      "signature": ""
     },
-    "fillableTakerAssetAmount": "125000000000000000"
-  },
-  {
-    "orderHash": "0x02ad7f28e8118d0894e12c3a289884a7e2be04f9fd5ae0b2ee1a4ed336287871",
-    "signedOrder": {
-      "makerAddress": "0x3d998257969835ea93636079e8e5b4c0e79b2242",
-      "makerAssetData": "0x02571792000000000000000000000000fac7bea255a6990f749363002136af6556b31e0435cb82f096a0bfbadff030fc83f3057d82d2887fc543a4e5a82f9d06fbeb28f3",
-      "makerAssetAmount": "1",
-      "makerFee": "0",
-      "takerAddress": "0x0000000000000000000000000000000000000000",
-      "takerAssetData": "0xf47261b0000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-      "takerAssetAmount": "510000000000000000",
-      "takerFee": "0",
-      "senderAddress": "0x0000000000000000000000000000000000000000",
-      "exchangeAddress": "0x080bf510fcbf18b91105470639e9561022937712",
-      "feeRecipientAddress": "0xb0d7398d779ee9ffc727d2d5b045a5b441da8233",
-      "expirationTimeSeconds": "1590253200",
-      "salt": "57942178783230101962019532729251577294362413564750848540965240683599866790108",
-      "signature": "0x1b9a68e5be058b67356ac706fd1aec77d80c95dba9f2a21ab82c51d07b87159abc641cd9280c6eb432b6ff02858dc8d2012ba2aa78ac7743e63456dd11be2fdf8702"
-    },
-    "fillableTakerAssetAmount": "510000000000000000"
-  },
-  {
-    "orderHash": "0x03584e62f8ab825fac82a18bbd396384b38c46c96b4f8f84cb2776aad307dbe6",
-    "signedOrder": {
-      "makerAddress": "0x75bbc7d37d3bf975b527cf2e99b947d61a22ef95",
-      "makerAssetData": "0xf47261b0000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-      "makerAssetAmount": "123400000000000",
-      "makerFee": "0",
-      "takerAddress": "0x0000000000000000000000000000000000000000",
-      "takerAssetData": "0xf47261b0000000000000000000000000960b236a07cf122663c4303350609a66a7b288c0",
-      "takerAssetAmount": "1234000000000000000000",
-      "takerFee": "0",
-      "senderAddress": "0x0000000000000000000000000000000000000000",
-      "exchangeAddress": "0x080bf510fcbf18b91105470639e9561022937712",
-      "feeRecipientAddress": "0xa258b39954cef5cb142fd567a46cddb31a670124",
-      "expirationTimeSeconds": "1586914027",
-      "salt": "1563155318396",
-      "signature": "0x1ca77ac2c1c76f2773d9f1a5c39ebd17ddfe80bedf830a3a9c11ef472984c6f60f657170761ef52c5fd8482e28f5bc7e9045e7770e973826e1d9d01475c0c4228502"
-    },
-    "fillableTakerAssetAmount": "1234000000000000000000"
-  },
-  {
-    "orderHash": "0x038aa067e98bbbd74d0509684897729137a0d357b880ee5321eecabc57e20352",
-    "signedOrder": {
-      "makerAddress": "0x3d998257969835ea93636079e8e5b4c0e79b2242",
-      "makerAssetData": "0x02571792000000000000000000000000fac7bea255a6990f749363002136af6556b31e04b0d231f2031e4287aa4b59511b6708fb67a821ccd26560eb6d8affaded6f9914",
-      "makerAssetAmount": "1",
-      "makerFee": "0",
-      "takerAddress": "0x0000000000000000000000000000000000000000",
-      "takerAssetData": "0xf47261b0000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-      "takerAssetAmount": "510000000000000000",
-      "takerFee": "0",
-      "senderAddress": "0x0000000000000000000000000000000000000000",
-      "exchangeAddress": "0x080bf510fcbf18b91105470639e9561022937712",
-      "feeRecipientAddress": "0xb0d7398d779ee9ffc727d2d5b045a5b441da8233",
-      "expirationTimeSeconds": "1590253200",
-      "salt": "81401933631842850923618536663815778299291448917813913502016263433066529329656",
-      "signature": "0x1ca7c560655d80691c3a3ffe0f10b54a41139a82dfd6ec93343f0d7629a2ee7d2c4b9e3a62ef92c4f8327c45afacd75c24eca6f1dde8d957c657ea5335e418f97902"
-    },
-    "fillableTakerAssetAmount": "510000000000000000"
+    "fillableTakerAssetAmount": ""
   }
 ]

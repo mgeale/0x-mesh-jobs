@@ -5,3 +5,5 @@ built/
 tmp/
 temp/
 meshOrders.json
+.env
+config.json

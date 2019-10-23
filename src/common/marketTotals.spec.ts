@@ -12,10 +12,12 @@ describe('market totals', () => {
     });
 
     it('should calculate total number of different markets', () => {
-        expect(calculateTotalNumberOfMarkets(orders)).toEqual(7);
+        const result = calculateTotalNumberOfMarkets(orders);
+        expect(result).toEqual(7);
     });
 
     it('should calculate total number of orders per market', () => {
-        expect(calculateTotalOrdersPerMarket(orders)).toEqual([]);
+        const result = calculateTotalOrdersPerMarket(orders);
+        expect(result).toEqual([]);
     });
 });

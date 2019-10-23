@@ -4,7 +4,8 @@ import { toTokenAddress } from '../common/tokenAddress';
 
 export interface TotalMarketOrders {
     id: string;
-    totalOrders: string;
+    makerTotals: string;
+    totalOrders: number;
 }
 
 export function calculateTotalNumberOfMarkets(orders: OrderInfo[]): number {
@@ -28,19 +29,22 @@ export function calculateTotalOrdersPerMarket(orders: OrderInfo[]): TotalMarketO
     });
     const uniqueMarketIds = [...new Set(results.map(r => r.id))];
     return uniqueMarketIds.map(id => {
-        const count = [0, 0];
+        let totalCount = 0;
+        const makerCount = [0, 0];
         results.forEach(r => {
             if (r.id === id) {
+                totalCount++;
                 if (r.makerPosition === 0) {
-                    count[0]++;
+                    makerCount[0]++;
                 } else if (r.makerPosition === 1) {
-                    count[1]++;
+                    makerCount[1]++;
                 }
             }
         });
         return {
             id,
-            totalOrders: count.join('|')
+            makerTotals: makerCount.join('|'),
+            totalOrders: totalCount
         };
     });
 }

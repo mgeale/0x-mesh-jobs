@@ -34,7 +34,7 @@ export class CurrentStateService {
     public async getOrderBookAsync(market: { makerAsset: string; takerAsset: string }): Promise<OrderPrice[]> {
         const meshConnection = getMeshConnection();
         const orders = await meshConnection.getOrdersAsync();
-        const orderPrices = toOrderPrice(orders);
+        const orderPrices = toOrderPrice(orders.map(o => o.signedOrder));
         //TODO finish
         return orderPrices;
     }
