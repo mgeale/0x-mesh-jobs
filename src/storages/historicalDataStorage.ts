@@ -9,7 +9,7 @@ export class HistoricalDataStorage {
         console.log(`Saving ${total} total orders to db`);
         const entry = new TotalOrderModel({
             timestamp: new Date().getTime(),
-            total
+            total,
         });
         await connection.manager.save(entry);
     }

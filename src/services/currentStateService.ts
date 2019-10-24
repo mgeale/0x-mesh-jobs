@@ -1,9 +1,9 @@
 import { OrderInfo } from '@0x/mesh-rpc-client';
 
+import { OrderPrice } from '../common/orderPrice';
+import { toOrderPrice } from '../common/orderPrice';
 import { TokenData } from '../common/tokenData';
 import { getMeshConnection } from '../connections/meshConnection';
-import { OrderPrice } from '../models/OrderModels';
-import { toOrderPrice } from '../common/orderPrice';
 
 export class CurrentStateService {
     public tokenData: TokenData;
@@ -35,7 +35,7 @@ export class CurrentStateService {
         const meshConnection = getMeshConnection();
         const orders = await meshConnection.getOrdersAsync();
         const orderPrices = toOrderPrice(orders.map(o => o.signedOrder));
-        //TODO finish
+        // TODO finish
         return orderPrices;
     }
 }

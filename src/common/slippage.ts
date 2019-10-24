@@ -1,18 +1,20 @@
 import { BigNumber } from '@0x/mesh-rpc-client';
 
-import { OrderPrice } from '../models/OrderModels';
+import { OrderPrice } from './orderPrice';
 
 export interface Slippage {
     price: BigNumber;
     count: BigNumber;
 }
 
+// i want 10000 weth. how much Dai will that cost?
+// actual cost - average cost
+
 export function calculateSlippage(orders: OrderPrice[], purchaseAmount: number): Slippage {
     const selectedOrders = [];
     let count = new BigNumber(0);
     let price = new BigNumber(0);
     for (let i = 0; count.isLessThan(purchaseAmount); i++) {
-        console.log(i, orders[i])
         if (orders[i].takerAmount.plus(count).isGreaterThan(purchaseAmount)) {
             const remaining = new BigNumber(-count.minus(purchaseAmount));
             orders[i].takerAmount = remaining;
@@ -27,6 +29,6 @@ export function calculateSlippage(orders: OrderPrice[], purchaseAmount: number):
     }
     return {
         price,
-        count
+        count,
     };
 }
