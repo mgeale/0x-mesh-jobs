@@ -2414,6 +2414,11 @@ end-of-stream@^1.0.0, end-of-stream@^1.1.0, end-of-stream@^1.4.1:
   dependencies:
     once "^1.4.0"
 
+env2@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/env2/-/env2-2.2.0.tgz#d46b42d375e2f2553ff0ef34c153c904fa652df1"
+  integrity sha1-1GtC03Xi8lU/8O80wVPJBPplLfE=
+
 errno@~0.1.1:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/errno/-/errno-0.1.7.tgz#4684d71779ad39af177e3f007996f7c67c852618"

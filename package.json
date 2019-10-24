@@ -29,6 +29,7 @@
    "dependencies": {
       "@0x/mesh-rpc-client": "^4.0.1-beta",
       "@0x/order-utils": "^8.4.0",
+      "env2": "2.2.0",
       "lodash": "^4.17.15",
       "reflect-metadata": "^0.1.10",
       "sqlite3": "^4.1.0",

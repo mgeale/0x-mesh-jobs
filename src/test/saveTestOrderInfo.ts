@@ -4,7 +4,7 @@ import * as path from 'path';
 import { Config } from '../config';
 import { getMeshConnection, initMeshConnectionAsync } from '../connections/meshConnection';
 
-const config = new Config(path.join(__dirname, '../../config.json'));
+const config = new Config(path.join(__dirname, '../../config.json'), path.join(__dirname, '../.env'));
 
 (async () => {
     await initMeshConnectionAsync(config);
