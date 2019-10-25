@@ -6,7 +6,7 @@ jasmine.loadConfig({
     spec_files: ['**/*.spec.js'],
     helpers: [],
     stopSpecOnExpectationFailure: false,
-    random: true,
+    random: true
 });
 jasmine.configureDefaultReporter({});
 jasmine.execute();

@@ -1,4 +1,3 @@
-
 import { loadTestOrderInfo } from '../test/loadTestOrderInfo';
 
 import { getOrdersPerMarket, MarketOrders } from './marketTotals';
@@ -20,5 +19,4 @@ fdescribe('order price', () => {
         const daiMarketOrders = marketOrders.find(o => o.id === daiWethMarketId);
         const result = calculateOrderPriceForTaker(dai, 1, daiMarketOrders);
     });
-
 });

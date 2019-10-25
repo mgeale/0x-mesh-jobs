@@ -1,18 +1,31 @@
+import { Connection, getRepository } from 'typeorm';
 import { getDBConnection } from '../connections/dbConnection';
-import { TotalOrderModel } from '../models/totalOrderModel';
+import { TotalOrdersModel } from '../models/totalOrdersModel';
+import { TotalMarketsModel } from '../models/TotalMarketsModel';
+import { TotalMarketOrders } from '../common/marketTotals';
+import { TotalOrders } from '../entity/TotalOrders';
+import { TotalMarkets } from '../entity/TotalMarkets';
 
 export class HistoricalDataStorage {
     constructor() {}
 
     public async saveTotalOrders(total: number) {
-        const connection = getDBConnection();
-        console.log(`Saving ${total} total orders to db`);
-        const entry = new TotalOrderModel({
+        const entry = new TotalOrdersModel({
             timestamp: new Date().getTime(),
-            total,
+            totalOrders: total
         });
-        await connection.manager.save(entry);
+        const totalOrdersRepository = getRepository(TotalOrders);
+        await totalOrdersRepository.save(entry);
     }
 
-    public async getTotalOrders() {}
+    public async saveTotalNumberOfMarkets(total: number) {
+        const entry = new TotalMarketsModel({
+            timestamp: new Date().getTime(),
+            totalMarkets: total
+        });
+        const totalMarketsRepository = getRepository(TotalMarkets);
+        await totalMarketsRepository.save(entry);
+    }
+
+    public async saveTotalOrdersPerMarketAsync(totalMarketOrders: TotalMarketOrders) {}
 }

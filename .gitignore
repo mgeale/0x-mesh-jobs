@@ -4,6 +4,7 @@ node_modules/
 built/
 tmp/
 temp/
+test
 meshOrders.json
 .env
 config.json

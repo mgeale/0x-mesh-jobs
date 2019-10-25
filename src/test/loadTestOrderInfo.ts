@@ -19,23 +19,25 @@ export function loadTestOrderInfo(): OrderInfo[] {
     let index = 0;
     const makerAmount = 1000000000000000000;
     while (index < 5) {
-        const takerAmount = 179000000000000000000 + ((index + 1) * 1000000000000000000);
-        orders.push({signedOrder: {
-            senderAddress: 'sender_address',
-            makerAddress: 'maker_address',
-            takerAddress: 'taker_address',
-            makerFee: new BigNumber(0),
-            takerFee: new BigNumber(0),
-            makerAssetAmount: new BigNumber(makerAmount),
-            takerAssetAmount: new BigNumber(takerAmount),
-            makerAssetData: EncodedAssets.Dai,
-            takerAssetData: EncodedAssets.Weth,
-            salt: new BigNumber(0),
-            exchangeAddress: 'exchange_address',
-            feeRecipientAddress: 'fee_recipient_address',
-            expirationTimeSeconds: new BigNumber(0),
-            signature: 'signature',
-        }});
+        const takerAmount = 179000000000000000000 + (index + 1) * 1000000000000000000;
+        orders.push({
+            signedOrder: {
+                senderAddress: 'sender_address',
+                makerAddress: 'maker_address',
+                takerAddress: 'taker_address',
+                makerFee: new BigNumber(0),
+                takerFee: new BigNumber(0),
+                makerAssetAmount: new BigNumber(makerAmount),
+                takerAssetAmount: new BigNumber(takerAmount),
+                makerAssetData: EncodedAssets.Dai,
+                takerAssetData: EncodedAssets.Weth,
+                salt: new BigNumber(0),
+                exchangeAddress: 'exchange_address',
+                feeRecipientAddress: 'fee_recipient_address',
+                expirationTimeSeconds: new BigNumber(0),
+                signature: 'signature'
+            }
+        });
         index++;
     }
     return orders;
@@ -56,9 +58,9 @@ export function loadTestOrderInfoFile(): OrderInfo[] {
                 makerAssetAmount: new BigNumber(o.signedOrder.makerAssetAmount),
                 takerAssetAmount: new BigNumber(o.signedOrder.takerAssetAmount),
                 salt: new BigNumber(o.signedOrder.salt),
-                expirationTimeSeconds: new BigNumber(o.signedOrder.expirationTimeSeconds),
+                expirationTimeSeconds: new BigNumber(o.signedOrder.expirationTimeSeconds)
             },
-            fillableTakerAssetAmount: o.fillableTakerAssetAmount,
+            fillableTakerAssetAmount: o.fillableTakerAssetAmount
         };
     });
 }

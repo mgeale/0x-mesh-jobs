@@ -16,11 +16,15 @@ export class HistoricalDataService {
 
     public async saveTotalNumberOfMarketsAsync(orders: OrderInfo[]): Promise<void> {
         const totalNumberOfMarkets = countTotalNumberOfMarkets(orders);
-        // TODO: add storage
+        await this._storage.saveTotalNumberOfMarkets(totalNumberOfMarkets);
     }
 
     public async saveTotalOrdersPerMarketAsync(orders: OrderInfo[]): Promise<void> {
         const totalOrdersPerMarket = countTotalOrdersPerMarket(orders);
-        // TODO: add storage
+        for (const totalOrders of totalOrdersPerMarket) {
+            await this._storage.saveTotalOrdersPerMarketAsync(totalOrders);
+        }
     }
+
+    public async saveOrdersPerMarket() {}
 }

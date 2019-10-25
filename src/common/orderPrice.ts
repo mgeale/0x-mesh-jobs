@@ -8,7 +8,11 @@ export interface OrderPrice extends SignedOrder {
     takerAmount: BigNumber;
 }
 
-export function calculateOrderPriceForTaker(makerAssetToPurchase: string, makerAmountToPurchase: number, marketOrders: MarketOrders) {
+export function calculateOrderPriceForTaker(
+    makerAssetToPurchase: string,
+    makerAmountToPurchase: number,
+    marketOrders: MarketOrders
+) {
     const assets = marketOrders.id.split('|');
     const makerPosition = makerAssetToPurchase === assets[0] ? 0 : 1;
     const orders = marketOrders.orders[makerPosition];
@@ -23,7 +27,7 @@ export function toOrderPrice(signedOrders: SignedOrder[]): OrderPrice[] {
             ...o,
             price: o.makerAssetAmount.dividedBy(o.takerAssetAmount),
             makerAmount: o.makerAssetAmount.shiftedBy(-18),
-            takerAmount: o.takerAssetAmount.shiftedBy(-18),
+            takerAmount: o.takerAssetAmount.shiftedBy(-18)
         };
     });
 }

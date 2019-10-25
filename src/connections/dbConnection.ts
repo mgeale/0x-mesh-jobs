@@ -1,5 +1,8 @@
 import * as _ from 'lodash';
 import { Connection, createConnection } from 'typeorm';
+import { Config } from '../config';
+import { TotalOrders } from '../entity/TotalOrders';
+import { TotalMarkets } from '../entity/TotalMarkets';
 
 let connectionIfExists: Connection | undefined;
 
@@ -10,9 +13,19 @@ export function getDBConnection(): Connection {
     return connectionIfExists;
 }
 
-export async function initDBConnectionAsync(): Promise<void> {
+export async function initDBConnectionAsync(config?: Config): Promise<void> {
     if (!_.isUndefined(connectionIfExists)) {
         throw new Error('DB connection already exists');
     }
-    connectionIfExists = await createConnection();
+    connectionIfExists = await createConnection({
+        type: 'postgres',
+        host: 'localhost',
+        port: 5433,
+        username: 'postgres',
+        password: 'postgres',
+        database: 'postgres',
+        synchronize: true,
+        logging: true,
+        entities: [TotalOrders, TotalMarkets]
+    });
 }
