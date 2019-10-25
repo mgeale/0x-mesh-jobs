@@ -1,4 +1,5 @@
 import { EntitySchema } from 'typeorm';
+
 import { TotalOrdersModel } from '../models/TotalOrdersModel';
 
 export const TotalOrders = new EntitySchema<TotalOrdersModel>({
@@ -6,10 +7,10 @@ export const TotalOrders = new EntitySchema<TotalOrdersModel>({
     columns: {
         timestamp: {
             primary: true,
-            type: 'bigint'
+            type: 'bigint',
         },
         totalOrders: {
-            type: 'int'
-        }
-    }
+            type: 'int',
+        },
+    },
 });

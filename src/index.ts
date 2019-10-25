@@ -1,9 +1,10 @@
 import * as path from 'path';
 import 'reflect-metadata';
+
 import { Config } from './config';
-import { HistoricalDataService } from './services/historicalDataService';
+import { initDBConnectionAsync } from './connections/dbConnection';
 import { getMeshConnection, initMeshConnectionAsync } from './connections/meshConnection';
-import { initDBConnectionAsync, getDBConnection } from './connections/dbConnection';
+import { HistoricalDataService } from './services/historicalDataService';
 
 const config = new Config(path.join(__dirname, '../config.json'), path.join(__dirname, '../.env'));
 

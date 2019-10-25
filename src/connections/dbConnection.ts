@@ -1,8 +1,9 @@
 import * as _ from 'lodash';
 import { Connection, createConnection } from 'typeorm';
+
 import { Config } from '../config';
-import { TotalOrders } from '../entity/TotalOrders';
 import { TotalMarkets } from '../entity/TotalMarkets';
+import { TotalOrders } from '../entity/TotalOrders';
 
 let connectionIfExists: Connection | undefined;
 
@@ -26,6 +27,6 @@ export async function initDBConnectionAsync(config?: Config): Promise<void> {
         database: 'postgres',
         synchronize: true,
         logging: true,
-        entities: [TotalOrders, TotalMarkets]
+        entities: [TotalOrders, TotalMarkets],
     });
 }

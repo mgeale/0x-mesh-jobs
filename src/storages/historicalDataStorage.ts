@@ -1,10 +1,10 @@
-import { Connection, getRepository } from 'typeorm';
-import { getDBConnection } from '../connections/dbConnection';
-import { TotalOrdersModel } from '../models/totalOrdersModel';
-import { TotalMarketsModel } from '../models/TotalMarketsModel';
+import { getRepository } from 'typeorm';
+
 import { TotalMarketOrders } from '../common/marketTotals';
-import { TotalOrders } from '../entity/TotalOrders';
 import { TotalMarkets } from '../entity/TotalMarkets';
+import { TotalOrders } from '../entity/TotalOrders';
+import { TotalMarketsModel } from '../models/TotalMarketsModel';
+import { TotalOrdersModel } from '../models/totalOrdersModel';
 
 export class HistoricalDataStorage {
     constructor() {}
@@ -12,7 +12,7 @@ export class HistoricalDataStorage {
     public async saveTotalOrders(total: number) {
         const entry = new TotalOrdersModel({
             timestamp: new Date().getTime(),
-            totalOrders: total
+            totalOrders: total,
         });
         const totalOrdersRepository = getRepository(TotalOrders);
         await totalOrdersRepository.save(entry);
@@ -21,7 +21,7 @@ export class HistoricalDataStorage {
     public async saveTotalNumberOfMarkets(total: number) {
         const entry = new TotalMarketsModel({
             timestamp: new Date().getTime(),
-            totalMarkets: total
+            totalMarkets: total,
         });
         const totalMarketsRepository = getRepository(TotalMarkets);
         await totalMarketsRepository.save(entry);

@@ -18,8 +18,8 @@ export function loadTestOrderInfo(): OrderInfo[] {
     const length = 5;
     let index = 0;
     const makerAmount = 1000000000000000000;
-    while (index < 5) {
-        const takerAmount = 179000000000000000000 + (index + 1) * 1000000000000000000;
+    while (index < length) {
+        const takerAmount = (index + 1) * 1000000000000000000 + 179000000000000000000;
         orders.push({
             signedOrder: {
                 senderAddress: 'sender_address',
@@ -35,8 +35,8 @@ export function loadTestOrderInfo(): OrderInfo[] {
                 exchangeAddress: 'exchange_address',
                 feeRecipientAddress: 'fee_recipient_address',
                 expirationTimeSeconds: new BigNumber(0),
-                signature: 'signature'
-            }
+                signature: 'signature',
+            },
         });
         index++;
     }
@@ -58,9 +58,9 @@ export function loadTestOrderInfoFile(): OrderInfo[] {
                 makerAssetAmount: new BigNumber(o.signedOrder.makerAssetAmount),
                 takerAssetAmount: new BigNumber(o.signedOrder.takerAssetAmount),
                 salt: new BigNumber(o.signedOrder.salt),
-                expirationTimeSeconds: new BigNumber(o.signedOrder.expirationTimeSeconds)
+                expirationTimeSeconds: new BigNumber(o.signedOrder.expirationTimeSeconds),
             },
-            fillableTakerAssetAmount: o.fillableTakerAssetAmount
+            fillableTakerAssetAmount: o.fillableTakerAssetAmount,
         };
     });
 }

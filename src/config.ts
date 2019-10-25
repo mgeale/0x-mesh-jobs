@@ -1,5 +1,5 @@
-import * as fs from 'fs';
 import env from 'env2';
+import * as fs from 'fs';
 import { ConnectionOptions } from 'typeorm';
 
 export class Config {
@@ -14,7 +14,7 @@ export class Config {
     private _loadFromEnv(): void {
         env(this._envPath);
         this.meshConnectionString = process.env.MESH_CONNECTION_STRING;
-        //this.orm = {}
+        // this.orm = {}
     }
 
     private _loadFromFile(): void {

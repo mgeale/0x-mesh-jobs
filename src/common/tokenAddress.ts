@@ -13,7 +13,7 @@ export function toTokenAddress(encodedAssetData: string): string {
         return erc721AssetData.tokenAddress;
     } else if (multiAsset.test(encodedAssetData)) {
         const multiAssetData = assetDataUtils.decodeMultiAssetData(encodedAssetData);
-        const nestedAssetData = multiAssetData.nestedAssetData.map(a => this.toTokenAddress(a));
+        const nestedAssetData = multiAssetData.nestedAssetData.map(a => toTokenAddress(a));
         return nestedAssetData.join('+');
     }
 }

@@ -1,8 +1,8 @@
+import { AssetAddress } from '../test/assetData';
 import { loadTestOrderInfo } from '../test/loadTestOrderInfo';
 
 import { getOrdersPerMarket, MarketOrders } from './marketTotals';
 import { calculateOrderPriceForTaker } from './orderPrice';
-import { AssetAddress } from '../test/assetData';
 
 fdescribe('order price', () => {
     let marketOrders: MarketOrders[];
