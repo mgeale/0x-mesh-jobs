@@ -2,7 +2,7 @@ import * as path from 'path';
 import 'reflect-metadata';
 
 import { Config } from './config';
-import { initDBConnectionAsync } from './connections/dbConnection';
+import { getDBConnection, initDBConnectionAsync } from './connections/dbConnection';
 import { getMeshConnection, initMeshConnectionAsync } from './connections/meshConnection';
 import { HistoricalDataService } from './services/historicalDataService';
 
@@ -23,4 +23,12 @@ let historicalDataService: HistoricalDataService;
     historicalDataService = new HistoricalDataService();
     await historicalDataService.saveTotalOrdersAsync(orders);
     await historicalDataService.saveTotalNumberOfMarketsAsync(orders);
+    await historicalDataService.saveTotalOrdersPerMarketAsync(orders);
+    await historicalDataService.saveOrdersPerMarket(orders);
+    
+    meshConnection.destroy();
+    console.log('mesh connection destroyed');
+    const dbConnection = getDBConnection();
+    dbConnection.close();
+    console.log('db connection closed');
 })();

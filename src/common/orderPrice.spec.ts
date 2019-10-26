@@ -16,7 +16,7 @@ fdescribe('order price', () => {
     });
 
     it('', () => {
-        const daiMarketOrders = marketOrders.find(o => o.id === daiWethMarketId);
+        const daiMarketOrders = marketOrders.find(o => o.marketId === daiWethMarketId);
         const result = calculateOrderPriceForTaker(dai, 1, daiMarketOrders);
     });
 });

@@ -3,12 +3,12 @@ import { OrderInfo } from '@0x/mesh-rpc-client';
 import { toTokenAddress } from '../common/tokenAddress';
 
 export interface TotalMarketOrders {
-    id: string;
+    marketId: string;
     totalOrders: number;
 }
 
 export interface MarketOrders {
-    id: string;
+    marketId: string;
     orders: any[];
 }
 
@@ -40,7 +40,7 @@ export function countTotalOrdersPerMarket(orders: OrderInfo[]): TotalMarketOrder
             }
         });
         return {
-            id,
+            marketId: id,
             totalOrders: totalCount,
         };
     });
@@ -67,7 +67,7 @@ export function getOrdersPerMarket(orders: OrderInfo[]): MarketOrders[] {
             }
         });
         return {
-            id,
+            marketId: id,
             orders: orderAmounts
         };
     });

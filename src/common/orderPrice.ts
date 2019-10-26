@@ -13,7 +13,7 @@ export function calculateOrderPriceForTaker(
     makerAmountToPurchase: number,
     marketOrders: MarketOrders,
 ) {
-    const assets = marketOrders.id.split('|');
+    const assets = marketOrders.marketId.split('|');
     const makerPosition = makerAssetToPurchase === assets[0] ? 0 : 1;
     const orders = marketOrders.orders[makerPosition];
     console.log(orders);

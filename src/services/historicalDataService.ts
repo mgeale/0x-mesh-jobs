@@ -1,6 +1,6 @@
 import { OrderInfo } from '@0x/mesh-rpc-client';
 
-import { countTotalNumberOfMarkets, countTotalOrdersPerMarket } from '../common/marketTotals';
+import { countTotalNumberOfMarkets, countTotalOrdersPerMarket, getOrdersPerMarket } from '../common/marketTotals';
 import { HistoricalDataStorage } from '../storages/historicalDataStorage';
 
 export class HistoricalDataService {
@@ -21,10 +21,15 @@ export class HistoricalDataService {
 
     public async saveTotalOrdersPerMarketAsync(orders: OrderInfo[]): Promise<void> {
         const totalOrdersPerMarket = countTotalOrdersPerMarket(orders);
-        for (const totalOrders of totalOrdersPerMarket) {
-            await this._storage.saveTotalOrdersPerMarketAsync(totalOrders);
+        for (const orders of totalOrdersPerMarket) {
+            await this._storage.saveTotalOrdersPerMarketAsync(orders);
         }
     }
 
-    public async saveOrdersPerMarket() {}
+    public async saveOrdersPerMarket(orders: OrderInfo[]): Promise<void> {
+        const ordersPerMarket = getOrdersPerMarket(orders);
+        for (const orders of ordersPerMarket) {
+            await this._storage.saveOrdersPerMarketAsync(orders);
+        }
+    }
 }
