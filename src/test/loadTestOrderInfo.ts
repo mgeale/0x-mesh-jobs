@@ -3,15 +3,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 import { EncodedAssets } from './assetData';
+
 /**
- * This is a function.
- *
- * @param {string} n - A string param
- * @return {OrderInfo[]} array of Mesh Orders
- *
- * @example
- *
- *     foo('hello')
+ * <<<<<<<>>>>>>>>>.
  */
 export function loadTestOrderInfo(): OrderInfo[] {
     const orders = [];
@@ -35,14 +29,17 @@ export function loadTestOrderInfo(): OrderInfo[] {
                 exchangeAddress: 'exchange_address',
                 feeRecipientAddress: 'fee_recipient_address',
                 expirationTimeSeconds: new BigNumber(0),
-                signature: 'signature'
-            }
+                signature: 'signature',
+            },
         });
         index++;
     }
     return orders;
 }
 
+/**
+ * <<<<<<<>>>>>>>>>.
+ */
 export function loadTestOrderInfoFile(): OrderInfo[] {
     const rawData = fs.readFileSync(path.join(__dirname, '../../testData/meshOrders.json'));
     const orders = JSON.parse(rawData.toString());
@@ -58,9 +55,9 @@ export function loadTestOrderInfoFile(): OrderInfo[] {
                 makerAssetAmount: new BigNumber(o.signedOrder.makerAssetAmount),
                 takerAssetAmount: new BigNumber(o.signedOrder.takerAssetAmount),
                 salt: new BigNumber(o.signedOrder.salt),
-                expirationTimeSeconds: new BigNumber(o.signedOrder.expirationTimeSeconds)
+                expirationTimeSeconds: new BigNumber(o.signedOrder.expirationTimeSeconds),
             },
-            fillableTakerAssetAmount: o.fillableTakerAssetAmount
+            fillableTakerAssetAmount: o.fillableTakerAssetAmount,
         };
     });
 }

@@ -1,12 +1,12 @@
-import {getTotalOrders} from "./controller/GetTotalOrders";
+import { getTotalOrders } from './controller/GetTotalOrders';
 
 /**
  * All application routes.
  */
 export const AppRoutes = [
     {
-        path: "/totalOrders",
-        method: "get",
-        action: getTotalOrders
-    }
+        path: '/totalOrders',
+        method: 'get',
+        action: getTotalOrders,
+    },
 ];

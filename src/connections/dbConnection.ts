@@ -9,6 +9,9 @@ import { TotalOrdersPerMarket } from '../entity/TotalOrdersPerMarket';
 
 let connectionIfExists: Connection | undefined;
 
+/**
+ * <<<<<<<>>>>>>>>>.
+ */
 export function getDBConnection(): Connection {
     if (_.isUndefined(connectionIfExists)) {
         throw new Error('DB connection not initialized');
@@ -16,6 +19,9 @@ export function getDBConnection(): Connection {
     return connectionIfExists;
 }
 
+/**
+ * <<<<<<<>>>>>>>>>.
+ */
 export async function initDBConnectionAsync(config: Config): Promise<void> {
     if (!_.isUndefined(connectionIfExists)) {
         throw new Error('DB connection already exists');
@@ -25,6 +31,6 @@ export async function initDBConnectionAsync(config: Config): Promise<void> {
         url: config.postgresConnectionUrl,
         synchronize: true,
         logging: true,
-        entities: [TotalOrders, TotalMarkets, TotalOrdersPerMarket, OrdersPerMarket]
+        entities: [TotalOrders, TotalMarkets, TotalOrdersPerMarket, OrdersPerMarket],
     });
 }

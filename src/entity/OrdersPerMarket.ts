@@ -7,15 +7,15 @@ export const OrdersPerMarket = new EntitySchema<OrdersPerMarketModel>({
     columns: {
         timestamp: {
             primary: true,
-            type: 'bigint'
+            type: 'bigint',
         },
         marketId: {
             primary: true,
-            type: String
+            type: String,
         },
         orders: {
             type: String,
-            array: true
-        }
-    }
+            array: true,
+        },
+    },
 });

@@ -1,6 +1,7 @@
-import {Request, Response} from "express";
-import {getManager} from "typeorm";
-import {TotalOrders} from "../entity/TotalOrders";
+import { Request, Response } from 'express';
+import { getManager } from 'typeorm';
+
+import { TotalOrders } from '../entity/TotalOrders';
 
 /**
  * Loads all posts from the database.

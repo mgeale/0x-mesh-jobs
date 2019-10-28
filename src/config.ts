@@ -1,8 +1,25 @@
 import env from 'env2';
 import * as fs from 'fs';
-import { ConnectionOptions } from 'typeorm';
+
+export enum Stage {
+    TEST = 'test',
+    DEV = 'dev',
+    STAGE = 'staging',
+    PROD = 'prod'
+}
+
+export enum LogLevel {
+    DEBUG = 'debug',
+    VERBOSE = 'verbose',
+    INFO = 'info',
+    WARN = 'warn',
+    ERROR = 'error'
+}
 
 export class Config {
+    public port: number = 8080;
+    public stage: Stage = Stage.DEV;
+    public logLevel: string = LogLevel.DEBUG;
     public timeoutInterval: number;
     public postgresConnectionUrl: string;
     public meshConnectionUrl: string;

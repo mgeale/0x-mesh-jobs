@@ -7,10 +7,10 @@ export const TotalMarkets = new EntitySchema<TotalMarketsModel>({
     columns: {
         timestamp: {
             primary: true,
-            type: 'bigint'
+            type: 'bigint',
         },
         totalMarkets: {
-            type: 'int'
-        }
-    }
+            type: 'int',
+        },
+    },
 });

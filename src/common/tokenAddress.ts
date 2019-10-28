@@ -1,5 +1,8 @@
 import { assetDataUtils } from '@0x/order-utils';
 
+/**
+ * <<<<<<<>>>>>>>>>.
+ */
 export function toTokenAddress(encodedAssetData: string): string {
     const erc20RegEx = new RegExp('^0xf47261b0');
     const erc721RegEx = new RegExp('^0x02571792');
