@@ -4,7 +4,7 @@ import { loadTestOrderInfo } from '../test/loadTestOrderInfo';
 import { getOrdersPerMarket, MarketOrders } from './marketTotals';
 import { calculateOrderPriceForTaker } from './orderPrice';
 
-fdescribe('order price', () => {
+xdescribe('order price', () => {
     let marketOrders: MarketOrders[];
     const dai = AssetAddress.Dai;
     const weth = AssetAddress.Weth;

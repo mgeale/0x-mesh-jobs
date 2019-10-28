@@ -1,20 +1,20 @@
 import { EntitySchema } from 'typeorm';
 
-import { TotalOrderPerMarketModel } from '../models/TotalOrdersPerMarketModel';
+import { TotalOrdersPerMarketModel } from '../models/TotalOrdersPerMarketModel';
 
-export const TotalOrderPerMarket = new EntitySchema<TotalOrderPerMarketModel>({
-    name: 'TotalOrderPerMarket',
+export const TotalOrdersPerMarket = new EntitySchema<TotalOrdersPerMarketModel>({
+    name: 'TotalOrdersPerMarket',
     columns: {
         timestamp: {
             primary: true,
-            type: 'bigint',
+            type: 'bigint'
         },
         marketId: {
-			primary: true,
-			type: String,
+            primary: true,
+            type: String
         },
         totalOrders: {
-            type: 'int',
-        },
+            type: 'int'
+        }
     }
 });

@@ -16,5 +16,5 @@ export async function initMeshConnectionAsync(config: Config): Promise<void> {
     if (!_.isUndefined(connectionIfExists)) {
         throw new Error('mesh connection already exists');
     }
-    connectionIfExists = new WSClient(config.meshConnectionString);
+    connectionIfExists = new WSClient(config.meshConnectionUrl);
 }

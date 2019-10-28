@@ -3,8 +3,9 @@ import * as fs from 'fs';
 import { ConnectionOptions } from 'typeorm';
 
 export class Config {
-    public orm: ConnectionOptions;
-    public meshConnectionString: string;
+    public timeoutInterval: number;
+    public postgresConnectionUrl: string;
+    public meshConnectionUrl: string;
 
     constructor(private readonly _configPath: string, private readonly _envPath: string) {
         this._loadFromEnv();
@@ -13,8 +14,9 @@ export class Config {
 
     private _loadFromEnv(): void {
         env(this._envPath);
-        this.meshConnectionString = process.env.MESH_CONNECTION_STRING;
-        // this.orm = {}
+        this.timeoutInterval = parseInt(process.env.TIMEOUT_INTERVAL);
+        this.meshConnectionUrl = process.env.MESH_CONNECTION_STRING;
+        this.postgresConnectionUrl = process.env.POSTGRES_CONNECTION_STRING;
     }
 
     private _loadFromFile(): void {

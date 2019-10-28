@@ -29,7 +29,9 @@
    "dependencies": {
       "@0x/mesh-rpc-client": "^4.0.1-beta",
       "@0x/order-utils": "^8.4.0",
+      "body-parser": "^1.18.2",
       "env2": "2.2.0",
+      "express": "^4.16.3",
       "lodash": "^4.17.15",
       "pg": "^7.12.1",
       "reflect-metadata": "^0.1.10",

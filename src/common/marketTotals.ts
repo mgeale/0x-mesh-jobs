@@ -1,4 +1,4 @@
-import { OrderInfo } from '@0x/mesh-rpc-client';
+import { BigNumber, OrderInfo } from '@0x/mesh-rpc-client';
 
 import { toTokenAddress } from '../common/tokenAddress';
 
@@ -9,7 +9,13 @@ export interface TotalMarketOrders {
 
 export interface MarketOrders {
     marketId: string;
-    orders: any[];
+    orders: OrderAmounts[];
+}
+
+export interface OrderAmounts {
+    makerAddress: string;
+    makerAmount: BigNumber;
+    takerAmount: BigNumber;
 }
 
 export function countTotalNumberOfMarkets(orders: OrderInfo[]): number {
@@ -28,7 +34,7 @@ export function countTotalOrdersPerMarket(orders: OrderInfo[]): TotalMarketOrder
         const sorted = [makerAssetAddress, takerAssetAddress].sort();
         return {
             id: sorted.join('|'),
-            makerPosition: sorted[0] === makerAssetAddress ? 0 : 1,
+            makerPosition: sorted[0] === makerAssetAddress ? 0 : 1
         };
     });
     const uniqueMarketIds = [...new Set(results.map(r => r.id))];
@@ -41,7 +47,7 @@ export function countTotalOrdersPerMarket(orders: OrderInfo[]): TotalMarketOrder
         });
         return {
             marketId: id,
-            totalOrders: totalCount,
+            totalOrders: totalCount
         };
     });
 }
@@ -53,17 +59,21 @@ export function getOrdersPerMarket(orders: OrderInfo[]): MarketOrders[] {
         const sorted = [makerAssetAddress, takerAssetAddress].sort();
         return {
             id: sorted.join('|'),
-            makerPosition: sorted[0] === makerAssetAddress ? 0 : 1,
-            makerAmount: parseFloat(order.signedOrder.makerAssetAmount.shiftedBy(-18).toString()),
-            takerAmount: parseFloat(order.signedOrder.takerAssetAmount.shiftedBy(-18).toString()),
+            makerAddress: makerAssetAddress,
+            makerAmount: order.signedOrder.makerAssetAmount,
+            takerAmount: order.signedOrder.takerAssetAmount
         };
     });
     const uniqueMarketIds = [...new Set(results.map(r => r.id))];
     return uniqueMarketIds.map(id => {
-        const orderAmounts = [[], []];
+        const orderAmounts: OrderAmounts[] = [];
         results.forEach(r => {
             if (r.id === id) {
-                orderAmounts[r.makerPosition].push([r.makerAmount, r.takerAmount]);
+                orderAmounts.push({
+                    makerAddress: r.makerAddress,
+                    makerAmount: r.makerAmount,
+                    takerAmount: r.takerAmount
+                });
             }
         });
         return {

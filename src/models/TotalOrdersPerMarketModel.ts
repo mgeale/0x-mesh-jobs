@@ -1,6 +1,6 @@
-export class TotalOrderPerMarketModel {
-	public timestamp: number;
-	public marketId: string;
+export class TotalOrdersPerMarketModel {
+    public timestamp: number;
+    public marketId: string;
     public totalOrders: number;
     constructor(opts: { timestamp?: number; marketId?: string; totalOrders?: number } = {}) {
         this.timestamp = opts.timestamp;

@@ -5,7 +5,7 @@ import { Config } from '../config';
 import { OrdersPerMarket } from '../entity/OrdersPerMarket';
 import { TotalMarkets } from '../entity/TotalMarkets';
 import { TotalOrders } from '../entity/TotalOrders';
-import { TotalOrderPerMarket } from '../entity/TotalOrdersPerMarket';
+import { TotalOrdersPerMarket } from '../entity/TotalOrdersPerMarket';
 
 let connectionIfExists: Connection | undefined;
 
@@ -16,19 +16,15 @@ export function getDBConnection(): Connection {
     return connectionIfExists;
 }
 
-export async function initDBConnectionAsync(config?: Config): Promise<void> {
+export async function initDBConnectionAsync(config: Config): Promise<void> {
     if (!_.isUndefined(connectionIfExists)) {
         throw new Error('DB connection already exists');
     }
     connectionIfExists = await createConnection({
         type: 'postgres',
-        host: 'localhost',
-        port: 5433,
-        username: 'postgres',
-        password: 'postgres',
-        database: 'postgres',
+        url: config.postgresConnectionUrl,
         synchronize: true,
         logging: true,
-        entities: [TotalOrders, TotalMarkets, TotalOrderPerMarket, OrdersPerMarket],
+        entities: [TotalOrders, TotalMarkets, TotalOrdersPerMarket, OrdersPerMarket]
     });
 }
