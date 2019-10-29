@@ -27,7 +27,7 @@ export class HistoricalDataStorage {
     public async saveTotalOrders(total: number) {
         const entry = new TotalOrdersModel({
             timestamp: new Date().getTime(),
-            totalOrders: total,
+            totalOrders: total
         });
         await this.totalOrdersRepository.save(entry);
     }
@@ -35,7 +35,7 @@ export class HistoricalDataStorage {
     public async saveTotalNumberOfMarkets(total: number) {
         const entry = new TotalMarketsModel({
             timestamp: new Date().getTime(),
-            totalMarkets: total,
+            totalMarkets: total
         });
         await this.totalMarketsRepository.save(entry);
     }
@@ -44,7 +44,7 @@ export class HistoricalDataStorage {
         const entry = new TotalOrdersPerMarketModel({
             marketId: totalMarketOrders.marketId,
             timestamp: new Date().getTime(),
-            totalOrders: totalMarketOrders.totalOrders,
+            totalOrders: totalMarketOrders.totalOrders
         });
         await this.totalOrdersPerMarketRepository.save(entry);
     }
@@ -53,7 +53,7 @@ export class HistoricalDataStorage {
         const entry = new OrdersPerMarketModel({
             marketId: marketOrders.marketId,
             timestamp: new Date().getTime(),
-            orders: marketOrders.orders,
+            orders: marketOrders.orders
         });
         await this.ordersPerMarketRepository.save(entry);
     }

@@ -1,5 +1,3 @@
-import { NotSupportedError } from '@incent-loyalty/incent-error';
-import { IncentServiceName } from '../../common/services';
 import { DayTimeUnit } from './dayTimeUnit';
 import { TimeUnitType } from './timeUnit';
 
@@ -9,6 +7,6 @@ export class TimeUnitFactory {
             case TimeUnitType.Day:
                 return new DayTimeUnit();
         }
-        throw new NotSupportedError(IncentServiceName.Exchange, 'timeUnit not supported');
+        throw new Error('timeUnit not supported');
     }
 }

@@ -29,8 +29,8 @@ export function loadTestOrderInfo(): OrderInfo[] {
                 exchangeAddress: 'exchange_address',
                 feeRecipientAddress: 'fee_recipient_address',
                 expirationTimeSeconds: new BigNumber(0),
-                signature: 'signature',
-            },
+                signature: 'signature'
+            }
         });
         index++;
     }
@@ -55,9 +55,9 @@ export function loadTestOrderInfoFile(): OrderInfo[] {
                 makerAssetAmount: new BigNumber(o.signedOrder.makerAssetAmount),
                 takerAssetAmount: new BigNumber(o.signedOrder.takerAssetAmount),
                 salt: new BigNumber(o.signedOrder.salt),
-                expirationTimeSeconds: new BigNumber(o.signedOrder.expirationTimeSeconds),
+                expirationTimeSeconds: new BigNumber(o.signedOrder.expirationTimeSeconds)
             },
-            fillableTakerAssetAmount: o.fillableTakerAssetAmount,
+            fillableTakerAssetAmount: o.fillableTakerAssetAmount
         };
     });
 }

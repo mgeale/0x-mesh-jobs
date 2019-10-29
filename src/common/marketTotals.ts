@@ -40,7 +40,7 @@ export function countTotalOrdersPerMarket(orders: OrderInfo[]): TotalMarketOrder
         const sorted = [makerAssetAddress, takerAssetAddress].sort();
         return {
             id: sorted.join('|'),
-            makerPosition: sorted[0] === makerAssetAddress ? 0 : 1,
+            makerPosition: sorted[0] === makerAssetAddress ? 0 : 1
         };
     });
     const uniqueMarketIds = [...new Set(results.map(r => r.id))];
@@ -53,7 +53,7 @@ export function countTotalOrdersPerMarket(orders: OrderInfo[]): TotalMarketOrder
         });
         return {
             marketId: id,
-            totalOrders: totalCount,
+            totalOrders: totalCount
         };
     });
 }
@@ -70,7 +70,7 @@ export function getOrdersPerMarket(orders: OrderInfo[]): MarketOrders[] {
             id: sorted.join('|'),
             makerAddress: makerAssetAddress,
             makerAmount: order.signedOrder.makerAssetAmount,
-            takerAmount: order.signedOrder.takerAssetAmount,
+            takerAmount: order.signedOrder.takerAssetAmount
         };
     });
     const uniqueMarketIds = [...new Set(results.map(r => r.id))];
@@ -81,13 +81,13 @@ export function getOrdersPerMarket(orders: OrderInfo[]): MarketOrders[] {
                 orderAmounts.push({
                     makerAddress: r.makerAddress,
                     makerAmount: r.makerAmount,
-                    takerAmount: r.takerAmount,
+                    takerAmount: r.takerAmount
                 });
             }
         });
         return {
             marketId: id,
-            orders: orderAmounts,
+            orders: orderAmounts
         };
     });
 }

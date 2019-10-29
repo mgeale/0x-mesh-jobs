@@ -1,4 +1,4 @@
-import * as moment from 'moment';
+import moment from 'moment';
 import { TimeUnit, TimeUnitType } from './timeUnit';
 
 export class DayTimeUnit implements TimeUnit {

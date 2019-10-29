@@ -31,6 +31,6 @@ export async function initDBConnectionAsync(config: Config): Promise<void> {
         url: config.postgresConnectionUrl,
         synchronize: true,
         logging: true,
-        entities: [TotalOrders, TotalMarkets, TotalOrdersPerMarket, OrdersPerMarket],
+        entities: [TotalOrders, TotalMarkets, TotalOrdersPerMarket, OrdersPerMarket]
     });
 }

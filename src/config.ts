@@ -17,9 +17,9 @@ export enum LogLevel {
 }
 
 export class Config {
-    public port: number = 8080;
-    public stage: Stage = Stage.DEV;
-    public logLevel: string = LogLevel.DEBUG;
+    public port: number;
+    public stage: Stage;
+    public logLevel: string;
     public timeoutInterval: number;
     public postgresConnectionUrl: string;
     public meshConnectionUrl: string;
@@ -31,7 +31,13 @@ export class Config {
 
     private _loadFromEnv(): void {
         env(this._envPath);
-        this.timeoutInterval = parseInt(process.env.TIMEOUT_INTERVAL);
+
+        if (process.env.PORT) {
+            this.port = parseInt(process.env.PORT, 10);
+        }
+        this.stage = (process.env.STAGE as Stage) || this.stage;
+        this.logLevel = process.env.LOG_LEVEL || this.logLevel;
+        this.timeoutInterval = parseInt(process.env.TIMEOUT_INTERVAL, 10);
         this.meshConnectionUrl = process.env.MESH_CONNECTION_STRING;
         this.postgresConnectionUrl = process.env.POSTGRES_CONNECTION_STRING;
     }
