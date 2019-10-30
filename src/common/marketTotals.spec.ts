@@ -4,7 +4,7 @@ import { loadTestOrderInfo } from '../test/loadTestOrderInfo';
 
 import { countTotalNumberOfMarkets, countTotalOrdersPerMarket, getOrdersPerMarket } from './marketTotals';
 
-fdescribe('market totals', () => {
+describe('market totals', () => {
     let orders: OrderInfo[];
 
     beforeAll(() => {
@@ -34,27 +34,27 @@ fdescribe('market totals', () => {
         expect(result[0].orders[0]).toEqual({
             makerAddress: dai,
             makerAmount: new BigNumber(1000000000000000000),
-            takerAmount: new BigNumber(180000000000000000000),
+            takerAmount: new BigNumber(180000000000000000000)
         });
         expect(result[0].orders[1]).toEqual({
             makerAddress: dai,
             makerAmount: new BigNumber(1000000000000000000),
-            takerAmount: new BigNumber(181000000000000000000),
+            takerAmount: new BigNumber(181000000000000000000)
         });
         expect(result[0].orders[2]).toEqual({
             makerAddress: dai,
             makerAmount: new BigNumber(1000000000000000000),
-            takerAmount: new BigNumber(182000000000000000000),
+            takerAmount: new BigNumber(182000000000000000000)
         });
         expect(result[0].orders[3]).toEqual({
             makerAddress: dai,
             makerAmount: new BigNumber(1000000000000000000),
-            takerAmount: new BigNumber(183000000000000000000),
+            takerAmount: new BigNumber(183000000000000000000)
         });
         expect(result[0].orders[4]).toEqual({
             makerAddress: dai,
             makerAmount: new BigNumber(1000000000000000000),
-            takerAmount: new BigNumber(184000000000000000000),
+            takerAmount: new BigNumber(184000000000000000000)
         });
     });
 });

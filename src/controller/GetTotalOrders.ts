@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { TimeUnitType } from '../common/timeUnit/timeUnit';
+import { TimeUnitType } from '../common/timeline';
 import { TotalOrders } from '../entity/TotalOrders';
 import { HistoricalDataService } from '../services/historicalDataService';
 
@@ -14,7 +14,7 @@ function fromDto(startDate: string, finishDate: string, timeUnit: string): Reque
     return {
         startTimestamp: new Date(startDate).getTime(),
         finishTimestamp: new Date(finishDate).getTime(),
-        timeUnit: timeUnit as TimeUnitType,
+        timeUnit: timeUnit as TimeUnitType
     };
 }
 

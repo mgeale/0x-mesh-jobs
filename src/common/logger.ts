@@ -10,7 +10,7 @@ import { Config, LogLevel, Stage } from '../config';
 export function initLogger(config: Config) {
     if (logger) return;
 
-    const logDir = path.join(__dirname, '../../logs')
+    const logDir = path.join(__dirname, '../../logs');
     if (!fs.existsSync(logDir)) {
         fs.mkdirSync(logDir);
     }
@@ -22,7 +22,7 @@ export function initLogger(config: Config) {
         day: '2-digit',
         hour: '2-digit',
         minute: '2-digit',
-        second: '2-digit',
+        second: '2-digit'
     };
 
     const tsFormat = () => new Date().toLocaleString('us', dateFormatOptions);

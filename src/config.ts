@@ -5,7 +5,7 @@ export enum Stage {
     Test = 'test',
     Dev = 'dev',
     Stage = 'staging',
-    Prod = 'prod',
+    Prod = 'prod'
 }
 
 export enum LogLevel {
@@ -13,7 +13,7 @@ export enum LogLevel {
     Verbose = 'verbose',
     Info = 'info',
     Warn = 'warn',
-    Error = 'error',
+    Error = 'error'
 }
 
 export class Config {

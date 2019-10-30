@@ -1,10 +1,9 @@
 import { OrderInfo } from '@0x/mesh-rpc-client';
 
 import { countTotalNumberOfMarkets, countTotalOrdersPerMarket, getOrdersPerMarket } from '../common/marketTotals';
-import { TimeUnitType } from '../common/timeUnit/timeUnit';
-import { TimeUnitFactory } from '../common/timeUnit/timeUnitFactory';
 import { HistoricalDataStorage } from '../storages/historicalDataStorage';
 import { TotalOrdersModel } from '../models/TotalOrdersModel';
+import { createTimeline, createTotalOrdersTimeline, TimeUnitType } from '../common/timeline';
 
 export class HistoricalDataService {
     private readonly _storage: HistoricalDataStorage;
@@ -37,22 +36,10 @@ export class HistoricalDataService {
     }
 
     public async getTotalOrdersAsync(timeUnitType: TimeUnitType, count: number) {
-        const timeUnit = TimeUnitFactory.createTimeUnit(timeUnitType);
-        const timeline = timeUnit.createTimeline(count);
+        const timeline = createTimeline(timeUnitType, count);
         const startTime = new Date(timeline[0]).getTime();
         const endTime = new Date().getTime();
         const totals = await this._storage.getTotalOrdersAsync(startTime, endTime);
-        return this.createRateTimeline(totals, timeline);
-    }
-
-    private createRateTimeline(marketData: TotalOrdersModel[], timeline: Date[]): number[] {
-        return timeline.map(timePoint => {
-            const closestDate = marketData.sort((a, b) => {
-                const distanceA = Math.abs(timePoint.getTime() - a.timestamp);
-                const distanceB = Math.abs(timePoint.getTime() - b.timestamp);
-                return distanceA - distanceB;
-            });
-            return closestDate[0].totalOrders;
-        });
+        return createTotalOrdersTimeline(timeUnitType, totals, timeline);
     }
 }

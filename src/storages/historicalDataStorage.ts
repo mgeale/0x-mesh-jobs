@@ -26,7 +26,7 @@ export class HistoricalDataStorage {
     public async saveTotalOrdersAsync(total: number): Promise<void> {
         const entry = new TotalOrdersModel({
             timestamp: new Date().getTime(),
-            totalOrders: total,
+            totalOrders: total
         });
         await this._totalOrdersRepository.save(entry);
     }
@@ -34,7 +34,7 @@ export class HistoricalDataStorage {
     public async saveTotalNumberOfMarketsAsync(total: number): Promise<void> {
         const entry = new TotalMarketsModel({
             timestamp: new Date().getTime(),
-            totalMarkets: total,
+            totalMarkets: total
         });
         await this._totalMarketsRepository.save(entry);
     }
@@ -43,7 +43,7 @@ export class HistoricalDataStorage {
         const entry = new TotalOrdersPerMarketModel({
             marketId: totalMarketOrders.marketId,
             timestamp: new Date().getTime(),
-            totalOrders: totalMarketOrders.totalOrders,
+            totalOrders: totalMarketOrders.totalOrders
         });
         await this._totalOrdersPerMarketRepository.save(entry);
     }
@@ -52,14 +52,14 @@ export class HistoricalDataStorage {
         const entry = new OrdersPerMarketModel({
             marketId: marketOrders.marketId,
             timestamp: new Date().getTime(),
-            orders: marketOrders.orders,
+            orders: marketOrders.orders
         });
         await this._ordersPerMarketRepository.save(entry);
     }
 
     public async getTotalOrdersAsync(start: number, finish: number): Promise<TotalOrdersModel[]> {
         return this._totalOrdersRepository.find({
-            timestamp: Between(start, finish),
+            timestamp: Between(start, finish)
         });
     }
 }
