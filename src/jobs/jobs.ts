@@ -1,14 +1,15 @@
 import { Config } from '../config';
+
 import { initOrderRecord } from './recordOrders';
 
 export class Jobs {
     public static init(config: Config) {
-        //this.recordOrders(config);
+        // this.recordOrders(config);
     }
 
     private static recordOrders(config: Config) {
-        setInterval(() => {
-            initOrderRecord(config);
+        setInterval(async () => {
+            await initOrderRecord(config);
         }, config.timeoutInterval);
     }
 }

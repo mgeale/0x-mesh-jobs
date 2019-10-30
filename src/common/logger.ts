@@ -22,7 +22,7 @@ export function initLogger(config: Config) {
         day: '2-digit',
         hour: '2-digit',
         minute: '2-digit',
-        second: '2-digit'
+        second: '2-digit',
     };
 
     const tsFormat = () => new Date().toLocaleString('us', dateFormatOptions);
@@ -31,9 +31,9 @@ export function initLogger(config: Config) {
         transports: [
             new transports.Console({
                 timestamp: tsFormat,
-                colorize: config.stage !== Stage.PROD,
+                colorize: config.stage !== Stage.Prod,
                 handleExceptions: true,
-                stderrLevels: [LogLevel.ERROR],
+                stderrLevels: [LogLevel.Error],
                 level: config.logLevel
             }),
             new transports.File({
@@ -42,7 +42,7 @@ export function initLogger(config: Config) {
                 datePattern: 'yyyy-MM-dd',
                 prepend: true,
                 handleExceptions: true,
-                stderrLevels: [LogLevel.ERROR],
+                stderrLevels: [LogLevel.Error],
                 zippedArchive: config.stage === 'prod',
                 level: config.logLevel
             })

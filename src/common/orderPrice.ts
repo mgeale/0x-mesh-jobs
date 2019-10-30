@@ -28,12 +28,13 @@ export function calculateOrderPriceForTaker(
  * <<<<<<<>>>>>>>>>.
  */
 export function toOrderPrice(signedOrders: SignedOrder[]): OrderPrice[] {
+    const n = -18;
     return signedOrders.map(o => {
         return {
             ...o,
             price: o.makerAssetAmount.dividedBy(o.takerAssetAmount),
-            makerAmount: o.makerAssetAmount.shiftedBy(-18),
-            takerAmount: o.takerAssetAmount.shiftedBy(-18)
+            makerAmount: o.makerAssetAmount.shiftedBy(n),
+            takerAmount: o.takerAssetAmount.shiftedBy(n)
         };
     });
 }

@@ -1,8 +1,8 @@
-import { HistoricalDataService } from '../services/historicalDataService';
-import { getDBConnection, initDBConnectionAsync } from '../connections/dbConnection';
-import { getMeshConnection, initMeshConnectionAsync } from '../connections/meshConnection';
 import { logger } from '../common/logger';
 import { Config } from '../config';
+import { getDBConnection, initDBConnectionAsync } from '../connections/dbConnection';
+import { getMeshConnection, initMeshConnectionAsync } from '../connections/meshConnection';
+import { HistoricalDataService } from '../services/historicalDataService';
 
 export async function initOrderRecord(config: Config) {
     await initMeshConnectionAsync(config);
@@ -19,7 +19,7 @@ export async function initOrderRecord(config: Config) {
     await historicalDataService.saveTotalOrdersAsync(orders);
     await historicalDataService.saveTotalNumberOfMarketsAsync(orders);
     await historicalDataService.saveTotalOrdersPerMarketAsync(orders);
-    await historicalDataService.saveOrdersPerMarket(orders);
+    await historicalDataService.saveOrdersPerMarketAsync(orders);
 
     meshConnection.destroy();
     logger.info('mesh connection destroyed');

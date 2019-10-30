@@ -4,5 +4,7 @@ export interface TimeUnit {
 }
 
 export enum TimeUnitType {
-    Day = 'day'
+    Day = 'day',
+    Week = 'week',
+    Month = 'month',
 }

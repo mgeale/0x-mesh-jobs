@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { Between, getManager, getRepository, Repository } from 'typeorm';
 
 import { MarketOrders, TotalMarketOrders } from '../common/marketTotals';
 import { OrdersPerMarket } from '../entity/OrdersPerMarket';
@@ -11,50 +11,55 @@ import { TotalOrdersModel } from '../models/totalOrdersModel';
 import { TotalOrdersPerMarketModel } from '../models/TotalOrdersPerMarketModel';
 
 export class HistoricalDataStorage {
-    private readonly totalOrdersRepository: Repository<TotalOrdersModel>;
-    private readonly totalMarketsRepository: Repository<TotalMarketsModel>;
-    private readonly totalOrdersPerMarketRepository: Repository<TotalOrdersPerMarketModel>;
-    private readonly ordersPerMarketRepository: Repository<OrdersPerMarketModel>;
+    private readonly _totalOrdersRepository: Repository<TotalOrdersModel>;
+    private readonly _totalMarketsRepository: Repository<TotalMarketsModel>;
+    private readonly _totalOrdersPerMarketRepository: Repository<TotalOrdersPerMarketModel>;
+    private readonly _ordersPerMarketRepository: Repository<OrdersPerMarketModel>;
 
     constructor() {
-        this.totalOrdersRepository = getRepository(TotalOrders);
-        console.log(this.totalOrdersRepository);
-        this.totalMarketsRepository = getRepository(TotalMarkets);
-        this.totalOrdersPerMarketRepository = getRepository(TotalOrdersPerMarket);
-        this.ordersPerMarketRepository = getRepository(OrdersPerMarket);
+        // this._totalOrdersRepository = getRepository(TotalOrders);
+        // this._totalMarketsRepository = getRepository(TotalMarkets);
+        // this._totalOrdersPerMarketRepository = getRepository(TotalOrdersPerMarket);
+        // this._ordersPerMarketRepository = getRepository(OrdersPerMarket);
     }
 
-    public async saveTotalOrders(total: number) {
+    public async saveTotalOrdersAsync(total: number): Promise<void> {
         const entry = new TotalOrdersModel({
             timestamp: new Date().getTime(),
-            totalOrders: total
+            totalOrders: total,
         });
-        await this.totalOrdersRepository.save(entry);
+        await this._totalOrdersRepository.save(entry);
     }
 
-    public async saveTotalNumberOfMarkets(total: number) {
+    public async saveTotalNumberOfMarketsAsync(total: number): Promise<void> {
         const entry = new TotalMarketsModel({
             timestamp: new Date().getTime(),
-            totalMarkets: total
+            totalMarkets: total,
         });
-        await this.totalMarketsRepository.save(entry);
+        await this._totalMarketsRepository.save(entry);
     }
 
-    public async saveTotalOrdersPerMarketAsync(totalMarketOrders: TotalMarketOrders) {
+    public async saveTotalOrdersPerMarketAsync(totalMarketOrders: TotalMarketOrders): Promise<void> {
         const entry = new TotalOrdersPerMarketModel({
             marketId: totalMarketOrders.marketId,
             timestamp: new Date().getTime(),
-            totalOrders: totalMarketOrders.totalOrders
+            totalOrders: totalMarketOrders.totalOrders,
         });
-        await this.totalOrdersPerMarketRepository.save(entry);
+        await this._totalOrdersPerMarketRepository.save(entry);
     }
 
-    public async saveOrdersPerMarketAsync(marketOrders: MarketOrders) {
+    public async saveOrdersPerMarketAsync(marketOrders: MarketOrders): Promise<void> {
         const entry = new OrdersPerMarketModel({
             marketId: marketOrders.marketId,
             timestamp: new Date().getTime(),
-            orders: marketOrders.orders
+            orders: marketOrders.orders,
         });
-        await this.ordersPerMarketRepository.save(entry);
+        await this._ordersPerMarketRepository.save(entry);
+    }
+
+    public async getTotalOrdersAsync(start: number, finish: number): Promise<TotalOrdersModel[]> {
+        return this._totalOrdersRepository.find({
+            timestamp: Between(start, finish),
+        });
     }
 }

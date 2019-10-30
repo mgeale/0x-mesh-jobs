@@ -53,7 +53,7 @@ export function countTotalOrdersPerMarket(orders: OrderInfo[]): TotalMarketOrder
         });
         return {
             marketId: id,
-            totalOrders: totalCount
+            totalOrders: totalCount,
         };
     });
 }
@@ -87,7 +87,7 @@ export function getOrdersPerMarket(orders: OrderInfo[]): MarketOrders[] {
         });
         return {
             marketId: id,
-            orders: orderAmounts
+            orders: orderAmounts,
         };
     });
 }

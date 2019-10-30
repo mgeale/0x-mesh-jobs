@@ -32,6 +32,6 @@ export function calculateSlippage(orders: OrderPrice[], purchaseAmount: number):
     }
     return {
         price,
-        count
+        count,
     };
 }

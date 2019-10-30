@@ -5,7 +5,7 @@ import { getTotalOrders } from './controller/GetTotalOrders';
  */
 export const AppRoutes = [
     {
-        path: 'orders/total',
+        path: '/orders/total',
         method: 'get',
         action: getTotalOrders
     }

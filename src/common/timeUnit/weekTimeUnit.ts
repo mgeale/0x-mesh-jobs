@@ -2,23 +2,23 @@ import moment from 'moment';
 
 import { TimeUnit, TimeUnitType } from './timeUnit';
 
-export class DayTimeUnit implements TimeUnit {
-    public name = TimeUnitType.Day;
-    private readonly _amountHours: number = 12;
+export class WeekTimeUnit implements TimeUnit {
+    public name = TimeUnitType.Week;
+    private readonly _amountHours: number = 84;
 
     public createTimeline(count: number): Date[] {
         const timeline = [];
-        const midday = moment()
+        const midweek = moment()
             .utc()
-            .startOf('day')
+            .startOf('week')
             .add(this._amountHours, 'hours')
             .format();
 
-        let time = new Date(midday);
+        let time = new Date(midweek);
         while (timeline.length < count) {
             timeline.push(time);
             time = moment(time)
-                .subtract(1, 'day')
+                .subtract(1, 'week')
                 .toDate();
         }
         return timeline.reverse();
