@@ -1,6 +1,6 @@
 import {createTimeline, createTotalOrdersTimeline, TimeUnitType} from './timeline';
 
-fdescribe('timeline', () => {
+describe('timeline', () => {
 	const totalOrders = [
                 {
                     timestamp: 1572149967000,

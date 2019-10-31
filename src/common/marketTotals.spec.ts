@@ -1,6 +1,6 @@
 import { BigNumber, OrderInfo } from '@0x/mesh-rpc-client';
 
-import { loadTestOrderInfo } from '../test/loadTestOrderInfo';
+import { loadTestOrderInfo, loadTestOrderInfoFile } from '../test/loadTestOrderInfo';
 
 import { countTotalNumberOfMarkets, countTotalOrdersPerMarket, getOrdersPerMarket } from './marketTotals';
 
@@ -8,7 +8,7 @@ describe('market totals', () => {
     let orders: OrderInfo[];
 
     beforeAll(() => {
-        orders = loadTestOrderInfo();
+        orders = loadTestOrderInfoFile();
     });
 
     it('should count total number of different markets', () => {
@@ -16,8 +16,9 @@ describe('market totals', () => {
         expect(result).toEqual(1);
     });
 
-    it('should count total number of orders per market', () => {
+    fit('should count total number of orders per market', () => {
         const result = countTotalOrdersPerMarket(orders);
+        //console.log(result)
         const expectedLength = 5;
         expect(result.length).toEqual(1);
         expect(result[0].marketId).toBeDefined();

@@ -48,8 +48,6 @@ export function loadTestOrderInfoFile(): OrderInfo[] {
             orderHash: o.orderHash,
             signedOrder: {
                 ...o.signedOrder,
-                makerAssetData: EncodedAssets.Dai,
-                takerAssetData: EncodedAssets.Weth,
                 makerFee: new BigNumber(o.signedOrder.makerFee),
                 takerFee: new BigNumber(o.signedOrder.takerFee),
                 makerAssetAmount: new BigNumber(o.signedOrder.makerAssetAmount),

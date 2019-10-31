@@ -1,6 +1,7 @@
 import { BigNumber, OrderInfo } from '@0x/mesh-rpc-client';
 
 import { toTokenAddress } from '../common/tokenAddress';
+import { decodeAssetData } from './decodeAssetData';
 
 export interface TotalMarketOrders {
     marketId: string;
@@ -35,12 +36,15 @@ export function countTotalNumberOfMarkets(orders: OrderInfo[]): number {
  */
 export function countTotalOrdersPerMarket(orders: OrderInfo[]): TotalMarketOrders[] {
     const results = orders.map(order => {
-        const makerAssetAddress = toTokenAddress(order.signedOrder.makerAssetData);
-        const takerAssetAddress = toTokenAddress(order.signedOrder.takerAssetData);
-        const sorted = [makerAssetAddress, takerAssetAddress].sort();
+        const makerAsset = decodeAssetData(order.signedOrder.makerAssetData);
+        const takerAsset = decodeAssetData(order.signedOrder.takerAssetData);
+        if (makerAsset.length > 1) {
+
+        }
+        const sorted = [makerAsset, takerAsset].sort();
         return {
             id: sorted.join('|'),
-            makerPosition: sorted[0] === makerAssetAddress ? 0 : 1
+            makerPosition: sorted[0] === makerAsset ? 0 : 1
         };
     });
     const uniqueMarketIds = [...new Set(results.map(r => r.id))];
