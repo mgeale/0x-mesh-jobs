@@ -35,18 +35,8 @@ export function countTotalNumberOfMarkets(orders: OrderInfo[]): number {
  * <<<<<<<>>>>>>>>>.
  */
 export function countTotalOrdersPerMarket(orders: OrderInfo[]): TotalMarketOrders[] {
-    const results = orders.map(order => {
-        const makerAsset = decodeAssetData(order.signedOrder.makerAssetData);
-        const takerAsset = decodeAssetData(order.signedOrder.takerAssetData);
-        if (makerAsset.length > 1) {
-
-        }
-        const sorted = [makerAsset, takerAsset].sort();
-        return {
-            id: sorted.join('|'),
-            makerPosition: sorted[0] === makerAsset ? 0 : 1
-        };
-    });
+    const results = formatOrders(orders);
+    console.log(results)
     const uniqueMarketIds = [...new Set(results.map(r => r.id))];
     return uniqueMarketIds.map(id => {
         let totalCount = 0;
@@ -66,17 +56,8 @@ export function countTotalOrdersPerMarket(orders: OrderInfo[]): TotalMarketOrder
  * <<<<<<<>>>>>>>>>.
  */
 export function getOrdersPerMarket(orders: OrderInfo[]): MarketOrders[] {
-    const results = orders.map(order => {
-        const makerAssetAddress = toTokenAddress(order.signedOrder.makerAssetData);
-        const takerAssetAddress = toTokenAddress(order.signedOrder.takerAssetData);
-        const sorted = [makerAssetAddress, takerAssetAddress].sort();
-        return {
-            id: sorted.join('|'),
-            makerAddress: makerAssetAddress,
-            makerAmount: order.signedOrder.makerAssetAmount,
-            takerAmount: order.signedOrder.takerAssetAmount
-        };
-    });
+    const results = formatOrders(orders);
+    console.log(results)
     const uniqueMarketIds = [...new Set(results.map(r => r.id))];
     return uniqueMarketIds.map(id => {
         const orderAmounts: OrderAmounts[] = [];
@@ -94,4 +75,35 @@ export function getOrdersPerMarket(orders: OrderInfo[]): MarketOrders[] {
             orders: orderAmounts
         };
     });
+}
+
+function formatOrders(orders: OrderInfo[]) {
+    let results = [];
+    for (const order of orders) {
+        const makerAssets = decodeAssetData(order.signedOrder.makerAssetData);
+        const takerAssets = decodeAssetData(order.signedOrder.takerAssetData);
+
+        for (const makerAsset of makerAssets) {
+            for (const takerAsset of takerAssets) {
+                const sorted = [makerAsset.tokenAddress, takerAsset.tokenAddress].sort();
+                let makerAmount = order.signedOrder.makerAssetAmount;
+                let takerAmount = order.signedOrder.takerAssetAmount;
+                if (makerAsset.amount) {
+                    makerAmount = makerAsset.amount.multipliedBy(order.signedOrder.makerAssetAmount);
+                    takerAmount = order.signedOrder.takerAssetAmount.dividedBy(makerAssets.length);
+                }
+                if (takerAsset.amount) {
+                    takerAmount = takerAsset.amount.multipliedBy(order.signedOrder.takerAssetAmount);
+                    makerAmount = order.signedOrder.makerAssetAmount.dividedBy(takerAssets.length);
+                }
+                results.push({
+                    id: sorted.join('|'),
+                    makerPosition: sorted[0] === makerAsset.tokenAddress ? 0 : 1,
+                    makerAmount: makerAmount,
+                    takerAmount: takerAmount
+                });
+            }
+        }
+    }
+    return results;
 }

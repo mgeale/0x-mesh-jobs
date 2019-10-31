@@ -31,11 +31,14 @@ export function createTimeline(timeUnitType: TimeUnitType, count: number): Date[
 
 export function createTotalOrdersTimeline(timeUnitType: TimeUnitType, orders: TotalOrdersModel[], timeline: Date[]) {
     const ordersWithDate = orders.map(o => {
-        const startOfPeriod = moment(o.timestamp).utc().startOf(timeUnitType).format();
+        const startOfPeriod = moment(o.timestamp)
+            .utc()
+            .startOf(timeUnitType)
+            .format();
         return {
             date: new Date(startOfPeriod),
-            totalOrders: o.totalOrders,
-        }
+            totalOrders: o.totalOrders
+        };
     });
     return timeline.map(timePoint => ordersWithDate.find(o => o.date.getTime() === timePoint.getTime()));
 }

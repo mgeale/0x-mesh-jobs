@@ -18,16 +18,20 @@ export function decodeAssetData(encodedAssetData: string): DecodeAssetData[] {
     } else if (erc721RegEx.test(encodedAssetData)) {
         return [assetDataUtils.decodeERC721AssetData(encodedAssetData)];
     } else if (multiAsset.test(encodedAssetData)) {
-        const multiAssetData = assetDataUtils.decodeMultiAssetData(encodedAssetData);
-        const result = [];
-        const len = multiAssetData.nestedAssetData.length;
-        for (let i = 0; i < len; i++) {
-            const asset = decodeAssetData(multiAssetData.nestedAssetData[i]);
-            result.push({
-                tokenAddress: asset[0].tokenAddress,
-                amount: multiAssetData.amounts[i],
-            });
-        }
-        return result;
+        return decodeMultiAssetData(encodedAssetData);
     }
+}
+
+function decodeMultiAssetData(encodedAssetData: string): DecodeAssetData[] {
+    const multiAssetData = assetDataUtils.decodeMultiAssetData(encodedAssetData);
+    const result = [];
+    const nestedAsset = multiAssetData.nestedAssetData;
+    for (let i = 0; i < nestedAsset.length; i++) {
+        const assetData = decodeAssetData(nestedAsset[i]);
+        result.push({
+            tokenAddress: assetData[0].tokenAddress,
+            amount: multiAssetData.amounts[i]
+        });
+    }
+    return result;
 }

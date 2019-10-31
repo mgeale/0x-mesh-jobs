@@ -17,9 +17,9 @@ export function toTokenAddress(encodedAssetData: string): string {
         //console.log(erc721AssetData)
         return erc721AssetData.tokenAddress;
     } else if (multiAsset.test(encodedAssetData)) {
-        console.log(encodedAssetData)
+        console.log(encodedAssetData);
         const multiAssetData = assetDataUtils.decodeMultiAssetData(encodedAssetData);
-        console.log(multiAssetData)
+        console.log(multiAssetData);
         const nestedAssetData = multiAssetData.nestedAssetData.map(a => toTokenAddress(a));
         return nestedAssetData.join('+');
     }
