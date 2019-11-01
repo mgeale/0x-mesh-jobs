@@ -17,10 +17,10 @@ export class HistoricalDataStorage {
     private readonly _ordersPerMarketRepository: Repository<OrdersPerMarketModel>;
 
     constructor() {
-        // this._totalOrdersRepository = getRepository(TotalOrders);
-        // this._totalMarketsRepository = getRepository(TotalMarkets);
-        // this._totalOrdersPerMarketRepository = getRepository(TotalOrdersPerMarket);
-        // this._ordersPerMarketRepository = getRepository(OrdersPerMarket);
+        this._totalOrdersRepository = getRepository(TotalOrders);
+        this._totalMarketsRepository = getRepository(TotalMarkets);
+        this._totalOrdersPerMarketRepository = getRepository(TotalOrdersPerMarket);
+        this._ordersPerMarketRepository = getRepository(OrdersPerMarket);
     }
 
     public async saveTotalOrdersAsync(total: number): Promise<void> {

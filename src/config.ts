@@ -27,7 +27,7 @@ export class Config {
 
     constructor(private readonly _configPath: string, private readonly _envPath: string) {
         this._loadFromEnv();
-        //this._loadFromFile();
+        this._loadFromFile();
     }
 
     private _loadFromEnv(): void {

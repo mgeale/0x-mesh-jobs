@@ -4,7 +4,7 @@ import { loadTestOrderInfo, loadTestOrderInfoFile } from '../test/loadTestOrderI
 
 import { countTotalNumberOfMarkets, countTotalOrdersPerMarket, getOrdersPerMarket } from './marketTotals';
 
-fdescribe('market totals', () => {
+describe('market totals', () => {
     let orders: OrderInfo[];
 
     beforeAll(() => {

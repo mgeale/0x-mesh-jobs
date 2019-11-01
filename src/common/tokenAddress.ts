@@ -10,16 +10,12 @@ export function toTokenAddress(encodedAssetData: string): string {
 
     if (erc20RegEx.test(encodedAssetData)) {
         const erc20AssetData = assetDataUtils.decodeERC20AssetData(encodedAssetData);
-        //console.log(erc20AssetData)
         return erc20AssetData.tokenAddress;
     } else if (erc721RegEx.test(encodedAssetData)) {
         const erc721AssetData = assetDataUtils.decodeERC721AssetData(encodedAssetData);
-        //console.log(erc721AssetData)
         return erc721AssetData.tokenAddress;
     } else if (multiAsset.test(encodedAssetData)) {
-        console.log(encodedAssetData);
         const multiAssetData = assetDataUtils.decodeMultiAssetData(encodedAssetData);
-        console.log(multiAssetData);
         const nestedAssetData = multiAssetData.nestedAssetData.map(a => toTokenAddress(a));
         return nestedAssetData.join('+');
     }

@@ -8,9 +8,6 @@ export interface OrderPrice extends SignedOrder {
     takerAmount: BigNumber;
 }
 
-/**
- * <<<<<<<>>>>>>>>>.
- */
 export function calculateOrderPriceForTaker(
     makerAssetToPurchase: string,
     makerAmountToPurchase: number,
@@ -19,14 +16,9 @@ export function calculateOrderPriceForTaker(
     const assets = marketOrders.marketId.split('|');
     const makerPosition = makerAssetToPurchase === assets[0] ? 0 : 1;
     const orders = marketOrders.orders[makerPosition];
-    console.log(orders);
-    // const prices = orders.map(o => o[0] * o[1]);
-    // console.log(prices);
+    console.log(marketOrders);
 }
 
-/**
- * <<<<<<<>>>>>>>>>.
- */
 export function toOrderPrice(signedOrders: SignedOrder[]): OrderPrice[] {
     const n = -18;
     return signedOrders.map(o => {

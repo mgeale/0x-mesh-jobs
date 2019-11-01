@@ -4,9 +4,6 @@ import * as path from 'path';
 
 import { EncodedAssets } from './assetData';
 
-/**
- * <<<<<<<>>>>>>>>>.
- */
 export function loadTestOrderInfo(): OrderInfo[] {
     const orders = [];
     const length = 5;
@@ -84,9 +81,6 @@ export function loadTestOrderInfo(): OrderInfo[] {
     return orders;
 }
 
-/**
- * <<<<<<<>>>>>>>>>.
- */
 export function loadTestOrderInfoFile(): OrderInfo[] {
     const rawData = fs.readFileSync(path.join(__dirname, '../../testData/meshOrders.json'));
     const orders = JSON.parse(rawData.toString());

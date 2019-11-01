@@ -10,9 +10,6 @@ export interface Slippage {
 // i want 10000 weth. how much Dai will that cost?
 // actual cost - average cost
 
-/**
- * <<<<<<<>>>>>>>>>.
- */
 export function calculateSlippage(orders: OrderPrice[], purchaseAmount: number): Slippage {
     const selectedOrders = [];
     let count = new BigNumber(0);

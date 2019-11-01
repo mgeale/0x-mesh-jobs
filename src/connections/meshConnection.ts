@@ -5,9 +5,6 @@ import { Config } from '../config';
 
 let connectionIfExists: WSClient | undefined;
 
-/**
- * <<<<<<<>>>>>>>>>.
- */
 export function getMeshConnection(): WSClient {
     if (_.isUndefined(connectionIfExists)) {
         throw new Error('mesh connection not initialized');
@@ -15,9 +12,6 @@ export function getMeshConnection(): WSClient {
     return connectionIfExists;
 }
 
-/**
- * <<<<<<<>>>>>>>>>.
- */
 export async function initMeshConnectionAsync(config: Config): Promise<void> {
     if (!_.isUndefined(connectionIfExists)) {
         throw new Error('mesh connection already exists');
