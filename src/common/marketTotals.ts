@@ -36,7 +36,7 @@ export function countTotalNumberOfMarkets(orders: OrderInfo[]): number {
  */
 export function countTotalOrdersPerMarket(orders: OrderInfo[]): TotalMarketOrders[] {
     const results = formatOrders(orders);
-    console.log(results)
+    console.log(results);
     const uniqueMarketIds = [...new Set(results.map(r => r.id))];
     return uniqueMarketIds.map(id => {
         let totalCount = 0;
@@ -57,7 +57,7 @@ export function countTotalOrdersPerMarket(orders: OrderInfo[]): TotalMarketOrder
  */
 export function getOrdersPerMarket(orders: OrderInfo[]): MarketOrders[] {
     const results = formatOrders(orders);
-    console.log(results)
+    console.log(results);
     const uniqueMarketIds = [...new Set(results.map(r => r.id))];
     return uniqueMarketIds.map(id => {
         const orderAmounts: OrderAmounts[] = [];
@@ -99,8 +99,8 @@ function formatOrders(orders: OrderInfo[]) {
                 results.push({
                     id: sorted.join('|'),
                     makerPosition: sorted[0] === makerAsset.tokenAddress ? 0 : 1,
-                    makerAmount: makerAmount,
-                    takerAmount: takerAmount
+                    makerAmount: makerAmount.toFixed(0),
+                    takerAmount: takerAmount.toFixed(0)
                 });
             }
         }
