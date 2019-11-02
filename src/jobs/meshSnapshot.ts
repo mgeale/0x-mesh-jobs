@@ -4,7 +4,7 @@ import { getDBConnection, initDBConnectionAsync } from '../connections/dbConnect
 import { getMeshConnection, initMeshConnectionAsync } from '../connections/meshConnection';
 import { HistoricalDataService } from '../services/historicalDataService';
 
-export async function initOrderRecord(config: Config) {
+export async function meshSnapshot(config: Config) {
     await initMeshConnectionAsync(config);
     logger.info('mesh connection created');
     await initDBConnectionAsync(config);

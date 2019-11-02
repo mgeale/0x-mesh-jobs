@@ -1,6 +1,5 @@
 import { OrderInfo } from '@0x/mesh-rpc-client';
 
-import { TimeUnitType } from '../common/timeline';
 import { HistoricalDataStorage } from '../storages/historicalDataStorage';
 import { loadTestOrderInfo } from '../test/loadTestOrderInfo';
 
@@ -35,10 +34,5 @@ describe('historical data service', () => {
                 }
             ]);
         });
-    });
-
-    it('should get total number of markets', async () => {
-        const markets = await service.getTotalOrdersAsync(TimeUnitType.Day, 4);
-        //expect(markets).toEqual([101, 105, 98, 100]);
     });
 });

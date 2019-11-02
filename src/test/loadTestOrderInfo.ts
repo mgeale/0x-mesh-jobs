@@ -27,8 +27,8 @@ export function loadTestOrderInfo(): OrderInfo[] {
                 exchangeAddress: 'exchange_address',
                 feeRecipientAddress: 'fee_recipient_address',
                 expirationTimeSeconds: new BigNumber(0),
-                signature: 'signature',
-            },
+                signature: 'signature'
+            }
         });
         index++;
     }

@@ -1,6 +1,6 @@
 import { Config } from '../config';
 
-import { initOrderRecord } from './recordOrders';
+import { meshSnapshot } from './meshSnapshot';
 
 export class Jobs {
     public static init(config: Config) {
@@ -9,7 +9,7 @@ export class Jobs {
 
     private static recordOrders(config: Config) {
         setInterval(async () => {
-            await initOrderRecord(config);
+            await meshSnapshot(config);
         }, config.timeoutInterval);
     }
 }
