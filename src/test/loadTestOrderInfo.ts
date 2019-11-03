@@ -55,6 +55,28 @@ export function loadTestOrderInfo(): OrderInfo[] {
         },
         fillableTakerAssetAmount: new BigNumber('125000000000000000')
     });
+    orders.push({
+        orderHash: '0x06902f6aaa4b577cd84dd4bd7ca33ff4137fb1a6a7fcb269490b4eb4c9182475',
+        signedOrder: {
+            makerAddress: '0x1f43ce90a924224518ee7dd998f492f185ddfe77',
+            makerAssetData:
+                '0x02571792000000000000000000000000bdaed67214641b7eda3bf8d7431c3ae5fc46f466000000000000000000000000000000000000000000000000000000000000014b',
+            makerAssetAmount: new BigNumber('1'),
+            makerFee: new BigNumber('0'),
+            takerAddress: '0x0000000000000000000000000000000000000000',
+            takerAssetData: '0xf47261b0000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
+            takerAssetAmount: new BigNumber('29000000000000000'),
+            takerFee: new BigNumber('0'),
+            senderAddress: '0x0000000000000000000000000000000000000000',
+            exchangeAddress: '0x080bf510fcbf18b91105470639e9561022937712',
+            feeRecipientAddress: '0xb0d7398d779ee9ffc727d2d5b045a5b441da8233',
+            expirationTimeSeconds: new BigNumber('1577746800'),
+            salt: new BigNumber('29154123359226532740022277709659861742964839117733974240554496646451840511522'),
+            signature:
+                '0x1b4c55256bfb8d04588a32ce279bd3702134473ccdf287cb7a6e830bd60789334f3f85c88ff992516f09cc6e941bf177a1aef6c96da3ed29dcaac9702ded82949402'
+        },
+        fillableTakerAssetAmount: new BigNumber('29000000000000000')
+    });
     // multiAssetOrder
     orders.push({
         orderHash: '0x43b7913a1479c17c797f23965e432c2d302fb068689308559e733f9f03c7ec17',

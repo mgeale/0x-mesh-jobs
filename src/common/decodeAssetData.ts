@@ -24,11 +24,12 @@ export function decodeAssetData(encodedAssetData: string): DecodeAssetData[] {
 
 function decodeMultiAssetData(encodedAssetData: string): DecodeAssetData[] {
     const multiAssetData = assetDataUtils.decodeMultiAssetData(encodedAssetData);
+    const assets = multiAssetData.nestedAssetData;
     const result = [];
-    const nestedAsset = multiAssetData.nestedAssetData;
-    for (let i = 0; i < nestedAsset.length; i++) {
-        const assetData = decodeAssetData(nestedAsset[i]);
+    for (let i = 0; i < assets.length; i++) {
+        const assetData = decodeAssetData(assets[i]);
         result.push({
+            assetProxyId: assetData[0].assetProxyId,
             tokenAddress: assetData[0].tokenAddress,
             amount: multiAssetData.amounts[i]
         });

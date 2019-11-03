@@ -86,7 +86,8 @@ function formatOrders(orders: OrderInfo[]) {
                 }
                 results.push({
                     id: sorted.join('|'),
-                    makerPosition: sorted[0] === makerAsset.tokenAddress ? 0 : 1,
+                    //makerPosition: sorted[0] === makerAsset.tokenAddress ? 0 : 1,
+                    makerAddress: makerAsset.tokenAddress,
                     makerAmount: makerAmount.toFixed(0),
                     takerAmount: takerAmount.toFixed(0)
                 });
