@@ -23,7 +23,7 @@ fdescribe('market totals', () => {
     it('should count total number of orders per market', () => {
         const result = countTotalOrdersPerMarket(orders);
         const expectedLength = 5;
-        expect(result.length).toEqual(4);
+        expect(result.length).toEqual(3);
         const daiWethResult = result.find(r => r.marketId === daiWethId);
         expect(daiWethResult.totalOrders).toEqual(expectedLength);
     });
@@ -31,37 +31,63 @@ fdescribe('market totals', () => {
     it('should get order amount per market', () => {
         const result = getOrdersPerMarket(orders);
         expect(result.length).toEqual(3);
-        const daiWethResult = result.find(r => r.marketId === daiWethId);
-        expect(daiWethResult.orders[0]).toEqual({
+        const daiWethMarket = result.find(r => r.marketId === daiWethId);
+        expect(daiWethMarket.orders.length).toEqual(5);
+        expect(daiWethMarket.orders[0]).toEqual({
             makerAddress: AssetAddress.Dai,
             makerAmount: new BigNumber(1000000000000000000),
             takerAmount: new BigNumber(180000000000000000000)
         });
-        expect(daiWethResult.orders[1]).toEqual({
+        expect(daiWethMarket.orders[1]).toEqual({
             makerAddress: AssetAddress.Dai,
             makerAmount: new BigNumber(1000000000000000000),
             takerAmount: new BigNumber(181000000000000000000)
         });
-        expect(daiWethResult.orders[2]).toEqual({
+        expect(daiWethMarket.orders[2]).toEqual({
             makerAddress: AssetAddress.Dai,
             makerAmount: new BigNumber(1000000000000000000),
             takerAmount: new BigNumber(182000000000000000000)
         });
-        expect(daiWethResult.orders[3]).toEqual({
+        expect(daiWethMarket.orders[3]).toEqual({
             makerAddress: AssetAddress.Dai,
             makerAmount: new BigNumber(1000000000000000000),
             takerAmount: new BigNumber(183000000000000000000)
         });
-        expect(daiWethResult.orders[4]).toEqual({
+        expect(daiWethMarket.orders[4]).toEqual({
             makerAddress: AssetAddress.Dai,
             makerAmount: new BigNumber(1000000000000000000),
             takerAmount: new BigNumber(184000000000000000000)
         });
 
-        const ensWethResult = result.find(r => r.marketId === ensWethId);
-        //console.log(ensWethResult)
+        const ensWethMarket = result.find(r => r.marketId === ensWethId);
+        expect(ensWethMarket.orders.length).toEqual(1);
+        expect(ensWethMarket.orders[0]).toEqual({
+            makerAddress: AssetAddress.Ens,
+            makerAmount: new BigNumber(1),
+            takerAmount: new BigNumber(125000000000000000)
+        });
 
-        const atomWethResult = result.find(r => r.marketId === atomWethId);
-        console.log(atomWethId)
+        const atomWethMarket = result.find(r => r.marketId === atomWethId);
+        expect(atomWethMarket.orders.length).toEqual(4);
+        expect(atomWethMarket.orders[0]).toEqual({
+            makerAddress: AssetAddress.Atom,
+            makerAmount: new BigNumber(1),
+            takerAmount: new BigNumber(29000000000000000)
+        });
+        expect(atomWethMarket.orders[1]).toEqual({
+            makerAddress: AssetAddress.Atom,
+            makerAmount: new BigNumber(1),
+            takerAmount: new BigNumber(3333333333333333)
+        });
+        expect(atomWethMarket.orders[2]).toEqual({
+            makerAddress: AssetAddress.Atom,
+            makerAmount: new BigNumber(1),
+            takerAmount: new BigNumber(3333333333333333)
+        });
+        expect(atomWethMarket.orders[3]).toEqual({
+            makerAddress: AssetAddress.Atom,
+            makerAmount: new BigNumber(1),
+            takerAmount: new BigNumber(3333333333333333)
+        });
     });
 });

@@ -88,8 +88,8 @@ function formatOrders(orders: OrderInfo[]) {
                     id: sorted.join('|'),
                     //makerPosition: sorted[0] === makerAsset.tokenAddress ? 0 : 1,
                     makerAddress: makerAsset.tokenAddress,
-                    makerAmount: makerAmount.toFixed(0),
-                    takerAmount: takerAmount.toFixed(0)
+                    makerAmount: makerAmount.integerValue(),
+                    takerAmount: takerAmount.integerValue()
                 });
             }
         }

@@ -21,8 +21,8 @@ export async function meshSnapshot(config: Config) {
     await historicalDataService.saveTotalOrdersPerMarketAsync(orders);
     await historicalDataService.saveOrdersPerMarketAsync(orders);
 
-    meshConnection.destroy();
-    logger.info('mesh connection destroyed');
+    //meshConnection.close();
+    //logger.info('mesh connection destroyed');
     const dbConnection = getDBConnection();
     dbConnection.close();
     logger.info('db connection closed');
