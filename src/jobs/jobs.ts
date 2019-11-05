@@ -4,7 +4,7 @@ import { meshSnapshot } from './meshSnapshot';
 
 export class Jobs {
     public static init(config: Config) {
-        this.recordOrders(config);
+        // this.recordOrders(config);
     }
 
     private static recordOrders(config: Config) {

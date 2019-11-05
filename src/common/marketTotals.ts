@@ -16,6 +16,7 @@ export interface OrderAmounts {
     makerAddress: string;
     makerAmount: BigNumber;
     takerAmount: BigNumber;
+    multiAssetAmounts?: any;
 }
 
 export function countTotalNumberOfMarkets(orders: OrderInfo[]): number {
@@ -54,13 +55,14 @@ export function getOrdersPerMarket(orders: OrderInfo[]): MarketOrders[] {
                 orderAmounts.push({
                     makerAddress: r.makerAddress,
                     makerAmount: r.makerAmount,
-                    takerAmount: r.takerAmount
+                    takerAmount: r.takerAmount,
+                    multiAssetAmounts: r.multiAssetAmounts ? r.multiAssetAmounts : null,
                 });
             }
         });
         return {
             marketId: id,
-            orders: orderAmounts
+            orders: orderAmounts,
         };
     });
 }
@@ -68,31 +70,17 @@ export function getOrdersPerMarket(orders: OrderInfo[]): MarketOrders[] {
 function formatOrders(orders: OrderInfo[]) {
     let results = [];
     for (const order of orders) {
-        const makerAssets = decodeAssetData(order.signedOrder.makerAssetData);
-        const takerAssets = decodeAssetData(order.signedOrder.takerAssetData);
-
-        for (const makerAsset of makerAssets) {
-            for (const takerAsset of takerAssets) {
-                const sorted = [makerAsset.tokenAddress, takerAsset.tokenAddress].sort();
-                let makerAmount = order.signedOrder.makerAssetAmount;
-                let takerAmount = order.signedOrder.takerAssetAmount;
-                if (makerAsset.amount) {
-                    makerAmount = makerAsset.amount.multipliedBy(order.signedOrder.makerAssetAmount);
-                    takerAmount = order.signedOrder.takerAssetAmount.dividedBy(makerAssets.length);
-                }
-                if (takerAsset.amount) {
-                    takerAmount = takerAsset.amount.multipliedBy(order.signedOrder.takerAssetAmount);
-                    makerAmount = order.signedOrder.makerAssetAmount.dividedBy(takerAssets.length);
-                }
-                results.push({
-                    id: sorted.join('|'),
-                    //makerPosition: sorted[0] === makerAsset.tokenAddress ? 0 : 1,
-                    makerAddress: makerAsset.tokenAddress,
-                    makerAmount: makerAmount.integerValue(),
-                    takerAmount: takerAmount.integerValue()
-                });
-            }
-        }
+        const makerAsset = decodeAssetData(order.signedOrder.makerAssetData);
+        const takerAsset = decodeAssetData(order.signedOrder.takerAssetData);
+        const sorted = [makerAsset.tokenAddress, takerAsset.tokenAddress].sort();
+        const amounts = sorted[0] === makerAsset.tokenAddress ? [makerAsset.amounts, takerAsset.amounts] : [takerAsset.amounts, makerAsset.amounts];
+        results.push({
+            id: sorted.join('|'),
+            makerAddress: makerAsset.tokenAddress,
+            makerAmount: order.signedOrder.makerAssetAmount,
+            takerAmount: order.signedOrder.takerAssetAmount,
+            multiAssetAmounts: amounts,
+        });
     }
     return results;
 }
