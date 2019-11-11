@@ -30,15 +30,17 @@ function decodeMultiAssetData(encodedAssetData: string): DecodeAssetData {
         const assetData = decodeAssetData(assets[i]);
         result.push({
             tokenAddress: assetData.tokenAddress,
-            amounts: multiAssetData.amounts[i],
+            amounts: multiAssetData.amounts[i]
         });
     }
-    const sorted = result.sort((a, b) => (a.tokenAddress > b.tokenAddress) ? 1 : ((b.tokenAddress > a.tokenAddress) ? -1 : 0));
+    const sorted = result.sort((a, b) =>
+        a.tokenAddress > b.tokenAddress ? 1 : b.tokenAddress > a.tokenAddress ? -1 : 0
+    );
     const amounts = sorted.map(r => r.amounts);
     const addresses = sorted.map(r => r.tokenAddress).join('+');
     return {
         assetProxyId: multiAssetData.assetProxyId,
         tokenAddress: addresses,
-        amounts,
+        amounts
     };
 }

@@ -88,6 +88,25 @@ export function loadTestOrderInfo(): OrderInfo[] {
             signature: 'signature'
         }
     });
+    orders.push({
+        signedOrder: {
+            makerAddress: 'maker_address',
+            makerAssetData: EncodedAssets.mixMulti,
+            makerAssetAmount: new BigNumber(1),
+            makerFee: new BigNumber(0),
+            takerAddress: 'taker_address',
+            takerAssetData: EncodedAssets.Weth,
+            takerAssetAmount: new BigNumber(10000000000000000),
+            takerFee: new BigNumber(0),
+            senderAddress: 'sender_address',
+            exchangeAddress: 'exchange_address',
+            feeRecipientAddress: 'fee_recipient_address',
+            expirationTimeSeconds: new BigNumber(0),
+            salt: new BigNumber(0),
+            signature: 'signature'
+        }
+    });
+
     return orders;
 }
 

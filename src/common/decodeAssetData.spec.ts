@@ -13,7 +13,7 @@ describe('decode asset data', () => {
         const result = decodeAssetData(EncodedAssets.Dai);
         expect(result).toEqual({
             assetProxyId: erc20ProxyId,
-            tokenAddress: AssetAddress.Dai,
+            tokenAddress: AssetAddress.Dai
         });
     });
 

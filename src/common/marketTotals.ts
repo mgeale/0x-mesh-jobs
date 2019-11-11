@@ -13,10 +13,14 @@ export interface MarketOrders {
 }
 
 export interface OrderAmounts {
-    makerAddress: string;
-    makerAmount: BigNumber;
-    takerAmount: BigNumber;
-    multiAssetAmounts?: any;
+    maker: AssetAmounts;
+    taker: AssetAmounts;
+}
+
+interface AssetAmounts {
+    id: string;
+    amount: BigNumber;
+    multiAssetAmounts: BigNumber[];
 }
 
 export function countTotalNumberOfMarkets(orders: OrderInfo[]): number {
@@ -29,7 +33,7 @@ export function countTotalNumberOfMarkets(orders: OrderInfo[]): number {
 }
 
 export function countTotalOrdersPerMarket(orders: OrderInfo[]): TotalMarketOrders[] {
-    const results = formatOrders(orders);
+    const results = reformatOrders(orders);
     const uniqueMarketIds = [...new Set(results.map(r => r.id))];
     return uniqueMarketIds.map(id => {
         let totalCount = 0;
@@ -46,41 +50,44 @@ export function countTotalOrdersPerMarket(orders: OrderInfo[]): TotalMarketOrder
 }
 
 export function getOrdersPerMarket(orders: OrderInfo[]): MarketOrders[] {
-    const results = formatOrders(orders);
+    const results = reformatOrders(orders);
     const uniqueMarketIds = [...new Set(results.map(r => r.id))];
     return uniqueMarketIds.map(id => {
         const orderAmounts: OrderAmounts[] = [];
         results.forEach(r => {
             if (r.id === id) {
                 orderAmounts.push({
-                    makerAddress: r.makerAddress,
-                    makerAmount: r.makerAmount,
-                    takerAmount: r.takerAmount,
-                    multiAssetAmounts: r.multiAssetAmounts ? r.multiAssetAmounts : null,
+                    maker: {
+                        id: r.maker.tokenAddress,
+                        amount: r.makerAmount,
+                        multiAssetAmounts: r.maker.amounts ? r.maker.amounts : null
+                    },
+                    taker: {
+                        id: r.taker.tokenAddress,
+                        amount: r.takerAmount,
+                        multiAssetAmounts: r.taker.amounts ? r.taker.amounts : null
+                    }
                 });
             }
         });
         return {
             marketId: id,
-            orders: orderAmounts,
+            orders: orderAmounts
         };
     });
 }
 
-function formatOrders(orders: OrderInfo[]) {
-    let results = [];
-    for (const order of orders) {
+function reformatOrders(orders: OrderInfo[]) {
+    return orders.map(order => {
         const makerAsset = decodeAssetData(order.signedOrder.makerAssetData);
         const takerAsset = decodeAssetData(order.signedOrder.takerAssetData);
         const sorted = [makerAsset.tokenAddress, takerAsset.tokenAddress].sort();
-        const amounts = sorted[0] === makerAsset.tokenAddress ? [makerAsset.amounts, takerAsset.amounts] : [takerAsset.amounts, makerAsset.amounts];
-        results.push({
+        return {
             id: sorted.join('|'),
-            makerAddress: makerAsset.tokenAddress,
+            maker: makerAsset,
             makerAmount: order.signedOrder.makerAssetAmount,
+            taker: takerAsset,
             takerAmount: order.signedOrder.takerAssetAmount,
-            multiAssetAmounts: amounts,
-        });
-    }
-    return results;
+        };
+    })
 }
