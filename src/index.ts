@@ -3,7 +3,7 @@ import express from 'express';
 import * as path from 'path';
 import 'reflect-metadata';
 
-import { initLogger, logger } from './common/logger';
+import { initLogger } from './common/logger';
 import { Config } from './config';
 import { Jobs } from './jobs/jobs';
 

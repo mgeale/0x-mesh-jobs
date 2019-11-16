@@ -87,7 +87,7 @@ function reformatOrders(orders: OrderInfo[]) {
             maker: makerAsset,
             makerAmount: order.signedOrder.makerAssetAmount,
             taker: takerAsset,
-            takerAmount: order.signedOrder.takerAssetAmount,
+            takerAmount: order.signedOrder.takerAssetAmount
         };
-    })
+    });
 }

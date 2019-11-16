@@ -1,4 +1,4 @@
-import { Between, getManager, getRepository, Repository } from 'typeorm';
+import { Between, getRepository } from 'typeorm';
 
 import { MarketOrders, TotalMarketOrders } from '../common/marketTotals';
 import { OrdersPerMarket } from '../entity/OrdersPerMarket';
@@ -10,56 +10,42 @@ import { TotalMarketsModel } from '../models/TotalMarketsModel';
 import { TotalOrdersModel } from '../models/totalOrdersModel';
 import { TotalOrdersPerMarketModel } from '../models/TotalOrdersPerMarketModel';
 
-export class HistoricalDataStorage {
-    private readonly _totalOrdersRepository: Repository<TotalOrdersModel>;
-    private readonly _totalMarketsRepository: Repository<TotalMarketsModel>;
-    private readonly _totalOrdersPerMarketRepository: Repository<TotalOrdersPerMarketModel>;
-    private readonly _ordersPerMarketRepository: Repository<OrdersPerMarketModel>;
+export async function saveTotalOrdersAsync(total: number): Promise<void> {
+    const entry = new TotalOrdersModel({
+        timestamp: new Date().getTime(),
+        totalOrders: total
+    });
+    await getRepository(TotalOrders).save(entry);
+}
 
-    constructor() {
-        this._totalOrdersRepository = getRepository(TotalOrders);
-        this._totalMarketsRepository = getRepository(TotalMarkets);
-        this._totalOrdersPerMarketRepository = getRepository(TotalOrdersPerMarket);
-        this._ordersPerMarketRepository = getRepository(OrdersPerMarket);
-    }
+export async function saveTotalNumberOfMarketsAsync(total: number): Promise<void> {
+    const entry = new TotalMarketsModel({
+        timestamp: new Date().getTime(),
+        totalMarkets: total
+    });
+    await getRepository(TotalMarkets).save(entry);
+}
 
-    public async saveTotalOrdersAsync(total: number): Promise<void> {
-        const entry = new TotalOrdersModel({
-            timestamp: new Date().getTime(),
-            totalOrders: total
-        });
-        await this._totalOrdersRepository.save(entry);
-    }
+export async function saveTotalOrdersPerMarketAsync(totalMarketOrders: TotalMarketOrders): Promise<void> {
+    const entry = new TotalOrdersPerMarketModel({
+        marketId: totalMarketOrders.marketId,
+        timestamp: new Date().getTime(),
+        totalOrders: totalMarketOrders.totalOrders
+    });
+    await getRepository(TotalOrdersPerMarket).save(entry);
+}
 
-    public async saveTotalNumberOfMarketsAsync(total: number): Promise<void> {
-        const entry = new TotalMarketsModel({
-            timestamp: new Date().getTime(),
-            totalMarkets: total
-        });
-        await this._totalMarketsRepository.save(entry);
-    }
+export async function saveOrdersPerMarketAsync(marketOrders: MarketOrders): Promise<void> {
+    const entry = new OrdersPerMarketModel({
+        marketId: marketOrders.marketId,
+        timestamp: new Date().getTime(),
+        orders: marketOrders.orders
+    });
+    await getRepository(OrdersPerMarket).save(entry);
+}
 
-    public async saveTotalOrdersPerMarketAsync(totalMarketOrders: TotalMarketOrders): Promise<void> {
-        const entry = new TotalOrdersPerMarketModel({
-            marketId: totalMarketOrders.marketId,
-            timestamp: new Date().getTime(),
-            totalOrders: totalMarketOrders.totalOrders
-        });
-        await this._totalOrdersPerMarketRepository.save(entry);
-    }
-
-    public async saveOrdersPerMarketAsync(marketOrders: MarketOrders): Promise<void> {
-        const entry = new OrdersPerMarketModel({
-            marketId: marketOrders.marketId,
-            timestamp: new Date().getTime(),
-            orders: marketOrders.orders
-        });
-        await this._ordersPerMarketRepository.save(entry);
-    }
-
-    public async getTotalOrdersAsync(start: number, finish: number): Promise<TotalOrdersModel[]> {
-        return this._totalOrdersRepository.find({
-            timestamp: Between(start, finish)
-        });
-    }
+export async function getTotalOrdersAsync(start: number, finish: number): Promise<TotalOrdersModel[]> {
+    return this._totalOrdersRepository.find({
+        timestamp: Between(start, finish)
+    });
 }
