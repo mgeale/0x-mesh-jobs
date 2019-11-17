@@ -13,5 +13,5 @@ export async function meshSnapshot(config: Config) {
     await historicalDataService.saveTotalNumberOfMarketsAsync(orders);
     await historicalDataService.saveTotalOrdersPerMarketAsync(orders);
     await historicalDataService.saveOrdersPerMarketAsync(orders);
-    logger.info('Mesh snapshot saved to DB', new Date());
+    logger.info('Mesh snapshot saved to DB');
 }

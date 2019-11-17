@@ -23,7 +23,7 @@ export async function initDBConnectionAsync(config: Config): Promise<void> {
     connectionIfExists = await createConnection({
         type: 'postgres',
         url: config.postgresConnectionUrl,
-        synchronize: true,
+        synchronize: false,
         logging: true,
         entities: [TotalOrders, TotalMarkets, TotalOrdersPerMarket, OrdersPerMarket]
     });
