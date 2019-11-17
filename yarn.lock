@@ -64,10 +64,10 @@
     jsonschema "^1.2.0"
     lodash.values "^4.3.0"
 
-"@0x/mesh-rpc-client@^6.0.0-beta":
-  version "6.0.0-beta"
-  resolved "https://registry.yarnpkg.com/@0x/mesh-rpc-client/-/mesh-rpc-client-6.0.0-beta.tgz#6e694fd91c6b5d4cfe985d523c035fc9b96ecd88"
-  integrity sha512-WlBRsbvKpV0P72vcq8cgqx2qn/tS/su2jgkOnjN8bimEpxTunlS5UPtt7oA5hm/UixaIfqYR4gQXmy9MwmQCvg==
+"@0x/mesh-rpc-client@^6.0.1-beta":
+  version "6.0.1-beta"
+  resolved "https://registry.yarnpkg.com/@0x/mesh-rpc-client/-/mesh-rpc-client-6.0.1-beta.tgz#9159cf5f50a43a9c3a9307d7536eeefdc8ec9d31"
+  integrity sha512-IxZdZk0YpHmSOIKJbh799eeSmZhuSr895dF1E2FTZ5Elit18PNH2godMTAO+DklyglcpoMReXMcaG6qt1fkKbQ==
   dependencies:
     "@0x/assert" "^2.1.2"
     "@0x/order-utils" "^8.2.4"
@@ -1611,7 +1611,7 @@ lodash.values@^4.3.0:
   resolved "https://registry.yarnpkg.com/lodash.values/-/lodash.values-4.3.0.tgz#a3a6c2b0ebecc5c2cba1c17e6e620fe81b53d347"
   integrity sha1-o6bCsOvsxcLLocF+bmIP6BtT00c=
 
-lodash@^4.17.11, lodash@^4.17.14, lodash@^4.17.15:
+lodash@^4.17.11, lodash@^4.17.14:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==

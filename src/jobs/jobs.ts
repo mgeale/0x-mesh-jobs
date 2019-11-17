@@ -8,10 +8,6 @@ import { logger } from '../common/logger';
 
 export class Jobs {
     public static async init(config: Config) {
-        await initMeshConnectionAsync(config);
-        logger.info('mesh connection created');
-        await initDBConnectionAsync(config);
-        logger.info('db connection created');
         this.recordOrders(config);
     }
 

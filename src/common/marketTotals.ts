@@ -23,21 +23,21 @@ interface AssetAmounts {
     multiAssetAmounts: BigNumber[];
 }
 
-export function countTotalNumberOfMarkets(orders: OrderInfo[]): number {
-    const results = orders.map(order => {
+export function countTotalNumberOfMarkets(rawOrders: OrderInfo[]): number {
+    const orders = rawOrders.map(order => {
         const sorted = [order.signedOrder.makerAssetData, order.signedOrder.takerAssetData].sort();
         return sorted.join('|');
     });
-    const uniqueMarkets = [...new Set(results)];
+    const uniqueMarkets = [...new Set(orders)];
     return uniqueMarkets.length;
 }
 
-export function countTotalOrdersPerMarket(orders: OrderInfo[]): TotalMarketOrders[] {
-    const results = reformatOrders(orders);
-    const uniqueMarketIds = [...new Set(results.map(r => r.id))];
+export function countTotalOrdersPerMarket(rawOrders: OrderInfo[]): TotalMarketOrders[] {
+    const orders = reformatOrders(rawOrders);
+    const uniqueMarketIds = [...new Set(orders.map(r => r.id))];
     return uniqueMarketIds.map(id => {
         let totalCount = 0;
-        results.forEach(r => {
+        orders.forEach(r => {
             if (r.id === id) {
                 totalCount++;
             }
@@ -49,12 +49,12 @@ export function countTotalOrdersPerMarket(orders: OrderInfo[]): TotalMarketOrder
     });
 }
 
-export function getOrdersPerMarket(orders: OrderInfo[]): MarketOrders[] {
-    const results = reformatOrders(orders);
-    const uniqueMarketIds = [...new Set(results.map(r => r.id))];
+export function getOrdersPerMarket(rawOrders: OrderInfo[]): MarketOrders[] {
+    const orders = reformatOrders(rawOrders);
+    const uniqueMarketIds = [...new Set(orders.map(r => r.id))];
     return uniqueMarketIds.map(id => {
         const orderAmounts: OrderAmounts[] = [];
-        results.forEach(r => {
+        orders.forEach(r => {
             if (r.id === id) {
                 orderAmounts.push({
                     maker: {

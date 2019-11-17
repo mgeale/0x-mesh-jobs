@@ -1,7 +1,12 @@
 import { OrderInfo } from '@0x/mesh-rpc-client';
 
 import { countTotalNumberOfMarkets, countTotalOrdersPerMarket, getOrdersPerMarket } from '../common/marketTotals';
-import { saveTotalOrdersAsync, saveTotalNumberOfMarketsAsync, saveTotalOrdersPerMarketAsync, saveOrdersPerMarketAsync } from '../storages/historicalDataStorage';
+import {
+    saveTotalOrdersAsync,
+    saveTotalNumberOfMarketsAsync,
+    saveTotalOrdersPerMarketAsync,
+    saveOrdersPerMarketAsync
+} from '../storages/historicalDataStorage';
 import { TotalOrdersModel } from '../models/TotalOrdersModel';
 
 export class HistoricalDataService {

@@ -1,9 +1,10 @@
 import { assetDataUtils } from '@0x/order-utils';
+import { AssetProxyId } from './assetData';
 
 export function toTokenAddress(encodedAssetData: string): string {
-    const erc20RegEx = new RegExp('^0xf47261b0');
-    const erc721RegEx = new RegExp('^0x02571792');
-    const multiAsset = new RegExp('^0x94cfcdd7');
+    const erc20RegEx = new RegExp(AssetProxyId.Erc20);
+    const erc721RegEx = new RegExp(AssetProxyId.Erc721);
+    const multiAsset = new RegExp(AssetProxyId.MultiAsset);
 
     if (erc20RegEx.test(encodedAssetData)) {
         const erc20AssetData = assetDataUtils.decodeERC20AssetData(encodedAssetData);

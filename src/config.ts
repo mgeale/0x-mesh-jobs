@@ -21,8 +21,8 @@ export class Config {
     public stage: Stage = Stage.Dev;
     public logLevel: string = LogLevel.Verbose;
     public timeoutInterval: number = 15000;
-    public postgresConnectionUrl: string = '';
-    public meshConnectionUrl: string = '';
+    public postgresConnectionUrl: string;
+    public meshConnectionUrl: string;
     private _radix: number = 10;
 
     constructor(private readonly _configPath: string, private readonly _envPath: string) {
