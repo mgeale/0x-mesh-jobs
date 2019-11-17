@@ -1,7 +1,7 @@
 import { Connection, createConnection } from 'typeorm';
 
-import { Config } from '../config';
 import { logger } from '../common/logger';
+import { Config } from '../config';
 import { OrdersPerMarket } from '../entity/OrdersPerMarket';
 import { TotalMarkets } from '../entity/TotalMarkets';
 import { TotalOrders } from '../entity/TotalOrders';

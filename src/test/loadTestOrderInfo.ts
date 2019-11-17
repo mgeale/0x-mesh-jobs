@@ -91,7 +91,7 @@ export function loadTestOrderInfo(): OrderInfo[] {
     orders.push({
         signedOrder: {
             makerAddress: 'maker_address',
-            makerAssetData: EncodedAssets.mixMulti,
+            makerAssetData: EncodedAssets.MixMulti,
             makerAssetAmount: new BigNumber(1),
             makerFee: new BigNumber(0),
             takerAddress: 'taker_address',

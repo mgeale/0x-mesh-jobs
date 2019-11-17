@@ -23,7 +23,7 @@ export class Config {
     public timeoutInterval: number = 15000;
     public postgresConnectionUrl: string;
     public meshConnectionUrl: string;
-    private _radix: number = 10;
+    private readonly _radix: number = 10;
 
     constructor(private readonly _configPath: string, private readonly _envPath: string) {
         this._loadFromEnv();

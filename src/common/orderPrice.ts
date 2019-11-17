@@ -1,7 +1,5 @@
 import { BigNumber, SignedOrder } from '@0x/mesh-rpc-client';
 
-import { MarketOrders } from './marketTotals';
-
 export interface OrderPrice extends SignedOrder {
     price: BigNumber;
     makerAmount: BigNumber;

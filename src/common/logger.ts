@@ -8,7 +8,9 @@ import { Config, LogLevel, Stage } from '../config';
  * Logger for printing info, errors, etc
  */
 export function initLogger(config: Config) {
-    if (logger) return;
+    if (logger) {
+        return;
+    }
 
     const logDir = path.join(__dirname, '../../logs');
     if (!fs.existsSync(logDir)) {
