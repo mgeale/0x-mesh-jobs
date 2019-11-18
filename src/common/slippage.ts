@@ -7,6 +7,7 @@ export interface Slippage {
     count: BigNumber;
 }
 
+// work in progress
 export function calculateSlippage(orders: OrderPrice[], purchaseAmount: number): Slippage {
     const selectedOrders = [];
     let count = new BigNumber(0);

@@ -33,7 +33,7 @@ export function countTotalNumberOfMarkets(rawOrders: OrderInfo[]): number {
 }
 
 export function countTotalOrdersPerMarket(rawOrders: OrderInfo[]): TotalMarketOrders[] {
-    const orders = reformatOrders(rawOrders);
+    const orders = decodeOrders(rawOrders);
     const uniqueMarketIds = [...new Set(orders.map(r => r.id))];
     return uniqueMarketIds.map(id => {
         let totalCount = 0;
@@ -50,7 +50,7 @@ export function countTotalOrdersPerMarket(rawOrders: OrderInfo[]): TotalMarketOr
 }
 
 export function getOrdersPerMarket(rawOrders: OrderInfo[]): MarketOrders[] {
-    const orders = reformatOrders(rawOrders);
+    const orders = decodeOrders(rawOrders);
     const uniqueMarketIds = [...new Set(orders.map(r => r.id))];
     return uniqueMarketIds.map(id => {
         const orderAmounts: OrderAmounts[] = [];
@@ -77,7 +77,7 @@ export function getOrdersPerMarket(rawOrders: OrderInfo[]): MarketOrders[] {
     });
 }
 
-function reformatOrders(orders: OrderInfo[]) {
+function decodeOrders(orders: OrderInfo[]) {
     return orders.map(order => {
         const makerAsset = decodeAssetData(order.signedOrder.makerAssetData);
         const takerAsset = decodeAssetData(order.signedOrder.takerAssetData);

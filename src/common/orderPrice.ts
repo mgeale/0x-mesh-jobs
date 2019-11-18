@@ -6,6 +6,7 @@ export interface OrderPrice extends SignedOrder {
     takerAmount: BigNumber;
 }
 
+// work in progress
 export function toOrderPrice(signedOrders: SignedOrder[]): OrderPrice[] {
     return signedOrders.map(o => {
         return {
