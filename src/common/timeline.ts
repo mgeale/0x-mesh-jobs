@@ -7,6 +7,11 @@ export interface TimeUnit {
     createTimeline(count: number): Date[];
 }
 
+export interface TotalOrdersTimeline {
+    date: Date;
+    totalOrders: number;
+}
+
 export enum TimeUnitType {
     Day = 'day',
     Week = 'week',
@@ -30,7 +35,7 @@ export function createTimeline(timeUnitType: TimeUnitType, count: number): Date[
     return timeline.reverse();
 }
 
-export function createTotalOrdersTimeline(timeUnitType: TimeUnitType, orders: TotalOrdersModel[], timeline: Date[]) {
+export function createTotalOrdersTimeline(timeUnitType: TimeUnitType, orders: TotalOrdersModel[], timeline: Date[]): TotalOrdersTimeline[] {
     const ordersWithDate = orders.map(o => {
         const startOfPeriod = moment(o.timestamp)
             .utc()
@@ -41,5 +46,11 @@ export function createTotalOrdersTimeline(timeUnitType: TimeUnitType, orders: To
             totalOrders: o.totalOrders
         };
     });
-    return timeline.map(timePoint => ordersWithDate.find(o => o.date.getTime() === timePoint.getTime()));
+    return timeline.map(timePoint => {
+        const foundOrder = ordersWithDate.find(o => o.date.getTime() === timePoint.getTime());
+        return {
+            date: timePoint,
+            totalOrders: foundOrder ? foundOrder.totalOrders : null
+        }
+    });
 }
