@@ -8,12 +8,12 @@ import { calculateSlippage } from './slippage';
 import { EncodedAssets } from '../test/assetData';
 
 // work in progress
-xdescribe('slippage', () => {
+describe('slippage', () => {
     const singleDai = 1000000000000000000;
-    const twoWeth = 4000000000000000000;
+    const fourWeth = 4000000000000000000;
 
     it('should calculate slippage', () => {
-        const purchaseAmount = twoWeth;
+        const purchaseAmount = fourWeth;
         const orderInfo = loadTestOrderInfo();
         const daiWethOrders = orderInfo.filter(
             o =>
@@ -22,8 +22,6 @@ xdescribe('slippage', () => {
         );
         const orderPrices = toOrderPrice(daiWethOrders.map(i => i.signedOrder));
         const result = calculateSlippage(orderPrices, purchaseAmount);
-        console.log(result);
-        expect(result.count).toEqual(purchaseAmount);
-        // expect(result).toEqual({ price: new BigNumber(), count: new BigNumber(purchaseAmount) });
+        expect(result.slippage).toEqual(new BigNumber(-1.5));
     });
 });

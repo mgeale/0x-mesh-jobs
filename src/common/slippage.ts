@@ -3,9 +3,9 @@ import { BigNumber } from '@0x/mesh-rpc-client';
 import { OrderPrice } from './orderPrice';
 
 export interface Slippage {
-    actualCost: BigNumber;
+    slippage: BigNumber
     averageCost: BigNumber;
-    slippage: BigNumber;
+    actualCost: BigNumber;
     count: number;
 }
 
@@ -26,13 +26,12 @@ export function calculateSlippage(orders: OrderPrice[], purchaseAmount: number):
             actualCost = orders[i].price.multipliedBy(orders[i].makerAssetAmount).plus(actualCost);
         }
     }
-    const costsPerOrder = usedOrders.map(o => o.price).sort();
     const averageCost = actualCost.dividedBy(count);
-    const slippage = costsPerOrder[0].minus(averageCost);
+    const slippage = usedOrders[0].price.minus(averageCost);
     return {
-        actualCost,
-        averageCost,
         slippage,
+        averageCost,
+        actualCost,
         count: count.toNumber()
     };
 }
