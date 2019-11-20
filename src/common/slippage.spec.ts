@@ -10,7 +10,7 @@ import { EncodedAssets } from '../test/assetData';
 // work in progress
 xdescribe('slippage', () => {
     const singleDai = 1000000000000000000;
-    const twoWeth = 2000000000000000000;
+    const twoWeth = 4000000000000000000;
 
     it('should calculate slippage', () => {
         const purchaseAmount = twoWeth;
