@@ -4,17 +4,17 @@
     "signedOrder": {
       "makerAddress": "",
       "makerAssetData": "",
-      "makerAssetAmount": "10000000000000000",
+      "makerAssetAmount": "",
       "makerFee": "0",
       "takerAddress": "",
       "takerAssetData": "",
-      "takerAssetAmount": "120000000000000000",
-      "takerFee": "0",
+      "takerAssetAmount": "",
+      "takerFee": "",
       "senderAddress": "",
       "exchangeAddress": "",
       "feeRecipientAddress": "",
-      "expirationTimeSeconds": "1589607395",
-      "salt": "1565933795408",
+      "expirationTimeSeconds": "",
+      "salt": "",
       "signature": ""
     },
     "fillableTakerAssetAmount": ""
