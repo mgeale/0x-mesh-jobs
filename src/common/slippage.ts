@@ -3,30 +3,32 @@ import { BigNumber } from '@0x/mesh-rpc-client';
 import { OrderPrice } from './orderPrice';
 
 export interface Slippage {
-    price: BigNumber;
-    count: BigNumber;
+    cost: BigNumber;
+    count: number;
 }
 
 // work in progress
 export function calculateSlippage(orders: OrderPrice[], purchaseAmount: number): Slippage {
     const selectedOrders = [];
     let count = new BigNumber(0);
-    let price = new BigNumber(0);
+    let cost = new BigNumber(0);
     for (let i = 0; count.isLessThan(purchaseAmount); i++) {
-        if (orders[i].takerAmount.plus(count).isGreaterThan(purchaseAmount)) {
+        if (orders[i].takerAssetAmount.plus(count).isGreaterThan(purchaseAmount)) {
             const remaining = new BigNumber(-count.minus(purchaseAmount));
-            orders[i].takerAmount = remaining;
+            console.log(remaining)
+            orders[i].takerAssetAmount = remaining;
             selectedOrders.push(orders[i]);
             count = count.plus(remaining);
-            price = orders[i].price.multipliedBy(remaining).plus(price);
+            cost = orders[i].price.multipliedBy(remaining).plus(cost);
         } else {
             selectedOrders.push(orders[i]);
-            count = orders[i].takerAmount.plus(count);
-            price = orders[i].price.multipliedBy(orders[i].takerAmount).plus(price);
+            count = orders[i].takerAssetAmount.plus(count);
+            cost = orders[i].price.multipliedBy(orders[i].takerAssetAmount).plus(cost);
         }
     }
+    console.log(selectedOrders)
     return {
-        price,
-        count
+        cost,
+        count: count.toNumber()
     };
 }

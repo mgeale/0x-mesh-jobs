@@ -19,6 +19,7 @@ xdescribe('slippage', () => {
         const orderPrices = toOrderPrice(daiWethOrders.map(i => i.signedOrder));
         const result = calculateSlippage(orderPrices, purchaseAmount);
         console.log(result);
+        expect(result.count).toEqual(purchaseAmount);
         // expect(result).toEqual({ price: new BigNumber(), count: new BigNumber(purchaseAmount) });
     });
 });

@@ -8,10 +8,12 @@ export function loadTestOrderInfo(): OrderInfo[] {
     const orders = [];
     const length = 5;
     let index = 0;
-    const makerAmount = 1000000000000000000;
+    const singleDai = 1000000000000000000;
+    const singleWeth = 1000000000000000000;
+    const makerAmount = singleDai;
     // erc20
     while (index < length) {
-        const takerAmount = (index + 1) * 1000000000000000000 + 179000000000000000000;
+        const takerAmount = (singleDai * (180+index));
         orders.push({
             signedOrder: {
                 senderAddress: 'sender_address',
@@ -19,10 +21,10 @@ export function loadTestOrderInfo(): OrderInfo[] {
                 takerAddress: 'taker_address',
                 makerFee: new BigNumber(0),
                 takerFee: new BigNumber(0),
-                makerAssetAmount: new BigNumber(makerAmount),
+                makerAssetAmount: new BigNumber(singleWeth),
                 takerAssetAmount: new BigNumber(takerAmount),
-                makerAssetData: EncodedAssets.Dai,
-                takerAssetData: EncodedAssets.Weth,
+                makerAssetData: EncodedAssets.Weth,
+                takerAssetData: EncodedAssets.Dai,
                 salt: new BigNumber(0),
                 exchangeAddress: 'exchange_address',
                 feeRecipientAddress: 'fee_recipient_address',
@@ -41,7 +43,7 @@ export function loadTestOrderInfo(): OrderInfo[] {
             makerFee: new BigNumber(0),
             takerAddress: 'taker_address',
             takerAssetData: EncodedAssets.Weth,
-            takerAssetAmount: new BigNumber(125000000000000000),
+            takerAssetAmount: new BigNumber(singleWeth/4),
             takerFee: new BigNumber(0),
             senderAddress: 'sender_address',
             exchangeAddress: 'exchange_address',
@@ -59,7 +61,7 @@ export function loadTestOrderInfo(): OrderInfo[] {
             makerFee: new BigNumber(0),
             takerAddress: 'taker_address',
             takerAssetData: EncodedAssets.Weth,
-            takerAssetAmount: new BigNumber(29000000000000000),
+            takerAssetAmount: new BigNumber(singleWeth/5),
             takerFee: new BigNumber(0),
             senderAddress: 'sender_address',
             exchangeAddress: 'exchange_address',
@@ -78,7 +80,7 @@ export function loadTestOrderInfo(): OrderInfo[] {
             makerFee: new BigNumber(0),
             takerAddress: 'taker_address',
             takerAssetData: EncodedAssets.Weth,
-            takerAssetAmount: new BigNumber(10000000000000000),
+            takerAssetAmount: new BigNumber(singleWeth),
             takerFee: new BigNumber(0),
             senderAddress: 'sender_address',
             exchangeAddress: 'exchange_address',
@@ -96,7 +98,7 @@ export function loadTestOrderInfo(): OrderInfo[] {
             makerFee: new BigNumber(0),
             takerAddress: 'taker_address',
             takerAssetData: EncodedAssets.Weth,
-            takerAssetAmount: new BigNumber(10000000000000000),
+            takerAssetAmount: new BigNumber(singleWeth),
             takerFee: new BigNumber(0),
             senderAddress: 'sender_address',
             exchangeAddress: 'exchange_address',

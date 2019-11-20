@@ -17,6 +17,9 @@ describe('market totals', () => {
         .sort()
         .join('|');
 
+    const singleDai = 1000000000000000000;
+    const singleWeth = 1000000000000000000;
+
     beforeAll(() => {
         orders = loadTestOrderInfo();
     });
@@ -41,61 +44,61 @@ describe('market totals', () => {
         expect(daiWethMarket.orders.length).toEqual(5);
         expect(daiWethMarket.orders[0]).toEqual({
             maker: {
-                id: AssetAddress.Dai,
-                amount: new BigNumber(1000000000000000000),
+                id: AssetAddress.Weth,
+                amount: new BigNumber(singleWeth),
                 multiAssetAmounts: null
             },
             taker: {
-                id: AssetAddress.Weth,
-                amount: new BigNumber(180000000000000000000),
+                id: AssetAddress.Dai,
+                amount: new BigNumber(singleDai*180),
                 multiAssetAmounts: null
             }
         });
         expect(daiWethMarket.orders[1]).toEqual({
             maker: {
-                id: AssetAddress.Dai,
-                amount: new BigNumber(1000000000000000000),
+                id: AssetAddress.Weth,
+                amount: new BigNumber(singleWeth),
                 multiAssetAmounts: null
             },
             taker: {
-                id: AssetAddress.Weth,
-                amount: new BigNumber(181000000000000000000),
+                id: AssetAddress.Dai,
+                amount: new BigNumber(singleDai*181),
                 multiAssetAmounts: null
             }
         });
         expect(daiWethMarket.orders[2]).toEqual({
             maker: {
-                id: AssetAddress.Dai,
-                amount: new BigNumber(1000000000000000000),
+                id: AssetAddress.Weth,
+                amount: new BigNumber(singleWeth),
                 multiAssetAmounts: null
             },
             taker: {
-                id: AssetAddress.Weth,
-                amount: new BigNumber(182000000000000000000),
+                id: AssetAddress.Dai,
+                amount: new BigNumber(singleDai*182),
                 multiAssetAmounts: null
             }
         });
         expect(daiWethMarket.orders[3]).toEqual({
             maker: {
-                id: AssetAddress.Dai,
-                amount: new BigNumber(1000000000000000000),
+                id: AssetAddress.Weth,
+                amount: new BigNumber(singleWeth),
                 multiAssetAmounts: null
             },
             taker: {
-                id: AssetAddress.Weth,
-                amount: new BigNumber(183000000000000000000),
+                id: AssetAddress.Dai,
+                amount: new BigNumber(singleDai*183),
                 multiAssetAmounts: null
             }
         });
         expect(daiWethMarket.orders[4]).toEqual({
             maker: {
-                id: AssetAddress.Dai,
-                amount: new BigNumber(1000000000000000000),
+                id: AssetAddress.Weth,
+                amount: new BigNumber(singleWeth),
                 multiAssetAmounts: null
             },
             taker: {
-                id: AssetAddress.Weth,
-                amount: new BigNumber(184000000000000000000),
+                id: AssetAddress.Dai,
+                amount: new BigNumber(singleDai*184),
                 multiAssetAmounts: null
             }
         });
@@ -110,7 +113,7 @@ describe('market totals', () => {
             },
             taker: {
                 id: AssetAddress.Weth,
-                amount: new BigNumber(125000000000000000),
+                amount: new BigNumber(singleWeth/4),
                 multiAssetAmounts: null
             }
         });
@@ -125,7 +128,7 @@ describe('market totals', () => {
             },
             taker: {
                 id: AssetAddress.Weth,
-                amount: new BigNumber(29000000000000000),
+                amount: new BigNumber(singleWeth/5),
                 multiAssetAmounts: null
             }
         });
@@ -139,7 +142,7 @@ describe('market totals', () => {
             },
             taker: {
                 id: AssetAddress.Weth,
-                amount: new BigNumber(10000000000000000),
+                amount: new BigNumber(singleWeth),
                 multiAssetAmounts: null
             }
         });
