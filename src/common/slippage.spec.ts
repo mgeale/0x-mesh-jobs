@@ -9,12 +9,12 @@ import { EncodedAssets } from '../test/assetData';
 
 xdescribe('slippage', () => {
     it('should calculate slippage', () => {
-        const purchaseAmount = 10;
+        const purchaseAmount = 1;
         const orderInfo = loadTestOrderInfo();
         const daiWethOrders = orderInfo.filter(
             o =>
-                o.signedOrder.makerAssetData === EncodedAssets.Dai &&
-                o.signedOrder.takerAssetData === EncodedAssets.Weth
+                o.signedOrder.makerAssetData === EncodedAssets.Weth &&
+                o.signedOrder.takerAssetData === EncodedAssets.Dai
         );
         const orderPrices = toOrderPrice(daiWethOrders.map(i => i.signedOrder));
         const result = calculateSlippage(orderPrices, purchaseAmount);

@@ -15,7 +15,6 @@ export function calculateSlippage(orders: OrderPrice[], purchaseAmount: number):
     for (let i = 0; count.isLessThan(purchaseAmount); i++) {
         if (orders[i].takerAssetAmount.plus(count).isGreaterThan(purchaseAmount)) {
             const remaining = new BigNumber(-count.minus(purchaseAmount));
-            console.log(remaining)
             orders[i].takerAssetAmount = remaining;
             selectedOrders.push(orders[i]);
             count = count.plus(remaining);

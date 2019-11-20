@@ -8,7 +8,7 @@ export function toOrderPrice(signedOrders: SignedOrder[]): OrderPrice[] {
     return signedOrders.map(o => {
         return {
             ...o,
-            price: o.makerAssetAmount.dividedBy(o.takerAssetAmount)
+            price: o.takerAssetAmount.dividedBy(o.makerAssetAmount)
         };
     });
 }
