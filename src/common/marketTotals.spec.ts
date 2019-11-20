@@ -50,7 +50,7 @@ describe('market totals', () => {
             },
             taker: {
                 id: AssetAddress.Dai,
-                amount: new BigNumber(singleDai*180),
+                amount: new BigNumber(singleDai * 180),
                 multiAssetAmounts: null
             }
         });
@@ -62,7 +62,7 @@ describe('market totals', () => {
             },
             taker: {
                 id: AssetAddress.Dai,
-                amount: new BigNumber(singleDai*182.5),
+                amount: new BigNumber(singleDai * 182.5),
                 multiAssetAmounts: null
             }
         });
@@ -74,7 +74,7 @@ describe('market totals', () => {
             },
             taker: {
                 id: AssetAddress.Dai,
-                amount: new BigNumber(singleDai*185),
+                amount: new BigNumber(singleDai * 185),
                 multiAssetAmounts: null
             }
         });
@@ -86,7 +86,7 @@ describe('market totals', () => {
             },
             taker: {
                 id: AssetAddress.Dai,
-                amount: new BigNumber(singleDai*187.5),
+                amount: new BigNumber(singleDai * 187.5),
                 multiAssetAmounts: null
             }
         });
@@ -98,7 +98,7 @@ describe('market totals', () => {
             },
             taker: {
                 id: AssetAddress.Dai,
-                amount: new BigNumber(singleDai*190),
+                amount: new BigNumber(singleDai * 190),
                 multiAssetAmounts: null
             }
         });
@@ -113,7 +113,7 @@ describe('market totals', () => {
             },
             taker: {
                 id: AssetAddress.Weth,
-                amount: new BigNumber(singleWeth/4),
+                amount: new BigNumber(singleWeth / 4),
                 multiAssetAmounts: null
             }
         });
@@ -128,7 +128,7 @@ describe('market totals', () => {
             },
             taker: {
                 id: AssetAddress.Weth,
-                amount: new BigNumber(singleWeth/5),
+                amount: new BigNumber(singleWeth / 5),
                 multiAssetAmounts: null
             }
         });

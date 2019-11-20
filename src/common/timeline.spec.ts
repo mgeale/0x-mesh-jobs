@@ -3,7 +3,7 @@ import { createTimeline, createTotalOrdersTimeline, TimeUnitType } from './timel
 describe('timeline', () => {
     beforeAll(() => {
         jasmine.clock().install();
-        jasmine.clock().mockDate(new Date(1572509167000))
+        jasmine.clock().mockDate(new Date(1572509167000));
     });
 
     afterAll(() => {

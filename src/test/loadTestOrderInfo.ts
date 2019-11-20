@@ -13,7 +13,7 @@ export function loadTestOrderInfo(): OrderInfo[] {
     const makerAmount = singleDai;
     // erc20
     while (index < length) {
-        const takerAmount = (singleDai * (180+(index*2.5)));
+        const takerAmount = singleDai * (180 + index * 2.5);
         orders.push({
             signedOrder: {
                 senderAddress: 'sender_address',
@@ -43,7 +43,7 @@ export function loadTestOrderInfo(): OrderInfo[] {
             makerFee: new BigNumber(0),
             takerAddress: 'taker_address',
             takerAssetData: EncodedAssets.Weth,
-            takerAssetAmount: new BigNumber(singleWeth/4),
+            takerAssetAmount: new BigNumber(singleWeth / 4),
             takerFee: new BigNumber(0),
             senderAddress: 'sender_address',
             exchangeAddress: 'exchange_address',
@@ -61,7 +61,7 @@ export function loadTestOrderInfo(): OrderInfo[] {
             makerFee: new BigNumber(0),
             takerAddress: 'taker_address',
             takerAssetData: EncodedAssets.Weth,
-            takerAssetAmount: new BigNumber(singleWeth/5),
+            takerAssetAmount: new BigNumber(singleWeth / 5),
             takerFee: new BigNumber(0),
             senderAddress: 'sender_address',
             exchangeAddress: 'exchange_address',

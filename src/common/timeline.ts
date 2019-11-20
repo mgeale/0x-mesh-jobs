@@ -35,7 +35,11 @@ export function createTimeline(timeUnitType: TimeUnitType, count: number): Date[
     return timeline.reverse();
 }
 
-export function createTotalOrdersTimeline(timeUnitType: TimeUnitType, orders: TotalOrdersModel[], timeline: Date[]): TotalOrdersTimeline[] {
+export function createTotalOrdersTimeline(
+    timeUnitType: TimeUnitType,
+    orders: TotalOrdersModel[],
+    timeline: Date[]
+): TotalOrdersTimeline[] {
     const ordersWithDate = orders.map(o => {
         const startOfPeriod = moment(o.timestamp)
             .utc()
@@ -51,6 +55,6 @@ export function createTotalOrdersTimeline(timeUnitType: TimeUnitType, orders: To
         return {
             date: timePoint,
             totalOrders: foundOrder ? foundOrder.totalOrders : null
-        }
+        };
     });
 }
