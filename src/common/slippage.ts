@@ -9,23 +9,18 @@ export interface Slippage {
 
 // work in progress
 export function calculateSlippage(orders: OrderPrice[], purchaseAmount: number): Slippage {
-    const selectedOrders = [];
     let count = new BigNumber(0);
     let cost = new BigNumber(0);
     for (let i = 0; count.isLessThan(purchaseAmount); i++) {
         if (orders[i].takerAssetAmount.plus(count).isGreaterThan(purchaseAmount)) {
-            const remaining = new BigNumber(-count.minus(purchaseAmount));
-            orders[i].takerAssetAmount = remaining;
-            selectedOrders.push(orders[i]);
+            const remaining = new BigNumber(purchaseAmount).minus(count);
             count = count.plus(remaining);
             cost = orders[i].price.multipliedBy(remaining).plus(cost);
         } else {
-            selectedOrders.push(orders[i]);
             count = orders[i].takerAssetAmount.plus(count);
             cost = orders[i].price.multipliedBy(orders[i].takerAssetAmount).plus(cost);
         }
     }
-    console.log(selectedOrders)
     return {
         cost,
         count: count.toNumber()

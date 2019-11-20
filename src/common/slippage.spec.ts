@@ -7,9 +7,13 @@ import { calculateSlippage } from './slippage';
 
 import { EncodedAssets } from '../test/assetData';
 
+// work in progress
 xdescribe('slippage', () => {
+    const singleDai = 1000000000000000000;
+    const twoWeth = 2000000000000000000;
+
     it('should calculate slippage', () => {
-        const purchaseAmount = 1;
+        const purchaseAmount = twoWeth;
         const orderInfo = loadTestOrderInfo();
         const daiWethOrders = orderInfo.filter(
             o =>
