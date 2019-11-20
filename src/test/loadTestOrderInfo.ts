@@ -13,7 +13,7 @@ export function loadTestOrderInfo(): OrderInfo[] {
     const makerAmount = singleDai;
     // erc20
     while (index < length) {
-        const takerAmount = (singleDai * (180+index));
+        const takerAmount = (singleDai * (180+(index*2.5)));
         orders.push({
             signedOrder: {
                 senderAddress: 'sender_address',

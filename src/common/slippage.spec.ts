@@ -22,6 +22,6 @@ describe('slippage', () => {
         );
         const orderPrices = toOrderPrice(daiWethOrders.map(i => i.signedOrder));
         const result = calculateSlippage(orderPrices, purchaseAmount);
-        expect(result.slippage).toEqual(new BigNumber(-1.5));
+        expect(result.slippage).toEqual(new BigNumber(-3.75));
     });
 });

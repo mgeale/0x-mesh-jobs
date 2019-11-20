@@ -62,7 +62,7 @@ describe('market totals', () => {
             },
             taker: {
                 id: AssetAddress.Dai,
-                amount: new BigNumber(singleDai*181),
+                amount: new BigNumber(singleDai*182.5),
                 multiAssetAmounts: null
             }
         });
@@ -74,7 +74,7 @@ describe('market totals', () => {
             },
             taker: {
                 id: AssetAddress.Dai,
-                amount: new BigNumber(singleDai*182),
+                amount: new BigNumber(singleDai*185),
                 multiAssetAmounts: null
             }
         });
@@ -86,7 +86,7 @@ describe('market totals', () => {
             },
             taker: {
                 id: AssetAddress.Dai,
-                amount: new BigNumber(singleDai*183),
+                amount: new BigNumber(singleDai*187.5),
                 multiAssetAmounts: null
             }
         });
@@ -98,7 +98,7 @@ describe('market totals', () => {
             },
             taker: {
                 id: AssetAddress.Dai,
-                amount: new BigNumber(singleDai*184),
+                amount: new BigNumber(singleDai*190),
                 multiAssetAmounts: null
             }
         });
