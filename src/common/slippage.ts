@@ -4,8 +4,7 @@ import { OrderPrice } from './orderPrice';
 
 export interface Slippage {
     slippage: BigNumber;
-    actualCost: BigNumber;
-    filledOrders: FilledOrder[];
+    totalCost: BigNumber;
 }
 
 export interface FilledOrder {
@@ -17,17 +16,15 @@ export interface FilledOrder {
 export function calculateSlippage(orders: OrderPrice[], purchaseAmount: number): Slippage {
     const filledOrders = getFilledOrders(orders, purchaseAmount);
 
-    const actualCost = calculateTotalCostOfFilledOrders(filledOrders);
-    const averagePrice = calculateAveragePriceOfFilledOrders(orders);
+    const totalCost = calculateTotalCostOfFilledOrders(filledOrders);
 
+    const averagePrice = calculateAveragePriceOfFilledOrders(orders);
     const totalCostOfAveragePrice = averagePrice.multipliedBy(purchaseAmount);
     const totalCostOfBestPrice = filledOrders[0].price.multipliedBy(purchaseAmount);
-
     const slippage = totalCostOfBestPrice.minus(totalCostOfAveragePrice);
     return {
         slippage,
-        actualCost,
-        filledOrders
+        totalCost
     };
 }
 
