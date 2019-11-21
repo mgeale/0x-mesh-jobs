@@ -1,8 +1,6 @@
-import { assetDataUtils } from '@0x/order-utils';
+import { assetDataUtils, ERC20AssetData, ERC721AssetData, MultiAssetData } from '@0x/order-utils';
 import * as fs from 'fs';
 import * as path from 'path';
-
-import { AssetProxyId } from './assetData';
 
 // https://github.com/kvhnuke/etherwallet/blob/mercury/app/scripts/tokens/ethTokens.json
 
@@ -40,34 +38,29 @@ export class TokenData {
     }
 
     public toTokenSymbol(encodedAssetData: string): string {
-        const erc20RegEx = new RegExp('^0xf47261b0');
-        const erc721RegEx = new RegExp('^0x02571792');
-        const multiAsset = new RegExp('^0x94cfcdd7');
+        const decodedAssetData = assetDataUtils.decodeAssetDataOrThrow(encodedAssetData)
 
-        if (erc20RegEx.test(encodedAssetData)) {
-            return this._toErc20Symbol(encodedAssetData);
-        } else if (erc721RegEx.test(encodedAssetData)) {
-            return this._toErc721Name(encodedAssetData);
-        } else if (multiAsset.test(encodedAssetData)) {
-            return this._toMultiAsset(encodedAssetData);
+        if (assetDataUtils.isERC20AssetData(decodedAssetData)) {
+            return this._toErc20Symbol(decodedAssetData);
+        } else if (assetDataUtils.isERC721AssetData(decodedAssetData)) {
+            return this._toErc721Name(decodedAssetData);
+        } else if (assetDataUtils.isMultiAssetData(decodedAssetData)) {
+            return this._toMultiAsset(decodedAssetData);
         }
     }
 
-    private _toErc20Symbol(encodedAssetData: string): string {
-        const token = assetDataUtils.decodeERC20AssetData(encodedAssetData);
-        const assetData = this._erc20Tokens.find(t => t.address.toLowerCase() === token.tokenAddress.toLowerCase());
-        return assetData ? assetData.symbol : token.tokenAddress;
+    private _toErc20Symbol(decodedAssetData: ERC20AssetData): string {
+        const assetData = this._erc20Tokens.find(t => t.address.toLowerCase() === decodedAssetData.tokenAddress.toLowerCase());
+        return assetData ? assetData.symbol : decodedAssetData.tokenAddress;
     }
 
-    private _toErc721Name(encodedAssetData: string): string {
-        const token = assetDataUtils.decodeERC721AssetData(encodedAssetData);
-        const assetData = this._erc721Tokens.find(t => t.address.toLowerCase() === token.tokenAddress.toLowerCase());
-        return assetData ? assetData.name : token.tokenAddress;
+    private _toErc721Name(decodedAssetData: ERC721AssetData): string {
+        const assetData = this._erc721Tokens.find(t => t.address.toLowerCase() === decodedAssetData.tokenAddress.toLowerCase());
+        return assetData ? assetData.name : decodedAssetData.tokenAddress;
     }
 
-    private _toMultiAsset(encodedAssetData: string): string {
-        const token = assetDataUtils.decodeMultiAssetData(encodedAssetData);
-        const nested = token.nestedAssetData.map(a => {
+    private _toMultiAsset(decodedAssetData: MultiAssetData): string {
+        const nested = decodedAssetData.nestedAssetData.map(a => {
             return this.toTokenSymbol(a);
         });
         return nested.join('+');
