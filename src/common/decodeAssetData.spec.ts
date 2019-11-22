@@ -3,7 +3,12 @@ import { BigNumber } from '@0x/mesh-rpc-client';
 import { AssetAddress, EncodedAssets } from '../test/assetData';
 
 import { decodeAssetData } from './decodeAssetData';
-import { AssetProxyId } from './assetData';
+
+enum AssetProxyId {
+    Erc20 = '0xf47261b0',
+    Erc721 = '0x02571792',
+    MultiAsset = '0x94cfcdd7'
+}
 
 describe('decode asset data', () => {
     it('should decode erc20', () => {
