@@ -7,11 +7,9 @@ export async function meshSnapshot(config: Config) {
     const meshConnection = getMeshConnection();
     const orders = await meshConnection.getOrdersAsync();
 
-    let historicalDataService: HistoricalDataService;
-    historicalDataService = new HistoricalDataService();
-    await historicalDataService.saveTotalOrdersAsync(orders);
-    await historicalDataService.saveTotalNumberOfMarketsAsync(orders);
-    await historicalDataService.saveTotalOrdersPerMarketAsync(orders);
-    await historicalDataService.saveOrdersPerMarketAsync(orders);
+    await HistoricalDataService.saveTotalOrdersAsync(orders);
+    await HistoricalDataService.saveTotalNumberOfMarketsAsync(orders);
+    await HistoricalDataService.saveTotalOrdersPerMarketAsync(orders);
+    await HistoricalDataService.saveOrdersPerMarketAsync(orders);
     logger.info('Mesh snapshot saved to DB');
 }

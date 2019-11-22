@@ -45,7 +45,14 @@ export async function saveOrdersPerMarketAsync(marketOrders: MarketOrders): Prom
 }
 
 export async function getTotalOrdersAsync(start: number, finish: number): Promise<TotalOrdersModel[]> {
-    return this._totalOrdersRepository.find({
+    return getRepository(TotalOrders).find({
+        timestamp: Between(start, finish)
+    });
+}
+
+export async function getTotalOrdersPerMarketAsync(marketId: string, start: number, finish: number): Promise<TotalOrdersModel[]> {
+    return getRepository(TotalOrdersPerMarket).find({
+        marketId,
         timestamp: Between(start, finish)
     });
 }
