@@ -12,13 +12,13 @@ export function decodeAssetData(encodedAssetData: string): DecodeAssetData {
     const decodedAssetData = assetDataUtils.decodeAssetDataOrThrow(encodedAssetData)
 
     if (assetDataUtils.isMultiAssetData(decodedAssetData)) {
-        return decodeMultiAssetData(decodedAssetData);
+        return reformatMultiAssetData(decodedAssetData);
     } else {
         return decodedAssetData;
     }
 }
 
-function decodeMultiAssetData(multiAssetData: MultiAssetData): DecodeAssetData {
+function reformatMultiAssetData(multiAssetData: MultiAssetData): DecodeAssetData {
     const assets = multiAssetData.nestedAssetData;
     const result = [];
     for (let i = 0; i < assets.length; i++) {
