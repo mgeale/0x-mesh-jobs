@@ -49,14 +49,28 @@ export class TokenData {
         }
     }
 
+    public toTokenAddress(tokenSymbol: string): string {
+        return this._toErc20Address(tokenSymbol);
+    }
+
     private _toErc20Symbol(decodedAssetData: ERC20AssetData): string {
         const assetData = this._erc20Tokens.find(t => t.address.toLowerCase() === decodedAssetData.tokenAddress.toLowerCase());
         return assetData ? assetData.symbol : decodedAssetData.tokenAddress;
     }
 
+    private _toErc20Address(tokenSymbol: string): string {
+        const assetData = this._erc20Tokens.find(t => t.symbol.toLowerCase() === tokenSymbol.toLowerCase());
+        return assetData ? assetData.address.toLowerCase() : null;
+    }
+
     private _toErc721Name(decodedAssetData: ERC721AssetData): string {
         const assetData = this._erc721Tokens.find(t => t.address.toLowerCase() === decodedAssetData.tokenAddress.toLowerCase());
         return assetData ? assetData.name : decodedAssetData.tokenAddress;
+    }
+
+    private _toErc721Address(name: string): string {
+        const assetData = this._erc721Tokens.find(t => t.name.toLowerCase() === name.toLowerCase());
+        return assetData ? assetData.address : null;
     }
 
     private _toMultiAsset(decodedAssetData: MultiAssetData): string {
