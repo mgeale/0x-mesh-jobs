@@ -1,5 +1,5 @@
 import { BigNumber } from '@0x/mesh-rpc-client';
-import { assetDataUtils } from '@0x/order-utils';
+import { assetDataUtils, MultiAssetData } from '@0x/order-utils';
 
 export interface DecodeAssetData {
     assetProxyId: string;
@@ -12,14 +12,13 @@ export function decodeAssetData(encodedAssetData: string): DecodeAssetData {
     const decodedAssetData = assetDataUtils.decodeAssetDataOrThrow(encodedAssetData)
 
     if (assetDataUtils.isMultiAssetData(decodedAssetData)) {
-        return decodeMultiAssetData(encodedAssetData);
+        return decodeMultiAssetData(decodedAssetData);
     } else {
         return decodedAssetData;
     }
 }
 
-function decodeMultiAssetData(encodedAssetData: string): DecodeAssetData {
-    const multiAssetData = assetDataUtils.decodeMultiAssetData(encodedAssetData);
+function decodeMultiAssetData(multiAssetData: MultiAssetData): DecodeAssetData {
     const assets = multiAssetData.nestedAssetData;
     const result = [];
     for (let i = 0; i < assets.length; i++) {
