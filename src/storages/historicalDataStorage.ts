@@ -7,7 +7,7 @@ import { TotalOrders } from '../entity/TotalOrders';
 import { TotalOrdersPerMarket } from '../entity/TotalOrdersPerMarket';
 import { OrdersPerMarketModel } from '../models/OrdersPerMarketModel';
 import { TotalMarketsModel } from '../models/TotalMarketsModel';
-import { TotalOrdersModel } from '../models/totalOrdersModel';
+import { TotalOrdersModel } from '../models/TotalOrdersModel';
 import { TotalOrdersPerMarketModel } from '../models/TotalOrdersPerMarketModel';
 
 export async function saveTotalOrdersAsync(total: number): Promise<void> {
@@ -50,7 +50,7 @@ export async function getTotalOrdersAsync(start: number, finish: number): Promis
     });
 }
 
-export async function getTotalOrdersPerMarketAsync(marketId: string, start: number, finish: number): Promise<TotalOrdersModel[]> {
+export async function getTotalOrdersPerMarketAsync(marketId: string, start: number, finish: number): Promise<TotalOrdersPerMarketModel[]> {
     return getRepository(TotalOrdersPerMarket).find({
         marketId,
         timestamp: Between(start, finish)
