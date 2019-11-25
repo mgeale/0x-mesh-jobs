@@ -24,7 +24,7 @@ export async function initDBConnectionAsync(config: Config): Promise<void> {
         type: 'postgres',
         url: config.postgresConnectionUrl,
         synchronize: false,
-        logging: true,
+        logging: false,
         entities: [TotalOrders, TotalMarkets, TotalOrdersPerMarket, OrdersPerMarket]
     });
     logger.info('DB connection created');
