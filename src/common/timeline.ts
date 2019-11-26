@@ -34,27 +34,3 @@ export function createTimeline(timeUnitType: TimeUnitType, count: number): Date[
     }
     return timeline.reverse();
 }
-
-export function createTotalOrdersTimeline(
-    timeUnitType: TimeUnitType,
-    orders: TotalOrdersModel[],
-    timeline: Date[]
-): TotalOrdersTimeline[] {
-    const ordersWithDate = orders.map(o => {
-        const startOfPeriod = moment(o.timestamp)
-            .utc()
-            .startOf(timeUnitType)
-            .format();
-        return {
-            date: new Date(startOfPeriod),
-            totalOrders: o.totalOrders
-        };
-    });
-    return timeline.map(timePoint => {
-        const foundOrder = ordersWithDate.find(o => o.date.getTime() === timePoint.getTime());
-        return {
-            date: timePoint,
-            totalOrders: foundOrder ? foundOrder.totalOrders : null
-        };
-    });
-}

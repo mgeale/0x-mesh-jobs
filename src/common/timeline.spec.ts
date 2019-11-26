@@ -1,48 +1,38 @@
-import { createTimeline, createTotalOrdersTimeline, TimeUnitType } from './timeline';
+import { createTimeline, TimeUnitType } from './timeline';
 
 describe('timeline', () => {
-    beforeAll(() => {
-        jasmine.clock().install();
-        jasmine.clock().mockDate(new Date(1572509167000));
-    });
-
-    afterAll(() => {
-        jasmine.clock().uninstall();
-    });
-
-    const totalOrders = [
-        {
-            timestamp: 1572149967000,
-            totalOrders: 101
-        },
-        {
-            timestamp: 1572236367000,
-            totalOrders: 105
-        },
-        {
-            timestamp: 1572322767000,
-            totalOrders: 98
-        },
-        {
-            timestamp: 1572409167000,
-            totalOrders: 100
-        }
-    ];
-
     it('should create timeline for 7 days', () => {
         const result = createTimeline(TimeUnitType.Day, 7);
-        expect(result.length).toEqual(7);
+        expect(result).toEqual([
+            new Date('2018-11-28T00:00:00.000Z'),
+            new Date('2018-11-29T00:00:00.000Z'),
+            new Date('2018-11-30T00:00:00.000Z'),
+            new Date('2018-12-01T00:00:00.000Z'),
+            new Date('2018-12-02T00:00:00.000Z'),
+            new Date('2018-12-03T00:00:00.000Z'),
+            new Date('2018-12-04T00:00:00.000Z')
+        ]);
     });
 
-    it('should allocate total orders to timeline', () => {
-        const dates = createTimeline(TimeUnitType.Day, 7);
-        const result = createTotalOrdersTimeline(TimeUnitType.Day, totalOrders, dates);
-        expect(result[0].totalOrders).toEqual(null);
-        expect(result[1].totalOrders).toEqual(null);
-        expect(result[2].totalOrders).toEqual(totalOrders[0].totalOrders);
-        expect(result[3].totalOrders).toEqual(totalOrders[1].totalOrders);
-        expect(result[4].totalOrders).toEqual(totalOrders[2].totalOrders);
-        expect(result[5].totalOrders).toEqual(totalOrders[3].totalOrders);
-        expect(result[6].totalOrders).toEqual(null);
+    it('should create timeline for 4 weeks', () => {
+        const result = createTimeline(TimeUnitType.Week, 4);
+        expect(result).toEqual([
+            new Date('2018-11-11T00:00:00.000Z'),
+            new Date('2018-11-18T00:00:00.000Z'),
+            new Date('2018-11-25T00:00:00.000Z'),
+            new Date('2018-12-02T00:00:00.000Z')
+        ]);
+    });
+
+    it('should create timeline for 6 months', () => {
+        const result = createTimeline(TimeUnitType.Month, 6);
+        expect(result).toEqual([
+            new Date('2018-07-01T01:00:00.000Z'),
+            new Date('2018-08-01T01:00:00.000Z'),
+            new Date('2018-09-01T01:00:00.000Z'),
+            new Date('2018-10-01T01:00:00.000Z'),
+            new Date('2018-11-01T00:00:00.000Z'),
+            new Date('2018-12-01T00:00:00.000Z')
+        ]);
     });
 });
