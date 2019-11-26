@@ -1,13 +1,15 @@
 import { EntitySchema } from 'typeorm';
 
 import { OrdersPerMarketModel } from '../models/OrdersPerMarketModel';
+import { bigint } from './transformer';
 
 export const OrdersPerMarket = new EntitySchema<OrdersPerMarketModel>({
     name: 'OrdersPerMarket',
     columns: {
         timestamp: {
             primary: true,
-            type: 'bigint'
+            type: 'bigint',
+            transformer: [bigint]
         },
         marketId: {
             primary: true,

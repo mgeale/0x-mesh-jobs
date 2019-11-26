@@ -9,7 +9,7 @@ export interface DecodeAssetData {
 }
 
 export function decodeAssetData(encodedAssetData: string): DecodeAssetData {
-    const decodedAssetData = assetDataUtils.decodeAssetDataOrThrow(encodedAssetData)
+    const decodedAssetData = assetDataUtils.decodeAssetDataOrThrow(encodedAssetData);
 
     if (assetDataUtils.isMultiAssetData(decodedAssetData)) {
         return reformatMultiAssetData(decodedAssetData);

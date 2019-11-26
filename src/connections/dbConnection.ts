@@ -2,10 +2,10 @@ import { Connection, createConnection } from 'typeorm';
 
 import { logger } from '../common/logger';
 import { Config } from '../config';
-import { OrdersPerMarket } from '../entity/OrdersPerMarket';
-import { TotalMarkets } from '../entity/TotalMarkets';
-import { TotalOrders } from '../entity/TotalOrders';
-import { TotalOrdersPerMarket } from '../entity/TotalOrdersPerMarket';
+import { OrdersPerMarket } from '../entities/OrdersPerMarket';
+import { TotalMarkets } from '../entities/TotalMarkets';
+import { TotalOrders } from '../entities/TotalOrders';
+import { TotalOrdersPerMarket } from '../entities/TotalOrdersPerMarket';
 
 let connectionIfExists: Connection | undefined;
 
@@ -22,9 +22,9 @@ export async function initDBConnectionAsync(config: Config): Promise<void> {
     }
     connectionIfExists = await createConnection({
         type: 'postgres',
-        url: config.postgresConnectionUrl,
-        synchronize: false,
-        logging: false,
+        url: config.dbConnectionString,
+        synchronize: config.dbSynchronize,
+        logging: config.dbLogging,
         entities: [TotalOrders, TotalMarkets, TotalOrdersPerMarket, OrdersPerMarket]
     });
     logger.info('DB connection created');

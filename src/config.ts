@@ -1,5 +1,6 @@
 import env from 'env2';
 import * as fs from 'fs';
+import yn from 'yn';
 
 export enum Stage {
     Test = 'test',
@@ -21,8 +22,10 @@ export class Config {
     public stage: Stage = Stage.Dev;
     public logLevel: string = LogLevel.Verbose;
     public timeoutInterval: number = 15000;
-    public postgresConnectionUrl: string;
-    public meshConnectionUrl: string;
+    public dbConnectionString: string;
+    public dbSynchronize: boolean = false;
+    public dbLogging: boolean = false;
+    public meshConnectionString: string;
     private readonly _radix: number = 10;
 
     constructor(private readonly _configPath: string, private readonly _envPath: string) {
@@ -39,8 +42,8 @@ export class Config {
         this.stage = (process.env.STAGE as Stage) || this.stage;
         this.logLevel = process.env.LOG_LEVEL || this.logLevel;
         this.timeoutInterval = parseInt(process.env.TIMEOUT_INTERVAL, this._radix);
-        this.meshConnectionUrl = process.env.MESH_CONNECTION_STRING;
-        this.postgresConnectionUrl = process.env.POSTGRES_CONNECTION_STRING;
+        this.dbSynchronize = yn(process.env.DB_SYNCHRONIZE) || this.dbSynchronize;
+        this.dbLogging = yn(process.env.DB_LOGGING) || this.dbLogging;
     }
 
     private _loadFromFile(): void {

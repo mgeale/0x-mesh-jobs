@@ -1,10 +1,10 @@
 import { Between, getRepository } from 'typeorm';
 
 import { MarketOrders, TotalMarketOrders } from '../common/marketTotals';
-import { OrdersPerMarket } from '../entity/OrdersPerMarket';
-import { TotalMarkets } from '../entity/TotalMarkets';
-import { TotalOrders } from '../entity/TotalOrders';
-import { TotalOrdersPerMarket } from '../entity/TotalOrdersPerMarket';
+import { OrdersPerMarket } from '../entities/OrdersPerMarket';
+import { TotalMarkets } from '../entities/TotalMarkets';
+import { TotalOrders } from '../entities/TotalOrders';
+import { TotalOrdersPerMarket } from '../entities/TotalOrdersPerMarket';
 import { OrdersPerMarketModel } from '../models/OrdersPerMarketModel';
 import { TotalMarketsModel } from '../models/TotalMarketsModel';
 import { TotalOrdersModel } from '../models/TotalOrdersModel';
@@ -50,7 +50,11 @@ export async function getTotalOrdersAsync(start: number, finish: number): Promis
     });
 }
 
-export async function getTotalOrdersPerMarketAsync(marketId: string, start: number, finish: number): Promise<TotalOrdersPerMarketModel[]> {
+export async function getTotalOrdersPerMarketAsync(
+    marketId: string,
+    start: number,
+    finish: number
+): Promise<TotalOrdersPerMarketModel[]> {
     return getRepository(TotalOrdersPerMarket).find({
         marketId,
         timestamp: Between(start, finish)
