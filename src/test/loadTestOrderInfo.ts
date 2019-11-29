@@ -2,7 +2,7 @@ import { BigNumber, OrderInfo } from '@0x/mesh-rpc-client';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { EncodedAssets } from './assetData';
+import { EncodedAsset } from './assetData';
 
 export function loadTestOrderInfo(): OrderInfo[] {
     const orders = [];
@@ -23,8 +23,8 @@ export function loadTestOrderInfo(): OrderInfo[] {
                 takerFee: new BigNumber(0),
                 makerAssetAmount: new BigNumber(singleWeth),
                 takerAssetAmount: new BigNumber(takerAmount),
-                makerAssetData: EncodedAssets.Weth,
-                takerAssetData: EncodedAssets.Dai,
+                makerAssetData: EncodedAsset.Weth,
+                takerAssetData: EncodedAsset.Dai,
                 salt: new BigNumber(0),
                 exchangeAddress: 'exchange_address',
                 feeRecipientAddress: 'fee_recipient_address',
@@ -38,11 +38,11 @@ export function loadTestOrderInfo(): OrderInfo[] {
     orders.push({
         signedOrder: {
             makerAddress: 'maker_address',
-            makerAssetData: EncodedAssets.Ens,
+            makerAssetData: EncodedAsset.Ens,
             makerAssetAmount: new BigNumber(1),
             makerFee: new BigNumber(0),
             takerAddress: 'taker_address',
-            takerAssetData: EncodedAssets.Weth,
+            takerAssetData: EncodedAsset.Weth,
             takerAssetAmount: new BigNumber(singleWeth / 4),
             takerFee: new BigNumber(0),
             senderAddress: 'sender_address',
@@ -56,11 +56,11 @@ export function loadTestOrderInfo(): OrderInfo[] {
     orders.push({
         signedOrder: {
             makerAddress: 'maker_address',
-            makerAssetData: EncodedAssets.Atom,
+            makerAssetData: EncodedAsset.Atom,
             makerAssetAmount: new BigNumber(1),
             makerFee: new BigNumber(0),
             takerAddress: 'taker_address',
-            takerAssetData: EncodedAssets.Weth,
+            takerAssetData: EncodedAsset.Weth,
             takerAssetAmount: new BigNumber(singleWeth / 5),
             takerFee: new BigNumber(0),
             senderAddress: 'sender_address',
@@ -75,11 +75,11 @@ export function loadTestOrderInfo(): OrderInfo[] {
     orders.push({
         signedOrder: {
             makerAddress: 'maker_address',
-            makerAssetData: EncodedAssets.AtomMulti,
+            makerAssetData: EncodedAsset.AtomMulti,
             makerAssetAmount: new BigNumber(1),
             makerFee: new BigNumber(0),
             takerAddress: 'taker_address',
-            takerAssetData: EncodedAssets.Weth,
+            takerAssetData: EncodedAsset.Weth,
             takerAssetAmount: new BigNumber(singleWeth),
             takerFee: new BigNumber(0),
             senderAddress: 'sender_address',
@@ -93,11 +93,11 @@ export function loadTestOrderInfo(): OrderInfo[] {
     orders.push({
         signedOrder: {
             makerAddress: 'maker_address',
-            makerAssetData: EncodedAssets.MixMulti,
+            makerAssetData: EncodedAsset.MixMulti,
             makerAssetAmount: new BigNumber(1),
             makerFee: new BigNumber(0),
             takerAddress: 'taker_address',
-            takerAssetData: EncodedAssets.Weth,
+            takerAssetData: EncodedAsset.Weth,
             takerAssetAmount: new BigNumber(singleWeth),
             takerFee: new BigNumber(0),
             senderAddress: 'sender_address',

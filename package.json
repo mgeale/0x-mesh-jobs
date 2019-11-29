@@ -1,5 +1,5 @@
 {
-   "name": "mesh-backend",
+   "name": "mesh-jobs",
    "version": "1.0.0",
    "main": "index.js",
    "license": "MIT",
@@ -30,7 +30,6 @@
       "@0x/mesh-rpc-client": "^6.0.1-beta",
       "@0x/order-utils": "^8.4.0",
       "env2": "2.2.0",
-      "moment": "^2.24.0",
       "pg": "^7.12.1",
       "reflect-metadata": "^0.1.10",
       "typeorm": "0.2.19",

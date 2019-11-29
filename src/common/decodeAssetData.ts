@@ -1,41 +1,34 @@
 import { BigNumber } from '@0x/mesh-rpc-client';
-import { assetDataUtils, MultiAssetData } from '@0x/order-utils';
+import { assetDataUtils, AssetData, StaticCallAssetData } from '@0x/order-utils';
 
-export interface DecodeAssetData {
-    assetProxyId: string;
-    tokenAddress?: string;
-    amounts?: BigNumber[];
-    tokenId?: BigNumber;
-}
+export declare type DecodedAssetData = AssetData & {
+    id: string;
+};
 
-export function decodeAssetData(encodedAssetData: string): DecodeAssetData {
+export function decodeAssetData(encodedAssetData: string): DecodedAssetData {
     const decodedAssetData = assetDataUtils.decodeAssetDataOrThrow(encodedAssetData);
 
     if (assetDataUtils.isMultiAssetData(decodedAssetData)) {
-        return reformatMultiAssetData(decodedAssetData);
-    } else {
-        return decodedAssetData;
-    }
-}
-
-function reformatMultiAssetData(multiAssetData: MultiAssetData): DecodeAssetData {
-    const assets = multiAssetData.nestedAssetData;
-    const result = [];
-    for (let i = 0; i < assets.length; i++) {
-        const assetData = decodeAssetData(assets[i]);
-        result.push({
-            tokenAddress: assetData.tokenAddress,
-            amounts: multiAssetData.amounts[i]
+        const decodedMultiAssetData = assetDataUtils.decodeMultiAssetDataRecursively(encodedAssetData);
+        const ids = decodedMultiAssetData.nestedAssetData.map(d => {
+            if (assetDataUtils.isStaticCallAssetData(d)) return d.callTarget;
+            return d.tokenAddress;
         });
+        return {
+            id: ids.sort().join('+'),
+            ...decodedMultiAssetData
+        };
     }
-    const sorted = result.sort((a, b) =>
-        a.tokenAddress > b.tokenAddress ? 1 : b.tokenAddress > a.tokenAddress ? -1 : 0
-    );
-    const amounts = sorted.map(r => r.amounts);
-    const addresses = sorted.map(r => r.tokenAddress).join('+');
+
+    if (assetDataUtils.isStaticCallAssetData(decodedAssetData)) {
+        return {
+            id: decodedAssetData.callTarget,
+            ...decodedAssetData
+        };
+    }
+
     return {
-        assetProxyId: multiAssetData.assetProxyId,
-        tokenAddress: addresses,
-        amounts
+        id: decodedAssetData.tokenAddress,
+        ...decodedAssetData
     };
 }

@@ -1,35 +1,79 @@
 import { BigNumber } from '@0x/mesh-rpc-client';
 
-import { AssetAddress, EncodedAssets } from '../test/assetData';
+import { AssetAddress, EncodedAsset, TokenId, AssetProxyId } from '../test/assetData';
 
 import { decodeAssetData } from './decodeAssetData';
 
-enum AssetProxyId {
-    Erc20 = '0xf47261b0',
-    Erc721 = '0x02571792',
-    MultiAsset = '0x94cfcdd7'
-}
-
 describe('decode asset data', () => {
     it('should decode erc20', () => {
-        const result = decodeAssetData(EncodedAssets.Dai);
+        const result = decodeAssetData(EncodedAsset.Dai);
         expect(result).toEqual({
+            id: AssetAddress.Dai,
             assetProxyId: AssetProxyId.Erc20,
             tokenAddress: AssetAddress.Dai
         });
     });
 
     it('should decode erc721 asset', () => {
-        const result = decodeAssetData(EncodedAssets.Ens);
-        expect(result.assetProxyId).toEqual(AssetProxyId.Erc721);
-        expect(result.tokenAddress).toEqual(AssetAddress.Ens);
+        const result = decodeAssetData(EncodedAsset.Ens);
+        expect(result).toEqual({
+            id: AssetAddress.Ens,
+            assetProxyId: AssetProxyId.Erc721,
+            tokenAddress: AssetAddress.Ens,
+            tokenId: new BigNumber(TokenId.Ens)
+        });
     });
 
-    it('should decode multi asset', () => {
+    it('should decode Atom multi asset', () => {
         const amount = new BigNumber(1);
-        const result = decodeAssetData(EncodedAssets.AtomMulti);
-        expect(result.assetProxyId).toEqual(AssetProxyId.MultiAsset);
-        expect(result.tokenAddress).toEqual([AssetAddress.Atom, AssetAddress.Atom, AssetAddress.Atom].join('+'));
-        expect(result.amounts).toEqual([amount, amount, amount]);
+        const result = decodeAssetData(EncodedAsset.AtomMulti);
+        expect(result).toEqual({
+            id: [AssetAddress.Atom, AssetAddress.Atom, AssetAddress.Atom].join('+'),
+            assetProxyId: AssetProxyId.MultiAsset,
+            amounts: [amount, amount, amount],
+            nestedAssetData: [
+                {
+                    assetProxyId: AssetProxyId.Erc721,
+                    tokenAddress: AssetAddress.Atom,
+                    tokenId: new BigNumber(156)
+                },
+                {
+                    assetProxyId: AssetProxyId.Erc721,
+                    tokenAddress: AssetAddress.Atom,
+                    tokenId: new BigNumber(414)
+                },
+                {
+                    assetProxyId: AssetProxyId.Erc721,
+                    tokenAddress: AssetAddress.Atom,
+                    tokenId: new BigNumber(544)
+                }
+            ]
+        });
+    });
+
+    it('should decode Mix multi asset', () => {
+        const amount = new BigNumber(1);
+        const result = decodeAssetData(EncodedAsset.MixMulti);
+        expect(result).toEqual({
+            id: [AssetAddress.Atom, AssetAddress.Ens, AssetAddress.Dai].sort().join('+'),
+            assetProxyId: AssetProxyId.MultiAsset,
+            amounts: [new BigNumber(1), new BigNumber(2), new BigNumber(3)],
+            nestedAssetData: [
+                {
+                    assetProxyId: AssetProxyId.Erc721,
+                    tokenAddress: AssetAddress.Atom,
+                    tokenId: new BigNumber(123)
+                },
+                {
+                    assetProxyId: AssetProxyId.Erc721,
+                    tokenAddress: AssetAddress.Ens,
+                    tokenId: new BigNumber(123)
+                },
+                {
+                    assetProxyId: AssetProxyId.Erc20,
+                    tokenAddress: AssetAddress.Dai
+                }
+            ]
+        });
     });
 });

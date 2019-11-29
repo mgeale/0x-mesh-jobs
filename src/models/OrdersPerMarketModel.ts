@@ -1,4 +1,4 @@
-import { OrderAmounts } from '../common/marketTotals';
+import { OrderAmounts } from '../common/orders';
 
 export class OrdersPerMarketModel {
     public timestamp: number;

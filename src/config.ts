@@ -21,11 +21,14 @@ export class Config {
     public port: number = 8080;
     public stage: Stage = Stage.Dev;
     public logLevel: string = LogLevel.Verbose;
+
     public timeoutInterval: number = 15000;
+    public meshConnectionString: string;
+
     public dbConnectionString: string;
     public dbSynchronize: boolean = false;
     public dbLogging: boolean = false;
-    public meshConnectionString: string;
+
     private readonly _radix: number = 10;
 
     constructor(private readonly _configPath: string, private readonly _envPath: string) {

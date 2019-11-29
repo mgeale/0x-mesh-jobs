@@ -1,6 +1,7 @@
 import { Between, getRepository } from 'typeorm';
 
-import { MarketOrders, TotalMarketOrders } from '../common/marketTotals';
+import { TotalMarketOrders } from '../common/marketTotals';
+import { MarketOrders } from '../common/orders';
 import { OrdersPerMarket } from '../entities/OrdersPerMarket';
 import { TotalMarkets } from '../entities/TotalMarkets';
 import { TotalOrders } from '../entities/TotalOrders';
@@ -42,21 +43,4 @@ export async function saveOrdersPerMarketAsync(marketOrders: MarketOrders): Prom
         orders: marketOrders.orders
     });
     await getRepository(OrdersPerMarket).save(entry);
-}
-
-export async function getTotalOrdersAsync(start: number, finish: number): Promise<TotalOrdersModel[]> {
-    return getRepository(TotalOrders).find({
-        timestamp: Between(start, finish)
-    });
-}
-
-export async function getTotalOrdersPerMarketAsync(
-    marketId: string,
-    start: number,
-    finish: number
-): Promise<TotalOrdersPerMarketModel[]> {
-    return getRepository(TotalOrdersPerMarket).find({
-        marketId,
-        timestamp: Between(start, finish)
-    });
 }
