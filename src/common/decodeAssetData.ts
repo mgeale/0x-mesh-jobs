@@ -1,5 +1,4 @@
-import { BigNumber } from '@0x/mesh-rpc-client';
-import { assetDataUtils, AssetData, StaticCallAssetData } from '@0x/order-utils';
+import { AssetData, assetDataUtils } from '@0x/order-utils';
 
 export declare type DecodedAssetData = AssetData & {
     id: string;
@@ -11,7 +10,9 @@ export function decodeAssetData(encodedAssetData: string): DecodedAssetData {
     if (assetDataUtils.isMultiAssetData(decodedAssetData)) {
         const decodedMultiAssetData = assetDataUtils.decodeMultiAssetDataRecursively(encodedAssetData);
         const ids = decodedMultiAssetData.nestedAssetData.map(d => {
-            if (assetDataUtils.isStaticCallAssetData(d)) return d.callTarget;
+            if (assetDataUtils.isStaticCallAssetData(d)) {
+                return d.callTarget;
+            }
             return d.tokenAddress;
         });
         return {

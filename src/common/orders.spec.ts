@@ -3,7 +3,7 @@ import { BigNumber, OrderInfo } from '@0x/mesh-rpc-client';
 import { AssetAddress, AssetProxyId, TokenId } from '../test/assetData';
 import { loadTestOrderInfo } from '../test/loadTestOrderInfo';
 
-import { getOrdersPerMarket, AssetAmounts } from './orders';
+import { AssetAmounts, getOrdersPerMarket } from './orders';
 
 describe('orders', () => {
     let orders: OrderInfo[];
@@ -11,9 +11,6 @@ describe('orders', () => {
     const ensWethId = [AssetAddress.Ens, AssetAddress.Weth].sort().join('|');
     const atomWethId = [AssetAddress.Atom, AssetAddress.Weth].sort().join('|');
     const atomMultiWethId = [[AssetAddress.Atom, AssetAddress.Atom, AssetAddress.Atom].join('+'), AssetAddress.Weth]
-        .sort()
-        .join('|');
-    const mixMultiWethId = [[AssetAddress.Atom, AssetAddress.Ens, AssetAddress.Dai].sort().join('+'), AssetAddress.Weth]
         .sort()
         .join('|');
 
@@ -129,22 +126,23 @@ describe('orders', () => {
                 amounts: [new BigNumber(1), new BigNumber(1), new BigNumber(1)],
                 amount: new BigNumber(1),
                 nestedAssetData: [
-                {
-                    assetProxyId: AssetProxyId.Erc721,
-                    tokenAddress: AssetAddress.Atom,
-                    tokenId: new BigNumber(156)
-                },
-                {
-                    assetProxyId: AssetProxyId.Erc721,
-                    tokenAddress: AssetAddress.Atom,
-                    tokenId: new BigNumber(414)
-                },
-                {
-                    assetProxyId: AssetProxyId.Erc721,
-                    tokenAddress: AssetAddress.Atom,
-                    tokenId: new BigNumber(544)
-                }
-            ]} as AssetAmounts,
+                    {
+                        assetProxyId: AssetProxyId.Erc721,
+                        tokenAddress: AssetAddress.Atom,
+                        tokenId: new BigNumber(156)
+                    },
+                    {
+                        assetProxyId: AssetProxyId.Erc721,
+                        tokenAddress: AssetAddress.Atom,
+                        tokenId: new BigNumber(414)
+                    },
+                    {
+                        assetProxyId: AssetProxyId.Erc721,
+                        tokenAddress: AssetAddress.Atom,
+                        tokenId: new BigNumber(544)
+                    }
+                ]
+            } as AssetAmounts,
             takerAsset: orderSingleWeth
         });
     });

@@ -1,6 +1,6 @@
 import { BigNumber } from '@0x/mesh-rpc-client';
 
-import { AssetAddress, EncodedAsset, TokenId, AssetProxyId } from '../test/assetData';
+import { AssetAddress, AssetProxyId, EncodedAsset, TokenId } from '../test/assetData';
 
 import { decodeAssetData } from './decodeAssetData';
 
@@ -52,7 +52,6 @@ describe('decode asset data', () => {
     });
 
     it('should decode Mix multi asset', () => {
-        const amount = new BigNumber(1);
         const result = decodeAssetData(EncodedAsset.MixMulti);
         expect(result).toEqual({
             id: [AssetAddress.Atom, AssetAddress.Ens, AssetAddress.Dai].sort().join('+'),

@@ -20,9 +20,8 @@ describe('market totals', () => {
 
     it('should count total number of orders per market', () => {
         const result = countTotalOrdersPerMarket(orders);
-        const expectedLength = 5;
         expect(result.length).toEqual(5);
         const daiWethResult = result.find(r => r.marketId === daiWethId);
-        expect(daiWethResult.totalOrders).toEqual(expectedLength);
+        expect(daiWethResult.totalOrders).toEqual(5);
     });
 });

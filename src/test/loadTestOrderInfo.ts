@@ -10,7 +10,6 @@ export function loadTestOrderInfo(): OrderInfo[] {
     let index = 0;
     const singleDai = 1000000000000000000;
     const singleWeth = 1000000000000000000;
-    const makerAmount = singleDai;
     // erc20
     while (index < length) {
         const takerAmount = singleDai * (180 + index * 2.5);

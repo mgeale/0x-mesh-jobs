@@ -3,7 +3,7 @@ import { Config } from '../config';
 import { getMeshConnection } from '../connections/meshConnection';
 import { HistoricalDataService } from '../services/historicalDataService';
 
-export async function meshSnapshot(config: Config) {
+export async function meshSnapshot(config: Config): Promise<void> {
     const meshConnection = getMeshConnection();
     const orders = await meshConnection.getOrdersAsync();
 

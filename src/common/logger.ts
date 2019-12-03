@@ -7,7 +7,7 @@ import { Config, LogLevel, Stage } from '../config';
 /**
  * Logger for printing info, errors, etc
  */
-export function initLogger(config: Config) {
+export function initLogger(config: Config): void {
     if (logger) {
         return;
     }

@@ -13,5 +13,5 @@ initLogger(config);
 (async () => {
     await initMeshConnectionAsync(config);
     await initDBConnectionAsync(config);
-    Jobs.init(config);
+    await Jobs.init(config);
 })();

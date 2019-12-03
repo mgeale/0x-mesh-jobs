@@ -1,6 +1,7 @@
 import { EntitySchema } from 'typeorm';
 
 import { TotalOrdersModel } from '../models/TotalOrdersModel';
+
 import { bigint } from './transformer';
 
 export const TotalOrders = new EntitySchema<TotalOrdersModel>({
