@@ -10,14 +10,16 @@ export interface MarketOrders {
 export interface DecodedOrders {
     marketId: string;
     maker: DecodedAssetData;
+    makerAddress: string;
     makerAmount: BigNumber;
     taker: DecodedAssetData;
     takerAmount: BigNumber;
 }
 
 export interface OrderAmounts {
-    maker: AssetAmounts;
-    taker: AssetAmounts;
+    makerAddress: string;
+    makerAsset: AssetAmounts;
+    takerAsset: AssetAmounts;
 }
 
 export declare type AssetAmounts = DecodedAssetData & {
@@ -34,11 +36,12 @@ export function getOrdersPerMarket(rawOrders: OrderInfo[]): MarketOrders[] {
                 delete o.maker.id;
                 delete o.taker.id;
                 orderAmounts.push({
-                    maker: {
+                    makerAddress: o.makerAddress,
+                    makerAsset: {
                         ...o.maker,
                         amount: o.makerAmount
                     },
-                    taker: {
+                    takerAsset: {
                         ...o.taker,
                         amount: o.takerAmount
                     }
@@ -60,6 +63,7 @@ function decodeOrders(orders: OrderInfo[]): DecodedOrders[] {
         return {
             marketId: sorted.join('|'),
             maker,
+            makerAddress: order.signedOrder.makerAddress,
             makerAmount: order.signedOrder.makerAssetAmount,
             taker,
             takerAmount: order.signedOrder.takerAssetAmount

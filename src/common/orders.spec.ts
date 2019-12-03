@@ -19,6 +19,7 @@ describe('orders', () => {
 
     const singleDai = 1000000000000000000;
     const singleWeth = 1000000000000000000;
+    const makerAddress = 'maker_address';
 
     beforeAll(() => {
         orders = loadTestOrderInfo();
@@ -37,8 +38,9 @@ describe('orders', () => {
         } as AssetAmounts;
 
         expect(daiWethMarket.orders[0]).toEqual({
-            maker: orderSingleWeth,
-            taker: {
+            makerAddress,
+            makerAsset: orderSingleWeth,
+            takerAsset: {
                 assetProxyId: AssetProxyId.Erc20,
                 tokenAddress: AssetAddress.Dai,
                 amount: new BigNumber(singleDai * 180)
@@ -46,8 +48,9 @@ describe('orders', () => {
         });
 
         expect(daiWethMarket.orders[1]).toEqual({
-            maker: orderSingleWeth,
-            taker: {
+            makerAddress,
+            makerAsset: orderSingleWeth,
+            takerAsset: {
                 assetProxyId: AssetProxyId.Erc20,
                 tokenAddress: AssetAddress.Dai,
                 amount: new BigNumber(singleDai * 182.5)
@@ -55,8 +58,9 @@ describe('orders', () => {
         });
 
         expect(daiWethMarket.orders[2]).toEqual({
-            maker: orderSingleWeth,
-            taker: {
+            makerAddress,
+            makerAsset: orderSingleWeth,
+            takerAsset: {
                 assetProxyId: AssetProxyId.Erc20,
                 tokenAddress: AssetAddress.Dai,
                 amount: new BigNumber(singleDai * 185)
@@ -64,8 +68,9 @@ describe('orders', () => {
         });
 
         expect(daiWethMarket.orders[3]).toEqual({
-            maker: orderSingleWeth,
-            taker: {
+            makerAddress,
+            makerAsset: orderSingleWeth,
+            takerAsset: {
                 assetProxyId: AssetProxyId.Erc20,
                 tokenAddress: AssetAddress.Dai,
                 amount: new BigNumber(singleDai * 187.5)
@@ -73,8 +78,9 @@ describe('orders', () => {
         });
 
         expect(daiWethMarket.orders[4]).toEqual({
-            maker: orderSingleWeth,
-            taker: {
+            makerAddress,
+            makerAsset: orderSingleWeth,
+            takerAsset: {
                 assetProxyId: AssetProxyId.Erc20,
                 tokenAddress: AssetAddress.Dai,
                 amount: new BigNumber(singleDai * 190)
@@ -84,13 +90,14 @@ describe('orders', () => {
         const ensWethMarket = result.find(r => r.marketId === ensWethId);
         expect(ensWethMarket.orders.length).toEqual(1);
         expect(ensWethMarket.orders[0]).toEqual({
-            maker: {
+            makerAddress,
+            makerAsset: {
                 assetProxyId: AssetProxyId.Erc721,
                 tokenAddress: AssetAddress.Ens,
                 amount: new BigNumber(1),
                 tokenId: new BigNumber(TokenId.Ens)
             } as AssetAmounts,
-            taker: {
+            takerAsset: {
                 assetProxyId: AssetProxyId.Erc20,
                 tokenAddress: AssetAddress.Weth,
                 amount: new BigNumber(singleWeth / 4)
@@ -100,13 +107,14 @@ describe('orders', () => {
         const atomWethMarket = result.find(r => r.marketId === atomWethId);
         expect(atomWethMarket.orders.length).toEqual(1);
         expect(atomWethMarket.orders[0]).toEqual({
-            maker: {
+            makerAddress,
+            makerAsset: {
                 assetProxyId: AssetProxyId.Erc721,
                 tokenAddress: AssetAddress.Atom,
                 amount: new BigNumber(1),
                 tokenId: new BigNumber(TokenId.Atom)
             } as AssetAmounts,
-            taker: {
+            takerAsset: {
                 assetProxyId: AssetProxyId.Erc20,
                 tokenAddress: AssetAddress.Weth,
                 amount: new BigNumber(singleWeth / 5)
@@ -115,7 +123,8 @@ describe('orders', () => {
 
         const atomMultiWethMarket = result.find(r => r.marketId === atomMultiWethId);
         expect(atomMultiWethMarket.orders[0]).toEqual({
-            maker: {
+            makerAddress,
+            makerAsset: {
                 assetProxyId: AssetProxyId.MultiAsset,
                 amounts: [new BigNumber(1), new BigNumber(1), new BigNumber(1)],
                 amount: new BigNumber(1),
@@ -136,7 +145,7 @@ describe('orders', () => {
                     tokenId: new BigNumber(544)
                 }
             ]} as AssetAmounts,
-            taker: orderSingleWeth
+            takerAsset: orderSingleWeth
         });
     });
 });
