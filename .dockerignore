@@ -1,0 +1,7 @@
+.idea/
+.vscode/
+node_modules/
+built/
+tmp/
+temp/
+logs/

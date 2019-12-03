@@ -4,7 +4,7 @@
    "main": "index.js",
    "license": "MIT",
    "scripts": {
-      "build": "rm -r ./built && tsc",
+      "build": "gulp",
       "test": "yarn build && node built/test/index.js",
       "test:data": "yarn build && node built/test/saveTestOrderInfo.js",
       "start": "yarn build && node built/index.js",
@@ -21,6 +21,8 @@
       "@0x/tslint-config": "^3.0.0",
       "@types/jasmine": "^3.4.4",
       "@types/node": "^8.0.29",
+      "gulp": "4.0.0",
+      "gulp-typescript": "^6.0.0-alpha.1",
       "jasmine": "^3.5.0",
       "prettier": "1.16.4",
       "tslint": "^5.20.0",
